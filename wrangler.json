@@ -3,14 +3,6 @@
   "name": "womens-health-companion",
   "compatibility_date": "2026-10-23",
   "assets": {
-    "directory": ".",
-    "binding": "ASSETS",
-    "exclude": [
-      ".git",
-      ".wrangler",
-      "node_modules",
-      "*.bak",
-      "*.bak2"
-    ]
+    "directory": "."
   }
 }

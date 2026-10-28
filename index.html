@@ -1369,6 +1369,17 @@ function topicPage(id){let html=expandedTopicPage(id);if(id==='maternal-warning'
 function learn(){return topicIndex();}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-action="archive-pregnancy"]');if(!b)return;try{const outcome=archivePregnancy();render();toast(T('Pregnancy archived.','تمت أرشفة الحمل.'));if(outcome==='birth')location.hash='postpartum';else if(outcome==='loss')location.hash='topic-pregnancy-loss';}catch(err){$('#archive-error').textContent=err.message;}});
 
+function lifeHome(){
+ const universalSearchBox = '<section class="panel spaced" style="background:#eaf0e4;border:1px solid #cad9cc;border-radius:18px;padding:22px;margin-bottom:20px;">' +
+   '<h2 style="font-size:20px;color:#244c40;margin-bottom:8px;">' + T('Search anything on the website', 'ابحثي عن أي شيء في الموقع') + '</h2>' +
+   '<p style="font-size:14px;color:#5c6b60;margin-bottom:12px;">' + T('Search guides, health topics, medicines, or calculators instantly:', 'ابحثي في الأدلة، الموضوعات الصحية، الأدوية، أو الحاسبات فوراً:') + '</p>' +
+   '<div style="display:flex;gap:8px;flex-wrap:wrap;">' +
+     '<input id="home-universal-search" type="search" placeholder="' + T('Type a topic, medicine, or symptom (e.g. pain, iron, panadol)…', 'أدخلي موضوعاً، دواءً، أو عرضاً (مثل: ألم، حديد، بانادول)…') + '" style="flex:1;min-width:220px;padding:12px;border-radius:12px;border:1px solid #cad9cc;font-size:16px;background:#fff;" autocomplete="off">' +
+     '<button type="button" data-action="do-home-search" class="primary" style="padding:12px 20px;border-radius:12px;font-weight:600;">' + T('Search', 'بحث') + '</button>' +
+   '</div>' +
+   '<div id="home-search-results" style="margin-top:12px;"></div>' +
+ '</section>';
+
 function lifeHome(){return legacyLifeHomeR4()+'<section class="panel spaced"><h2>'+T('Step-by-step care pathways','مسارات الرعاية خطوة بخطوة')+'</h2><div class="cards">'+newGuides.filter(x=>x.sections).map(x=>'<article><h3>'+T(...x.title)+'</h3>'+link(T('Explore the pathway','استكشفي المسار'),'topic-'+x.id,'secondary')+'</article>').join('')+'</div></section>';}
 
 // Release r6: recovery, explicit sample mode and validated numerical inputs.
@@ -1623,7 +1634,18 @@ function startDiaryForDate(day){if(hasDiaryDraft()){quickDraftKept=true;return f
 
 function journeyControls(){return '<section class="panel spaced"><h2>'+T('Your pace, your choice','بإيقاعكِ وباختياركِ')+'</h2><p>'+T('Pause personalised suggestions without deleting your records. You can return or choose another journey whenever you want. No explanation is needed.','أوقفي الاقتراحات الشخصية دون حذف سجلاتك. يمكنك العودة أو اختيار رحلة أخرى متى شئتِ دون الحاجة إلى توضيح السبب.')+'</p><div class="actions">'+button(state.journeyPaused?T('Resume suggestions','استئناف الاقتراحات'):T('Pause suggestions','إيقاف الاقتراحات'),'toggle-journey-pause','secondary')+button(T('Clear my stage selection','مسح اختيار مرحلتي'),'clear-journey-stage','textbutton')+'</div><p class="small">'+T('Pausing hides stage recommendations on Home and My journey. It does not stop a pregnancy counter; you can close a pregnancy separately in its own screen. All guides remain available when you choose to browse.','يخفي الإيقاف توصيات المرحلة في الرئيسية ورحلتي. لا يوقف عداد الحمل؛ يمكنك إغلاق الحمل من شاشته. تظل الأدلة متاحة عند اختيار تصفحها.')+'</p></section>';}
 function quickDiary(){return '<section class="panel spaced"><h2>'+T('A quick note for today','ملاحظة سريعة لليوم')+'</h2><p>'+T('Choose a category, then add the effect on your day. Notes are optional. No streaks or daily targets.','اختاري فئة ثم حددي تأثيرها في يومك. الملاحظات اختيارية. لا توجد سلسلة أيام أو أهداف يومية.')+'</p><div class="actions">'+symptomTypes.map(x=>button(T(x[1],x[2]),'quick-diary','secondary','data-type="'+x[0]+'"')).join('')+'</div>'+link(T('Open full diary','فتح السجل الكامل'),'diary','textbutton')+'</section>';}
-function lifeHome(){const s=personalStage(),next=upcomingAppointments()[0],recent=diaryEntries().slice(0,3);let html='<section class="hero review-hero"><div>'+head(T('A little space for your health','مساحة صغيرة لصحتكِ'),T('Your notes, questions and next steps, whenever you need them.','ملاحظاتك وأسئلتك وخطواتك التالية وقتما تحتاجينها.'))+'</div>'+photo('consult',T('A calm conversation','حوار هادئ'))+'</section><div class="actions">'+link(T('Help me find where to start','ساعديني لأعرف من أين أبدأ'),'start')+link(T('My journey','رحلتي'),'journey','secondary')+link(T('My saved reading','قراءاتي المحفوظة'),'saved','secondary')+'</div><section class="notice spaced"><p>'+T('Device saving: ','الحفظ على الجهاز: ')+(state.save?T('On','مفعّل'):T('Off — entries last only in this session','متوقف — تبقى المدخلات في هذه الجلسة فقط'))+'</p><div class="actions">'+link(T('Saving settings','إعدادات الحفظ'),'plan','textbutton')+link(T('Back up or restore','نسخ احتياطي أو استعادة'),'backup','textbutton')+button(state.homePrivate?T('Show personal details on Home','إظهار التفاصيل الشخصية في الرئيسية'):T('Hide personal details on Home','إخفاء التفاصيل الشخصية في الرئيسية'),'toggle-home-private','textbutton')+'</div></section>';
+function lifeHome(){
+ const universalSearchBox = '<section class="panel spaced" style="background:#eaf0e4;border:1px solid #cad9cc;border-radius:18px;padding:22px;margin-bottom:20px;">' +
+   '<h2 style="font-size:20px;color:#244c40;margin-bottom:8px;">' + T('Search anything on the website', 'ابحثي عن أي شيء في الموقع') + '</h2>' +
+   '<p style="font-size:14px;color:#5c6b60;margin-bottom:12px;">' + T('Search guides, health topics, medicines, or calculators instantly:', 'ابحثي في الأدلة، الموضوعات الصحية، الأدوية، أو الحاسبات فوراً:') + '</p>' +
+   '<div style="display:flex;gap:8px;flex-wrap:wrap;">' +
+     '<input id="home-universal-search" type="search" placeholder="' + T('Type a topic, medicine, or symptom (e.g. pain, iron, panadol)…', 'أدخلي موضوعاً، دواءً، أو عرضاً (مثل: ألم، حديد، بانادول)…') + '" style="flex:1;min-width:220px;padding:12px;border-radius:12px;border:1px solid #cad9cc;font-size:16px;background:#fff;" autocomplete="off">' +
+     '<button type="button" data-action="do-home-search" class="primary" style="padding:12px 20px;border-radius:12px;font-weight:600;">' + T('Search', 'بحث') + '</button>' +
+   '</div>' +
+   '<div id="home-search-results" style="margin-top:12px;"></div>' +
+ '</section>';
+
+function lifeHome(){const s=personalStage(),next=upcomingAppointments()[0],recent=diaryEntries().slice(0,3);let html = universalSearchBox + '<section class="hero review-hero"><div>'+head(T('A little space for your health','مساحة صغيرة لصحتكِ'),T('Your notes, questions and next steps, whenever you need them.','ملاحظاتك وأسئلتك وخطواتك التالية وقتما تحتاجينها.'))+'</div>'+photo('consult',T('A calm conversation','حوار هادئ'))+'</section><div class="actions">'+link(T('Help me find where to start','ساعديني لأعرف من أين أبدأ'),'start')+link(T('My journey','رحلتي'),'journey','secondary')+link(T('My saved reading','قراءاتي المحفوظة'),'saved','secondary')+'</div><section class="notice spaced"><p>'+T('Device saving: ','الحفظ على الجهاز: ')+(state.save?T('On','مفعّل'):T('Off — entries last only in this session','متوقف — تبقى المدخلات في هذه الجلسة فقط'))+'</p><div class="actions">'+link(T('Saving settings','إعدادات الحفظ'),'plan','textbutton')+link(T('Back up or restore','نسخ احتياطي أو استعادة'),'backup','textbutton')+button(state.homePrivate?T('Show personal details on Home','إظهار التفاصيل الشخصية في الرئيسية'):T('Hide personal details on Home','إخفاء التفاصيل الشخصية في الرئيسية'),'toggle-home-private','textbutton')+'</div></section>';
 if(state.homePrivate)html+='<p class="notice">'+T('Personal details are hidden on Home. This is not an app lock: records remain visible in their own screens.','التفاصيل الشخصية مخفية في الرئيسية. هذا ليس قفلًا للتطبيق؛ تظل السجلات ظاهرة في شاشاتها.')+'</p>';
 else{html+='<div class="cards spaced"><section class="panel"><h2>'+T('Your next appointment','موعدك القادم')+'</h2>'+(next?'<h3>'+esc(next.title)+'</h3><p style="white-space:pre-wrap">'+esc(appointmentDetails({...next,notes:''}))+'</p>':'<p>'+T('No upcoming appointment recorded.','لم يُسجّل موعد قادم.')+'</p>')+link(T('Prepare for a visit','الاستعداد لزيارة'),'plan','secondary')+'</section><section class="panel"><h2>'+T('Recent observations','ملاحظات حديثة')+'</h2>'+(recent.length?'<ul>'+recent.map(x=>'<li>'+date(parse(x.date))+' · '+diaryLabel(x.type)+'</li>').join('')+'</ul>':'<p>'+T('Nothing recorded yet. Add only what is useful to you.','لا توجد تسجيلات بعد. أضيفي فقط ما يفيدكِ.')+'</p>')+link(T('My diary and calendar','سجلي وتقويمي'),'diary','secondary')+'</section></div>';if(s&&!state.journeyPaused)html+='<section class="panel spaced"><h2>'+T('Your chosen journey: ','رحلتك المختارة: ')+T(s[1],s[2])+'</h2><div class="actions">'+s[3].slice(0,2).map(id=>{const t=lifeTopics.find(x=>x.id===id);return link(T(...t.title),'topic-'+id,'secondary');}).join('')+'</div></section>';}
 if(state.journeyPaused)html+='<p class="notice">'+T('Personalised stage suggestions are paused.','اقتراحات المرحلة الشخصية متوقفة.')+'</p>';
@@ -1653,6 +1675,17 @@ function mobileTile(title,desc,route,icon){return '<a class="mobile-tile" href="
 function homeLink(title,description,route,icon='journey',panel=''){
  return '<a class="home-action" href="#'+route+'"'+(panel?' data-open-panel="'+panel+'"':'')+'><span class="tile-icon">'+navIcon(icon)+'</span><span><strong>'+title+'</strong><small>'+description+'</small></span><span class="row-arrow" aria-hidden="true">›</span></a>';
 }
+function lifeHome(){
+ const universalSearchBox = '<section class="panel spaced" style="background:#eaf0e4;border:1px solid #cad9cc;border-radius:18px;padding:22px;margin-bottom:20px;">' +
+   '<h2 style="font-size:20px;color:#244c40;margin-bottom:8px;">' + T('Search anything on the website', 'ابحثي عن أي شيء في الموقع') + '</h2>' +
+   '<p style="font-size:14px;color:#5c6b60;margin-bottom:12px;">' + T('Search guides, health topics, medicines, or calculators instantly:', 'ابحثي في الأدلة، الموضوعات الصحية، الأدوية، أو الحاسبات فوراً:') + '</p>' +
+   '<div style="display:flex;gap:8px;flex-wrap:wrap;">' +
+     '<input id="home-universal-search" type="search" placeholder="' + T('Type a topic, medicine, or symptom (e.g. pain, iron, panadol)…', 'أدخلي موضوعاً، دواءً، أو عرضاً (مثل: ألم، حديد، بانادول)…') + '" style="flex:1;min-width:220px;padding:12px;border-radius:12px;border:1px solid #cad9cc;font-size:16px;background:#fff;" autocomplete="off">' +
+     '<button type="button" data-action="do-home-search" class="primary" style="padding:12px 20px;border-radius:12px;font-weight:600;">' + T('Search', 'بحث') + '</button>' +
+   '</div>' +
+   '<div id="home-search-results" style="margin-top:12px;"></div>' +
+ '</section>';
+
 function lifeHome(){
  const stage=personalStage(),privateHome=state.homePrivate,next=upcomingAppointments()[0],last=lifeTopics.find(t=>t.id===state.forms.lastGuide);
  const returning=!privateHome&&(stage||last||hasDiaryDraft()||hasAppointmentDraft()||state.questions.length||diaryEntries().length);

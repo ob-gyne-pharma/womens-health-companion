@@ -122,6 +122,26 @@ body{background:var(--cream);line-height:1.65}h1{font-size:clamp(32px,4.5vw,48px
 @media print{.global-help,.home-shortcuts,.home-search{display:none!important}}
 
 
+
+/* Force Quick Exit Visibility across Mobile and Desktop */
+.quick-exit-pill {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  align-items: center;
+  gap: 5px;
+  background: #fdf2f0 !important;
+  color: #b43c2f !important;
+  border: 1px solid #f2c6c0 !important;
+  padding: 6px 14px !important;
+  border-radius: 999px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  z-index: 100 !important;
+  cursor: pointer !important;
+}
+
 /* --- Quick Exit Safety Pill --- */
 .quick-exit-pill {
   display: inline-flex;

@@ -14,7 +14,8 @@ nav>a{padding:12px 8px;min-height:44px;font-size:13px;text-decoration:none}.stat
 [hidden]{display:none!important}.tools{flex-wrap:wrap;justify-content:flex-end;gap:8px}#language-select{width:auto;max-width:150px;margin:0;border-radius:24px}.tool-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:#e9eee0;color:#2f6555;font-size:27px;margin-bottom:16px}.breadcrumbs{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:24px}#app>.banner{margin-top:22px}#app .panel h2{overflow-wrap:anywhere}.static-nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}.static-nav a{padding:10px 13px;min-height:44px;border-radius:20px;background:#e6ede3;text-decoration:none;font-size:14px}#preview-message{max-width:1080px;margin:16px auto}nav{flex-wrap:wrap}@media(max-width:600px){.top{flex-wrap:wrap;gap:12px}.tools{width:100%;justify-content:space-between}nav{display:grid;grid-template-columns:repeat(3,1fr)}nav button{font-size:14px}.cards{grid-template-columns:1fr}input[type=file]{font-size:14px}}
 
 .chapter-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.chapter-card{display:block;text-decoration:none;padding:22px;border:1px solid #cad9cc;border-radius:18px;background:#fffefa;color:var(--ink);min-height:150px}.chapter-card:hover,.chapter-card:focus{background:#eaf0e4}.chapter-card h3{margin:10px 0;font-size:20px}.chapter-num{display:inline-block;background:#2f6555;color:white;border-radius:12px;padding:5px 9px;font-size:13px}.offline-strip{margin:24px 0;padding:12px 18px;background:#e3eee8;border-radius:12px;font-size:14px}.breadcrumbs{position:sticky;top:0;z-index:9;background:#faf8f1;padding:10px 0;box-shadow:0 4px 8px #243b3208}.static-nav{position:sticky;top:0;z-index:10;background:#faf8f1;padding:8px 0}.static-page h1{overflow-wrap:anywhere}.panel p{line-height:1.75}.panel li{padding-block:8px}@media(max-width:700px){.chapter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.chapter-card{padding:16px}.chapter-card h3{font-size:18px}}@media(max-width:360px){.chapter-grid{grid-template-columns:1fr}}
-</style><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%228%22%20fill%3D%22%232f6555%22%2F%3E%3Ctext%20x%3D%2216%22%20y%3D%2224%22%20text-anchor%3D%22middle%22%20font-size%3D%2226%22%20fill%3D%22white%22%3E%E2%99%A1%3C%2Ftext%3E%3C%2Fsvg%3E"><meta name="app-release" content="2026.10.05-r13"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Women & Families"><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icons/icon-192.png"><!-- REVIEW-STYLES --><style>.review-hero{grid-template-columns:1.3fr .7fr;gap:24px;margin-bottom:25px}
+</style><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%228%22%20fill%3D%22%232f6555%22%2F%3E%3Ctext%20x%3D%2216%22%20y%3D%2224%22%20text-anchor%3D%22middle%22%20font-size%3D%2226%22%20fill%3D%22white%22%3E%E2%99%A1%3C%2Ftext%3E%3C%2Fsvg%3E"><meta name="app-release" content="2026.10.05-r13"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Women & Families"><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icons/icon-192.png"><!-- REVIEW-STYLES --><style>.review-hero{grid-template-columns:1.3fr .7fr;gap:24px;margin-bottom:25px}
 .review-hero .photo{height:245px;border-radius:24px;order:0}
 .review-hero h1{font-size:clamp(30px,4vw,48px)}
 .review-quick{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
@@ -1178,7 +1179,9 @@ if(document.modelContext&&typeof document.modelContext.registerTool==='function'
  window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});
 }
 
-// Live Search Bar Logic for Home View
+// ==========================================
+// Live Search Bar Logic with Deep Navigation
+// ==========================================
 document.addEventListener("input", function(e) {
   if (e.target && e.target.id === "home-search-input") {
     const query = e.target.value.toLowerCase().trim();
@@ -1196,15 +1199,32 @@ document.addEventListener("input", function(e) {
 
     if (matches.length > 0) {
       resultsContainer.style.display = "block";
-      resultsContainer.innerHTML = matches.map(match => `
-        <div style="padding: 10px 12px; border-bottom: 1px solid var(--line); font-size: 14px; cursor: pointer; color: var(--ink);" onclick="document.getElementById('home-search-input').value=''; document.getElementById('home-search-results').style.display='none';">
-          <strong>${match}</strong><br><small style="color: var(--muted);">${catalogue[match]}</small>
-        </div>
-      `).join("");
+      resultsContainer.innerHTML = matches.map(match => {
+        const routeKey = match.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        return `
+          <div style="padding: 10px 12px; border-bottom: 1px solid var(--line); font-size: 14px; cursor: pointer; color: var(--ink);" 
+               onclick="
+                 document.getElementById('home-search-input').value = ''; 
+                 document.getElementById('home-search-results').style.display = 'none'; 
+                 window.location.hash = '#preview-${routeKey}';
+               ">
+            <strong>${match}</strong><br><small style="color: var(--muted);">${catalogue[match]}</small>
+          </div>
+        `;
+      }).join("");
     } else {
       resultsContainer.style.display = "block";
       resultsContainer.innerHTML = `<div style="padding: 10px 12px; font-size: 14px; color: var(--muted);">No matching topics found. / لا توجد نتائج مطابقة.</div>`;
     }
+  }
+});
+
+// Close search results dropdown when clicking anywhere outside
+document.addEventListener("click", function(e) {
+  const searchContainer = document.querySelector(".home-search-container");
+  const resultsContainer = document.getElementById("home-search-results");
+  if (searchContainer && resultsContainer && !searchContainer.contains(e.target)) {
+    resultsContainer.style.display = "none";
   }
 });
 

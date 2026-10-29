@@ -1175,5 +1175,37 @@ if(document.modelContext&&typeof document.modelContext.registerTool==='function'
  try{Promise.resolve(document.modelContext.registerTool({name:'open_companion_screen',title:'Open companion screen',description:'Navigate to a guide or calculator screen. Does not calculate, save, or change health information.',inputSchema:{type:'object',properties:{screen:{type:'string',enum:['home','tools','examples','pregnancy','checker','plan','prep','fertility','contraception','breastfeeding','postpartum','bag','learn','languages','calc-bmi','calc-cycle','calc-postpartum','calc-appointment']}},required:['screen'],additionalProperties:false},annotations:{readOnlyHint:false},execute(input){const allowed=['home','tools','examples','pregnancy','checker','plan','prep','fertility','contraception','breastfeeding','postpartum','bag','learn','languages','calc-bmi','calc-cycle','calc-postpartum','calc-appointment'];if(!input||typeof input!=='object'||Object.keys(input).length!==1||!allowed.includes(input.screen))throw Error('Invalid screen');history.pushState(null,'','#'+input.screen);navigate(input.screen);return {screen:page};}},{signal:lifecycle.signal})).catch(()=>{});}catch(e){}
  window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});
 }
-})();
-</script></body></html>
+window.addEventListener('pagehide', () => lifecycle.abort(), { once: true });
+  })();
+</script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then((registration) => {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        })
+        .catch((error) => {
+          console.log('ServiceWorker registration failed: ', error);
+        });
+    });
+  }
+</script>
+</body>
+</html>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then((registration) => {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        })
+        .catch((error) => {
+          console.log('ServiceWorker registration failed: ', error);
+        });
+    });
+  }
+</script>
+</body>
+</html>

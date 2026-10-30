@@ -1335,3 +1335,21 @@ function runSymptomCheck(stage, symptomId) {
     <li><strong>UKMEC:</strong> UK Medical Eligibility Criteria for Contraceptive Use</li>
   </ul>
 </section>
+
+<!-- Phase 3C: Local Session Persistence Script -->
+<script>
+// Save active state and calculator inputs locally
+document.addEventListener('DOMContentLoaded', () => {
+  const lmpInput = document.getElementById('lmp-date-input');
+  if (lmpInput) {
+    const savedLmp = localStorage.getItem('saved_lmp_date');
+    if (savedLmp) {
+      lmpInput.value = savedLmp;
+      calculateGestationalAge();
+    }
+    lmpInput.addEventListener('change', (e) => {
+      localStorage.setItem('saved_lmp_date', e.target.value);
+    });
+  }
+});
+</script>

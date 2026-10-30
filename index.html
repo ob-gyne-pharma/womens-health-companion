@@ -1554,3 +1554,54 @@ function filterPlatformContent(query) {
   }
 }
 </script>
+
+<!-- Enhanced Global "Search All Topics" Engine -->
+<script>
+function searchAllPlatformTopics(keyword) {
+  const term = keyword.toLowerCase().trim();
+  const resultsContainer = document.getElementById('search-feedback');
+  if (!resultsContainer) return;
+  
+  if (!term) {
+    resultsContainer.innerHTML = '';
+    return;
+  }
+  
+  // Comprehensive topic index covering all homepage sections & life stages
+  const topicDatabase = [
+    { title: 'My period worries me / Dysmenorrhea', category: 'Cycle', anchor: 'symptom-checker-section' },
+    { title: 'My first period & Menarche', category: 'Cycle', anchor: 'onboarding-section' },
+    { title: 'I am pregnant or might be (EDD Calculator)', category: 'Pregnancy', anchor: 'calculator-section' },
+    { title: 'I want to prepare for pregnancy', category: 'Pregnancy', anchor: 'guidelines-section' },
+    { title: 'Recovery or feeding after birth (Postpartum)', category: 'Postpartum', anchor: 'symptom-checker-section' },
+    { title: 'Changes around menopause & Hot flashes', category: 'Menopause', anchor: 'symptom-checker-section' },
+    { title: 'Pain, discharge or intimate health', category: 'Clinical', anchor: 'symptom-checker-section' },
+    { title: 'A change in my breast', category: 'Screening', anchor: 'guidelines-section' },
+    { title: 'I want to compare contraception (UKMEC)', category: 'Contraception', anchor: 'guidelines-section' },
+    { title: 'RCOG & NICE Clinical Guidelines', category: 'References', anchor: 'guidelines-section' }
+  ];
+  
+  const matches = topicDatabase.filter(item => 
+    item.title.toLowerCase().includes(term) || item.category.toLowerCase().includes(term)
+  );
+  
+  if (matches.length > 0) {
+    let html = '<ul style="list-style: none; padding: 0; margin-top: 0.5rem;">';
+    matches.forEach(m => {
+      html += `<li style="padding: 0.4rem 0; border-bottom: 1px solid #e2e8f0;"><a href="#${m.anchor}" style="color: #0d9488; text-decoration: none; font-weight: 500;">${m.title}</a> <span style="font-size: 0.8rem; background: #e0f2fe; color: #0369a1; padding: 0.1rem 0.4rem; border-radius: 4px; margin-left: 0.5rem;">${m.category}</span></li>`;
+    });
+    html += '</ul>';
+    resultsContainer.innerHTML = html;
+  } else {
+    resultsContainer.innerHTML = '<p style="color: #dc2626; margin-top: 0.5rem;">لم يتم العثور على مواضيع تطابق بحثك. جرب كلمة مفتاحية أخرى.</p>';
+  }
+}
+
+// Hook up to global search input if present
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.getElementById('global-search-input');
+  if (searchInput) {
+    searchInput.setAttribute('onkeyup', 'searchAllPlatformTopics(this.value)');
+  }
+});
+</script>

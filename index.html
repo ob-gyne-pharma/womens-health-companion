@@ -1900,7 +1900,7 @@ if(document.modelContext&&typeof document.modelContext.registerTool==='function'
   let focused = -1; // keyboard focus index in results
 
   function runSearch(query) {
-    const resultsEl = document.getElementById('home-search-results');
+    const resultsEl = document.getElementById("home-search-results");
     const clearBtn  = document.getElementById('home-search-clear');
     if (!resultsEl) return;
 
@@ -1942,9 +1942,9 @@ if(document.modelContext&&typeof document.modelContext.registerTool==='function'
         'style="display:block;padding:12px 16px;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);" ' +
         ' ' +
         ' ' +
-        'onclick="document.getElementById('home-search-input').value='';' +
-               'document.getElementById('home-search-results').hidden=true;' +
-               'document.getElementById('home-search-results').style.display='none';">' +
+        'onclick="document.getElementById("home-search-input").value='';' +
+               'document.getElementById("home-search-results").hidden=true;' +
+               'document.getElementById("home-search-results").style.display='none';">' +
         '<span style="font-weight:500;">' + primary + '</span>' +
         '<br><span style="font-size:12px;color:var(--muted);">' + secondary + '</span>' +
         '</a>';
@@ -1952,14 +1952,14 @@ if(document.modelContext&&typeof document.modelContext.registerTool==='function'
   }
 
   function moveFocus(dir) {
-    const resultsEl = document.getElementById('home-search-results');
+    const resultsEl = document.getElementById("home-search-results");
     if (!resultsEl || resultsEl.hidden) return;
     const items = resultsEl.querySelectorAll('a[role=option]');
     if (!items.length) return;
     if (dir === 'down') focused = Math.min(focused + 1, items.length - 1);
     if (dir === 'up')   focused = Math.max(focused - 1, -1);
     if (focused === -1) {
-      document.getElementById('home-search-input').focus();
+      document.getElementById("home-search-input").focus();
     } else {
       items[focused].focus();
       items.forEach((el,i) => el.style.background = i === focused ? 'var(--soft)' : '');
@@ -1973,8 +1973,8 @@ if(document.modelContext&&typeof document.modelContext.registerTool==='function'
   });
 
   document.addEventListener('keydown', function(e) {
-    const inp = document.getElementById('home-search-input');
-    const res = document.getElementById('home-search-results');
+    const inp = document.getElementById("home-search-input");
+    const res = document.getElementById("home-search-results");
     if (!inp || !res || res.hidden) return;
     if (e.key === 'ArrowDown') { e.preventDefault(); moveFocus('down'); }
     if (e.key === 'ArrowUp')   { e.preventDefault(); moveFocus('up'); }
@@ -1982,8 +1982,8 @@ if(document.modelContext&&typeof document.modelContext.registerTool==='function'
   });
 
   document.addEventListener('click', function(e) {
-    const inp = document.getElementById('home-search-input');
-    const res = document.getElementById('home-search-results');
+    const inp = document.getElementById("home-search-input");
+    const res = document.getElementById("home-search-results");
     const bar = document.getElementById('search-bar-container');
     if (inp && res && bar && !bar.contains(e.target)) {
       res.hidden = true;

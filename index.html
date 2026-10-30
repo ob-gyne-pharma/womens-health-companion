@@ -1518,3 +1518,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
+
+<!-- Global Search Bar Section -->
+<section id="global-search-section" style="margin: 2rem auto; padding: 1.5rem; max-width: 600px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; font-family: inherit;">
+  <h3 style="color: #166534; margin-bottom: 0.75rem; font-size: 1.25rem;">البحث الشامل في المنصة</h3>
+  <p style="color: #15803d; font-size: 0.9rem; margin-bottom: 1rem;">ابحث عن أي أداة، حاسبة، أو إرشاد سريري فوراً.</p>
+  
+  <div style="display: flex; gap: 0.75rem;">
+    <input type="text" id="global-search-input" placeholder="اكتب للبحث (مثل: حاسبة، حمل، دورة، RCOG)..." onkeyup="filterPlatformContent(this.value)" style="flex: 1; padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem;" />
+  </div>
+  
+  <div id="search-feedback" style="margin-top: 0.75rem; font-size: 0.9rem; color: #166534;"></div>
+</section>
+
+<script>
+function filterPlatformContent(query) {
+  const term = query.toLowerCase().trim();
+  const feedback = document.getElementById('search-feedback');
+  
+  if (!term) {
+    feedback.innerHTML = '';
+    return;
+  }
+  
+  // Quick matching logic for sections
+  let matches = [];
+  if ('حاسبة حمل ولادة edd'.includes(term) || 'calculator'.includes(term)) matches.push('حاسبة العمر الحملي وتاريخ الولادة');
+  if ('أعراض دورة نزيف'.includes(term) || 'symptom'.includes(term)) matches.push('فاحص الأعراض التفاعلي');
+  if ('rcog nice ukmec'.includes(term) || 'مرجع إرشاد'.includes(term)) matches.push('المراجع والإرشادات السريرية');
+  
+  if (matches.length > 0) {
+    feedback.innerHTML = `النتائج المطابقة: <strong>${matches.join(', ')}</strong>`;
+  } else {
+    feedback.innerHTML = 'لم يتم العثور على مطابقات مباشرة. جرب كلمات مفتاحية أخرى.';
+  }
+}
+</script>

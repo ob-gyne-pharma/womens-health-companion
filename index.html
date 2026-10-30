@@ -1285,3 +1285,41 @@ window.addEventListener('pagehide', () => lifecycle.abort(), { once: true });
 </script>
 </body>
 </html>
+<script>
+// --- Phase 2: Enhanced Interactive Symptom Checker Logic ---
+const SYMPTOM_DATABASE = {
+  cycle: [
+    { id: 'pain', name: 'Severe Pelvic Pain / Dysmenorrhea', severity: 'amber', advice: 'Consult your clinician for evaluation of secondary dysmenorrhea or endometriosis screening.' },
+    { id: 'bleeding', name: 'Heavy Menstrual Bleeding (Menorrhagia)', severity: 'amber', advice: 'Track pad/tampon saturation. Check iron levels and consult a clinician if soaking through protection hourly.' }
+  ],
+  pregnancy: [
+    { id: 'bleeding_peg', name: 'First Trimester Vaginal Bleeding', severity: 'red', advice: 'URGENT: Contact your antenatal clinic or emergency services immediately to rule out ectopic pregnancy or miscarriage.' },
+    { id: 'headache_peg', name: 'Severe Headache / Visual Disturbances', severity: 'red', advice: 'URGENT: Check blood pressure immediately. These can be warning signs of pre-eclampsia.' }
+  ],
+  postpartum: [
+    { id: 'mood', name: 'Persistent Low Mood / Overwhelming Anxiety', severity: 'amber', advice: 'Speak with your health visitor, GP, or mental health specialist. Postpartum support is available.' },
+    { id: 'lochia', name: 'Heavy Postpartum Hemorrhage / Large Clots', severity: 'red', advice: 'URGENT: Seek immediate medical review if soaking two pads an hour or passing clots larger than a lemon.' }
+  ],
+  menopause: [
+    { id: 'vasomotor', name: 'Severe Vaso-motor Symptoms (Hot Flashes)', severity: 'green', advice: 'Explore lifestyle adjustments, cool environments, and discuss HRT options with your specialist.' },
+    { id: 'bleeding_meno', name: 'Post-Menopausal Bleeding', severity: 'red', advice: 'URGENT: Any bleeding after menopause requires prompt investigation via a 2-week fast-track referral pathway.' }
+  ]
+};
+
+function runSymptomCheck(stage, symptomId) {
+  const list = SYMPTOM_DATABASE[stage] || [];
+  const match = list.find(s => s.id === symptomId);
+  if (!match) return;
+
+  const colorMap = {
+    green: { bg: '#f0fdf4', border: '#16a34a', text: '#15803d', label: 'Self-Care & Routine Guidance' },
+    amber: { bg: '#fffbeb', border: '#d97706', text: '#b45309', label: 'Routine Clinical Consultation Recommended' },
+    red: { bg: '#fef2f2', border: '#dc2626', text: '#b91c1c', label: 'URGENT MEDICAL REVIEW REQUIRED' }
+  };
+
+  const style = colorMap[match.severity];
+  
+  console.log(`[Triage Result] Severity: ${match.severity.toUpperCase()} - ${match.advice}`);
+  return match;
+}
+</script>

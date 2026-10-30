@@ -1334,6 +1334,35 @@ function triggerCheckerUI() {
     });
   }
 </script>
+<script>
+function searchAllPlatformTopics(keyword) {
+  const term = keyword.toLowerCase().trim();
+  const resultsContainer = document.getElementById("search-feedback");
+  if (!resultsContainer) return;
+  if (!term) { resultsContainer.innerHTML = ""; return; }
+  const topicDatabase = [
+    { title: "My period worries me / Dysmenorrhea", category: "Cycle", anchor: "preview-en-topic-period-pain" },
+    { title: "My first period & Menarche", category: "Cycle", anchor: "preview-en-topic-first-period" },
+    { title: "I am pregnant or might be (EDD Calculator)", category: "Pregnancy", anchor: "preview-en-pregnancy" },
+    { title: "Recovery or feeding after birth", category: "Postpartum", anchor: "preview-en-postpartum" },
+    { title: "Changes around menopause", category: "Menopause", anchor: "preview-en-topic-perimenopause" },
+    { title: "Contraception options (UKMEC)", category: "Contraception", anchor: "preview-en-contraception" },
+    { title: "RCOG & NICE Clinical Guidelines", category: "References", anchor: "preview-en-index" }
+  ];
+  const matches = topicDatabase.filter(item => item.title.toLowerCase().includes(term) || item.category.toLowerCase().includes(term));
+  if (matches.length > 0) {
+    let html = "<ul style=\"list-style: none; padding: 0; margin: 0;\">";
+    matches.forEach(m => {
+      html += `<li style=\"padding: 4px 0;\"><a href=\"#${m.anchor}\" style=\"color: #0d9488; text-decoration: none; font-weight: 500;\">${m.title}</a> <span style=\"font-size: 0.75rem; background: #e0f2fe; color: #0369a1; padding: 0.1rem 0.3rem; border-radius: 3px;\">${m.category}</span></li>`;
+    });
+    html += "</ul>";
+    resultsContainer.innerHTML = html;
+  } else {
+    resultsContainer.innerHTML = "<span style=\"color: #dc2626;\">No matching topics found. Try another keyword.</span>";
+  }
+}
+</script>
+
 </body>
 </html>
 <!-- Phase 2: Interactive Symptom Checker UI Section -->
@@ -1382,6 +1411,35 @@ function triggerCheckerUI() {
     });
   }
 </script>
+<script>
+function searchAllPlatformTopics(keyword) {
+  const term = keyword.toLowerCase().trim();
+  const resultsContainer = document.getElementById("search-feedback");
+  if (!resultsContainer) return;
+  if (!term) { resultsContainer.innerHTML = ""; return; }
+  const topicDatabase = [
+    { title: "My period worries me / Dysmenorrhea", category: "Cycle", anchor: "preview-en-topic-period-pain" },
+    { title: "My first period & Menarche", category: "Cycle", anchor: "preview-en-topic-first-period" },
+    { title: "I am pregnant or might be (EDD Calculator)", category: "Pregnancy", anchor: "preview-en-pregnancy" },
+    { title: "Recovery or feeding after birth", category: "Postpartum", anchor: "preview-en-postpartum" },
+    { title: "Changes around menopause", category: "Menopause", anchor: "preview-en-topic-perimenopause" },
+    { title: "Contraception options (UKMEC)", category: "Contraception", anchor: "preview-en-contraception" },
+    { title: "RCOG & NICE Clinical Guidelines", category: "References", anchor: "preview-en-index" }
+  ];
+  const matches = topicDatabase.filter(item => item.title.toLowerCase().includes(term) || item.category.toLowerCase().includes(term));
+  if (matches.length > 0) {
+    let html = "<ul style=\"list-style: none; padding: 0; margin: 0;\">";
+    matches.forEach(m => {
+      html += `<li style=\"padding: 4px 0;\"><a href=\"#${m.anchor}\" style=\"color: #0d9488; text-decoration: none; font-weight: 500;\">${m.title}</a> <span style=\"font-size: 0.75rem; background: #e0f2fe; color: #0369a1; padding: 0.1rem 0.3rem; border-radius: 3px;\">${m.category}</span></li>`;
+    });
+    html += "</ul>";
+    resultsContainer.innerHTML = html;
+  } else {
+    resultsContainer.innerHTML = "<span style=\"color: #dc2626;\">No matching topics found. Try another keyword.</span>";
+  }
+}
+</script>
+
 </body>
 </html>
 <!-- Phase 2: Interactive Symptom Checker UI Section -->

@@ -1,8 +1,17 @@
 'use strict';
-const RELEASE='2026.10.05-r13';
+const RELEASE='2026.10.30-r16';
 const CACHE='wf-public-'+RELEASE;
 const BASE=new URL('./',self.location.href);
-const CORE=['./','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png'].map(p=>new URL(p,BASE).href);
+const CORE=[
+  './',
+  './manifest.webmanifest',
+  './icons/icon-192.png',
+  './icons/icon-512.png',
+  './images/mother.jpg',
+  './images/pregnant.jpg',
+  './images/meds.jpg',
+  './images/consult.jpg'
+].map(p=>new URL(p,BASE).href);
 self.addEventListener('install',event=>event.waitUntil((async()=>{
   const cache=await caches.open(CACHE);
   try{

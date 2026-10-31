@@ -1,4 +1,4 @@
-/* Women & Families 2026.10.31-r17 | js/17-nav-titles.js
+/* Women & Families 2026.10.31-r18 | js/17-nav-titles.js
    Hash to page-title map and route enhancements (own closure).
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */

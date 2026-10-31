@@ -1,4 +1,4 @@
-/* Women & Families 2026.10.31-r17 | js/08-guide-data.js
+/* Women & Families 2026.10.31-r18 | js/08-guide-data.js
    guideDepth + newGuides (data).
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */

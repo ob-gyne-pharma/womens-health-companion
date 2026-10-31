@@ -1,4 +1,4 @@
-/* Women & Families 2026.10.31-r17 | js/07-review-offline.js
+/* Women & Families 2026.10.31-r18 | js/07-review-offline.js
    Review feedback, offline/PWA install, service-worker hooks.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */
@@ -6,7 +6,7 @@
 
 /* REVIEW-START */
 // Review release. Runs inside the existing companion closure.
-const REVIEW_RELEASE = '2026.10.31-r17';
+const REVIEW_RELEASE = '2026.10.31-r18';
 const OFFLINE_CACHE = 'wf-public-' + REVIEW_RELEASE;
 let offlineState = 'checking', offlineSavedAt = '', offlineProblem = '', offlineBusy = false;
 let installPrompt = null, offlineRegistration = null;

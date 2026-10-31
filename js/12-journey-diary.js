@@ -1,4 +1,4 @@
-/* Women & Families 2026.10.31-r17 | js/12-journey-diary.js
+/* Women & Families 2026.10.31-r18 | js/12-journey-diary.js
    Personal journey, symptom diary, start/saved pages, appointments + calendar.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */

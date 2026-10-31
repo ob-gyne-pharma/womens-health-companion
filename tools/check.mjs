@@ -46,9 +46,44 @@ for (const m of sw.matchAll(/'\.\/([^'?]+\.(?:png|jpg|webmanifest|js))(?:\?v=[^'
   if (!existsSync(join(root, m[1]))) fail(`MISSING sw.js precaches ./${m[1]} but the file is not in the repo. Service worker install will fail.`);
 }
 
+// 6. Generated static pages (guide-*.html etc.) must be current and consistent.
+//    If this fails after a release bump or content change, run: node tools/build-pages.mjs
+const SITE = 'https://public.ob-gyn-pharma.com';
+const pageFiles = readdirSync(root).filter((f) => f.endsWith('.html') && f !== 'index.html').sort();
+const scriptBlock = (h) => (h.match(/<script src="js\/[^"]+"><\/script>/g) || []).join('\n');
+const sitemap = existsSync(join(root, 'sitemap.xml')) ? read('sitemap.xml') : '';
+if (!sitemap) fail('SITEMAP sitemap.xml is missing. Run: node tools/build-pages.mjs');
+if (!existsSync(join(root, 'robots.txt'))) fail('ROBOTS  robots.txt is missing. Run: node tools/build-pages.mjs');
+const locs = new Set([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]));
+const seenTitle = new Map(), seenDesc = new Map();
+for (const f of pageFiles) {
+  const name = f.replace(/\.html$/, '');
+  const h = read(f);
+  const canon = (h.match(/<link rel="canonical" href="([^"]+)"/) || [])[1];
+  if (canon !== `${SITE}/${name}`) fail(`PAGE    ${f}: canonical is ${canon}, expected ${SITE}/${name}`);
+  if (!locs.has(`${SITE}/${name}`)) fail(`SITEMAP ${f} is not listed in sitemap.xml`);
+  if (scriptBlock(h) !== scriptBlock(html)) fail(`STALE   ${f}: script list or ?v= differs from index.html. Run: node tools/build-pages.mjs`);
+  if ((h.match(/name="app-release" content="([^"]+)"/) || [])[1] !== metaRelease) fail(`STALE   ${f}: release differs from index.html. Run: node tools/build-pages.mjs`);
+  if (!/window\.__PRERENDER=\{"route":"[^"]+","lang":"(en|ar)"\}/.test(h)) fail(`PAGE    ${f}: missing window.__PRERENDER`);
+  const title = (h.match(/<title>([^<]*)<\/title>/) || [])[1], desc = (h.match(/<meta name="description" content="([^"]*)"/) || [])[1];
+  if (seenTitle.has(title)) fail(`DUP     ${f} and ${seenTitle.get(title)} share the title "${title}"`); seenTitle.set(title, f);
+  if (seenDesc.has(desc)) fail(`DUP     ${f} and ${seenDesc.get(desc)} share a description`); seenDesc.set(desc, f);
+  for (const m of h.matchAll(/<link rel="alternate" hreflang="[^"]+" href="([^"]+)"/g)) {
+    const t = m[1].replace(SITE + '/', '').replace(/^$/, 'index');
+    if (!existsSync(join(root, t + '.html'))) fail(`HREFLANG ${f} points to ${m[1]} but ${t}.html does not exist`);
+  }
+  for (const m of h.matchAll(/<a [^>]*href="(\/[a-z][^"#]*)"/g)) {
+    if (!existsSync(join(root, m[1].slice(1) + '.html'))) fail(`LINK    ${f} links to ${m[1]} but ${m[1].slice(1)}.html does not exist`);
+  }
+}
+for (const l of locs) {
+  const t = l === SITE + '/' ? 'index' : l.replace(SITE + '/', '');
+  if (!existsSync(join(root, t + '.html'))) fail(`SITEMAP lists ${l} but ${t}.html does not exist`);
+}
+
 if (problems.length) {
   console.error(`\n✗ ${problems.length} problem(s):\n`);
   problems.forEach((p) => console.error('  - ' + p + '\n'));
   process.exit(1);
 }
-console.log(`✓ OK: ${jsFiles.length} js files pass syntax check; release ${metaRelease} consistent in index.html, sw.js and app code; script order and offline file list match.`);
+console.log(`✓ OK: ${jsFiles.length} js files pass syntax check; release ${metaRelease} consistent in index.html, sw.js and app code; script order and offline file list match; ${pageFiles.length} static pages current, unique and in the sitemap.`);

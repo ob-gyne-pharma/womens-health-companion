@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://public.ob-gyn-pharma.com/sitemap.xml

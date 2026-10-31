@@ -321,7 +321,7 @@ details p{font-size:14px;color:var(--muted);margin-top:10px;line-height:1.7}
 
 /* ── Search bar ──────────────────────────────────────────────────── */
 #search-bar-container input{border:none;background:transparent;font-size:16px}
-#home-search-results a:focus{background:var(--soft);outline:none}
+#home-search-results a:focus{background:var(--soft);outline:none}.search-result-item:hover{background:var(--soft)}.search-result-item:focus{background:var(--soft);outline:none}
 
 /* ── Static-page nav ─────────────────────────────────────────────── */
 .static-nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;
@@ -1612,7 +1612,8 @@ let exampleSession=null,exampleResult=null,toolPractice=null;
 const toolExampleFields={bmi:['height','weight','bmiEligible'],cycle:['cycleFirst','cycleNext'],postpartum:['birthDate'],appointment:['countDate']};
 const exampleFields=['datemode','datevalue','cyclelength','embryo','irregular','parity','care'];
 function personalForms(){const f={...state.forms};if(exampleSession)for(const k of exampleFields){if(Object.prototype.hasOwnProperty.call(exampleSession,k))f[k]=exampleSession[k];else delete f[k];}if(toolPractice)for(const k of toolExampleFields[toolPractice.kind]){if(Object.prototype.hasOwnProperty.call(toolPractice.fields,k))f[k]=toolPractice.fields[k];else delete f[k];}return f;}
-function save(){if(!state.save)return;try{const saved={...state,forms:personalForms()};const payload=JSON.stringify({version:1,state:saved});const usedKB=Math.round(payload.length/1024);if(usedKB>3500){toast(T('Your plan is getting large. Consider exporting before it reaches the device limit.','خطتك أصبحت كبيرة. فكّري في تصديرها قبل أن تصل للحد الأقصى.'));}localStorage.setItem(KEY,payload);storageRepair=false;}catch(e){state.save=false;toast(T('Saving failed. Keep this page open and export your plan before closing it.','تعذّر الحفظ. أبقي الصفحة مفتوحة وصدّري خطتك قبل إغلاقها.'));}}function estimatePregnancy(f,now=today()){
+function save(){if(!state.save)return;try{const saved={...state,forms:personalForms()};const payload=JSON.stringify({version:1,state:saved});const usedKB=Math.round(payload.length/1024);if(usedKB>3500){toast(T('Your plan is getting large. Consider exporting before it reaches the device limit.','خطتك أصبحت كبيرة. فكّري في تصديرها قبل أن تصل للحد الأقصى.'));}localStorage.setItem(KEY,payload);storageRepair=false;}catch(e){state.save=false;toast(T('Saving failed. Keep this page open and export your plan before closing it.','تعذّر الحفظ. أبقي الصفحة مفتوحة وصدّري خطتك قبل إغلاقها.'));}}
+function estimatePregnancy(f,now=today()){
  const mode=f.datemode||'lmp',n=parse(f.datevalue);if(!['lmp','edd','ivf'].includes(mode))throw Error(T('Choose a supported dating method.','اختاري طريقة حساب مدعومة.'));
  if(!Number.isFinite(n))throw Error(T('Enter a valid date.','أدخلي تاريخًا صحيحًا.'));
  let due;
@@ -1900,7 +1901,7 @@ if(document.modelContext&&typeof document.modelContext.registerTool==='function'
   let focused = -1; // keyboard focus index in results
 
   function runSearch(query) {
-    const resultsEl = document.getElementById("home-search-results");
+    const resultsEl = document.getElementById('home-search-results');
     const clearBtn  = document.getElementById('home-search-clear');
     if (!resultsEl) return;
 
@@ -1935,26 +1936,27 @@ if(document.modelContext&&typeof document.modelContext.registerTool==='function'
     resultsEl.style.display = 'block';
     resultsEl.innerHTML = matches.map((item, i) => {
       const lang = document.documentElement.lang || 'en';
-      const primary   = lang === 'ar' ? item.ar : item.en;
-      const secondary = lang === 'ar' ? item.en : item.ar;
-      return '<a role="option" tabindex="-1" data-hash="' + item.hash + '" ' +
-        'href="#' + item.hash + '" ' +
-        'style="display:block;padding:12px 16px;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);">' +
+      var a = '<a role="option" tabindex="-1"' +
+        ' data-hash="' + item.hash + '"' +
+        ' href="#' + item.hash + '"' +
+        ' class="search-result-item"' +
+        ' style="display:block;padding:12px 16px;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);">' +
         '<span style="font-weight:500;">' + primary + '</span>' +
         '<br><span style="font-size:12px;color:var(--muted);">' + secondary + '</span>' +
         '</a>';
+      return a;
     }).join('');
   }
 
   function moveFocus(dir) {
-    const resultsEl = document.getElementById("home-search-results");
+    const resultsEl = document.getElementById('home-search-results');
     if (!resultsEl || resultsEl.hidden) return;
     const items = resultsEl.querySelectorAll('a[role=option]');
     if (!items.length) return;
     if (dir === 'down') focused = Math.min(focused + 1, items.length - 1);
     if (dir === 'up')   focused = Math.max(focused - 1, -1);
     if (focused === -1) {
-      document.getElementById("home-search-input").focus();
+      document.getElementById('home-search-input').focus();
     } else {
       items[focused].focus();
       items.forEach((el,i) => el.style.background = i === focused ? 'var(--soft)' : '');
@@ -1968,8 +1970,8 @@ if(document.modelContext&&typeof document.modelContext.registerTool==='function'
   });
 
   document.addEventListener('keydown', function(e) {
-    const inp = document.getElementById("home-search-input");
-    const res = document.getElementById("home-search-results");
+    const inp = document.getElementById('home-search-input');
+    const res = document.getElementById('home-search-results');
     if (!inp || !res || res.hidden) return;
     if (e.key === 'ArrowDown') { e.preventDefault(); moveFocus('down'); }
     if (e.key === 'ArrowUp')   { e.preventDefault(); moveFocus('up'); }
@@ -1977,15 +1979,24 @@ if(document.modelContext&&typeof document.modelContext.registerTool==='function'
   });
 
   document.addEventListener('click', function(e) {
-    const inp = document.getElementById("home-search-input");
-    const res = document.getElementById("home-search-results");
-    const bar = document.getElementById('search-bar-container');
-    if (inp && res && bar && !bar.contains(e.target)) {
-      res.hidden = true;
-      res.style.display = 'none';
+    // Search result item navigation
+    var hashItem = e.target.closest('[data-hash]');
+    if (hashItem && hashItem.classList.contains('search-result-item')) {
+      var inp = document.getElementById('home-search-input');
+      var res = document.getElementById('home-search-results');
+      if (inp) inp.value = '';
+      if (res) { res.hidden = true; res.style.display = 'none'; }
+      return;
+    }
+    var searchInp = document.getElementById('home-search-input');
+    var searchRes = document.getElementById('home-search-results');
+    var searchBar = document.getElementById('search-bar-container');
+    if (searchInp && searchRes && searchBar && !searchBar.contains(e.target)) {
+      searchRes.hidden = true;
+      searchRes.style.display = 'none';
     }
     if (e.target && e.target.id === 'home-search-clear') {
-      if (inp) { inp.value = ''; inp.focus(); }
+      if (searchInp) { searchInp.value = ''; searchInp.focus(); }
       runSearch('');
     }
   });
@@ -2182,6 +2193,7 @@ if(document.modelContext&&typeof document.modelContext.registerTool==='function'
 })();
 // ── End Phase 1a ─────────────────────────────────────────────────────
 
+})();
 </script>
 <!-- ── Welcome Wizard (Phase 1a) ────────────────────────────────── -->
 <div id="wf-wizard-overlay" hidden aria-modal="true" role="dialog" aria-labelledby="wiz-title">
@@ -2228,7 +2240,4 @@ if(document.modelContext&&typeof document.modelContext.registerTool==='function'
     </div>
   </div>
 </div>
-
-})();
-</script>
 </body></html>

@@ -1,4 +1,4 @@
-/* Women & Families 2026.10.31-r18 | js/14-home-more.js
+/* Women & Families 2026.10.31-r19 | js/14-home-more.js
    Final home, more page, polish, continuity cards.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */
@@ -10,10 +10,20 @@ function mobileTile(title,desc,route,icon){return '<a class="mobile-tile" href="
 function homeLink(title,description,route,icon='journey',panel=''){
  return '<a class="home-action" href="#'+route+'"'+(panel?' data-open-panel="'+panel+'"':'')+'><span class="tile-icon">'+navIcon(icon)+'</span><span><strong>'+title+'</strong><small>'+description+'</small></span><span class="row-arrow" aria-hidden="true">›</span></a>';
 }
+/* Home search box. The behaviour (matching, results, keyboard) lives in js/20-search.js and works by event delegation on these ids. */
+function globalSearchBox(){
+  return '<div class="gsearch" id="gsearch" role="search"><div class="gsearch-field">'+
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.6-4.6"/></svg>'+
+  '<input id="gsearch-input" type="search" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="gsearch-results" enterkeyhint="search" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="'+esc(T('Search anything\u2026','ابحثي عن أي شيء\u2026'))+'" aria-label="'+esc(T('Search the whole app','ابحثي في التطبيق كله'))+'">'+
+  '<button type="button" id="gsearch-clear" hidden aria-label="'+esc(T('Clear search','مسح البحث'))+'">\u00d7</button></div>'+
+  '<div id="gsearch-results" class="gsearch-results" role="listbox" aria-label="'+esc(T('Search results','نتائج البحث'))+'" hidden></div>'+
+  '<p id="gsearch-status" class="sr" role="status" aria-live="polite"></p>'+
+  '<p class="gsearch-hint">'+esc(T('Try: period pain \u00b7 PCOS \u00b7 contraception','جرّبي: آلام الدورة \u00b7 تكيس المبايض \u00b7 منع الحمل'))+'</p></div>';
+}
 function lifeHome(){
  const stage=personalStage(),privateHome=state.homePrivate,next=upcomingAppointments()[0],last=lifeTopics.find(t=>t.id===state.forms.lastGuide);
  const returning=!privateHome&&(stage||last||hasDiaryDraft()||hasAppointmentDraft()||state.questions.length||diaryEntries().length);
- let html='<section class="welcome-hero"><div class="welcome-copy"><p class="welcome-kicker">'+T('A little space for you','مساحة لكِ')+'</p>'+head(returning?T('Welcome back.','أهلًا بعودتكِ.'):T('Your life. Your health.','حياتكِ وصحتكِ.'),T('Understand what matters. Take the next step at your own pace.','افهمي ما يشغلك، وخذي خطوتك التالية على راحتك.'))+'<a class="home-search" href="#start">'+navIcon('search')+'<span>'+T('What is on your mind?','ما الذي يشغلك اليوم؟')+'</span><span aria-hidden="true">›</span></a></div>'+photo('consult',T('Illustration of a health conversation','صورة توضيحية لحوار حول الصحة'))+'</section>';
+ let html='<section class="welcome-hero"><div class="welcome-copy"><p class="welcome-kicker">'+T('A little space for you','مساحة لكِ')+'</p>'+head(returning?T('Welcome back.','أهلًا بعودتكِ.'):T('Your life. Your health.','حياتكِ وصحتكِ.'),T('Understand what matters. Take the next step at your own pace.','افهمي ما يشغلك، وخذي خطوتك التالية على راحتك.'))+globalSearchBox()+'</div>'+photo('consult',T('Illustration of a health conversation','صورة توضيحية لحوار حول الصحة'))+'</section>';
  html+='<div class="home-shortcuts">'+homeLink(T('My diary','سجلي'),T('Notice & remember','أدوّن ما يهمني'),'diary','diary')+homeLink(T('My visit','موعدي'),T('Questions & dates','أسئلتي ومواعيدي'),'plan','journey','plan-appointments')+homeLink(T('Tools','الأدوات'),T('Calculate & explore','أحسب وأستكشف'),'tools','tools')+'</div>';
  if(!privateHome){let actions='';
  if(hasDiaryDraft())actions+=homeLink(T('Finish my note','أكمّل ملاحظتي'),T('Your unfinished words are here','مسودتك موجودة كما تركتِها'),'diary','diary');

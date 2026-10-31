@@ -446,11 +446,11 @@ details p{font-size:14px;color:var(--muted);margin-top:10px;line-height:1.7}
 .wiz-skip{background:none;border:none;color:var(--muted);
   font-size:13px;cursor:pointer;padding:4px;
   text-decoration:underline;align-self:center}
-.wiz-lang-toggle{display:flex;gap:8px;justify-content:center;margin-top:6px}
-.wiz-lang-btn{background:none;border:1px solid var(--line);border-radius:20px;
-  padding:5px 12px;font-size:12px;cursor:pointer;color:var(--muted);
-  transition:all .15s ease}
-.wiz-lang-btn.active{border-color:var(--green);color:var(--green);font-weight:600}
+.wiz-lang-toggle{display:flex;gap:12px;justify-content:center;margin-top:16px}
+.wiz-lang-btn{background:rgba(0,0,0,.24);border:2px solid rgba(255,255,255,.85);border-radius:999px;padding:9px 22px;min-height:44px;font-size:15px;font-weight:600;cursor:pointer;color:#fff;transition:all .15s ease}
+.wiz-lang-btn:hover{background:rgba(0,0,0,.34)}
+.wiz-lang-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.wiz-lang-btn.active{background:#fff;border-color:#fff;color:#1f4a3c;font-weight:700;box-shadow:0 2px 8px #0003}
 
 /* ── Phase 1a: Life-Stage Pill Bar ──────────────────────────────── */
 #life-stage-bar{
@@ -572,7 +572,7 @@ details p{font-size:14px;color:var(--muted);margin-top:10px;line-height:1.7}
   #wf-wizard-overlay{align-items:flex-end;padding:0}
   .wiz-stages{grid-template-columns:1fr 1fr}
 }
-</style><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%228%22%20fill%3D%22%232f6555%22%2F%3E%3Ctext%20x%3D%2216%22%20y%3D%2224%22%20text-anchor%3D%22middle%22%20font-size%3D%2226%22%20fill%3D%22white%22%3E%E2%99%A1%3C%2Ftext%3E%3C%2Fsvg%3E"><meta name="app-release" content="2026.10.31-r18"><meta name="mobile-web-app-capable" content="yes">
+</style><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%228%22%20fill%3D%22%232f6555%22%2F%3E%3Ctext%20x%3D%2216%22%20y%3D%2224%22%20text-anchor%3D%22middle%22%20font-size%3D%2226%22%20fill%3D%22white%22%3E%E2%99%A1%3C%2Ftext%3E%3C%2Fsvg%3E"><meta name="app-release" content="2026.10.31-r19"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Women & Families"><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icons/icon-192.png"><!-- REVIEW-STYLES --><style>.review-hero{grid-template-columns:1.3fr .7fr;gap:24px;margin-bottom:25px}
 .review-hero .photo{height:245px;border-radius:24px;order:0}
 .review-hero h1{font-size:clamp(30px,4vw,48px)}
@@ -613,7 +613,6 @@ button:disabled{opacity:.6;cursor:wait}
  .review-utilities{justify-content:space-around;gap:4px}
  #review-bottom{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed;bottom:0;inset-inline:0;z-index:22;background:#fffefb;border-top:1px solid #c6d5ca;padding:5px 4px calc(5px + env(safe-area-inset-bottom));gap:0;box-shadow:0 -3px 16px #21382d0a}
  #review-bottom button{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;line-height:1.35;min-height:58px;padding:6px 2px;border:0;border-radius:10px;overflow-wrap:anywhere;color:#466254}
- #review-bottom button span{font-size:23px;line-height:24px}
  #review-bottom button[aria-current=page]{background:#e5eee8;color:#234f40;font-weight:700}
  #review-resume{bottom:calc(86px + env(safe-area-inset-bottom));inset-inline-end:12px;max-width:calc(100% - 24px)}
  footer{padding-bottom:40px}
@@ -679,31 +678,73 @@ body{background:var(--cream);line-height:1.65}h1{font-size:clamp(32px,4.5vw,48px
 @media(max-width:760px){.welcome-hero{padding:24px;grid-template-columns:minmax(0,1fr);gap:18px}.welcome-hero .photo{height:145px;min-height:145px;border-radius:65px 65px 18px 18px;background-position:center 35%}.welcome-copy h1{font-size:34px}.welcome-copy .lead{font-size:16px}.home-search{margin-top:18px;font-size:15px}.home-shortcuts{gap:8px;margin:18px 0 26px}.home-shortcuts .home-action{flex-direction:column;gap:10px;padding:14px 10px;border-radius:17px}.home-shortcuts .home-action strong{font-size:14px}.home-shortcuts .home-action small{font-size:12px}.home-shortcuts .tile-icon{width:36px;height:36px}.section-heading{align-items:flex-start}.section-heading h2{font-size:19px}.home-next{padding:20px}.home-journey{padding:22px}.home-journey h2{font-size:24px}.discovery-grid{gap:12px}.discovery-card>.photo,.reading-art{height:120px;min-height:120px}.discovery-card>div:last-child{padding:15px}.discovery-card h3{font-size:17px}.discovery-card p{font-size:13px}.reading-art svg{width:60px;height:60px}.section-heading>.textbutton{max-width:110px;text-align:center}.welcome-kicker{letter-spacing:.02em}.home-saving .actions{gap:2px}}
 @media(max-width:360px){.welcome-hero{padding:20px}.welcome-copy h1{font-size:30px}.home-shortcuts .home-action{padding:12px 8px}.home-shortcuts .home-action small{font-size:11px}.discovery-grid{grid-template-columns:1fr}.discovery-card{display:grid;grid-template-columns:100px minmax(0,1fr)}.discovery-card>.photo,.reading-art{height:100%;min-height:150px;border-radius:0}.section-heading{flex-wrap:wrap}}
 @media print{.global-help,.home-shortcuts,.home-search{display:none!important}}
+
+/* ---- r19: navigation, search ---------------------------------------------- */
+@media(max-width:720px){
+ #review-bottom{grid-template-columns:repeat(5,minmax(0,1fr));align-items:stretch;padding:4px 4px calc(4px + env(safe-area-inset-bottom))}
+ #review-bottom button{gap:3px;min-height:58px;padding:7px 2px 5px;font-size:12px;font-weight:600;line-height:1.15;color:#4a6356;justify-content:center;overflow-wrap:normal;word-break:keep-all}
+ #review-bottom .bnav-icon{display:flex;align-items:center;justify-content:center;width:28px;height:28px;font-size:0;line-height:0}
+ #review-bottom .bnav-icon svg{width:26px;height:26px;display:block}
+ #review-bottom .nav-label{display:block;max-width:100%;font-size:12px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ #review-bottom button[aria-current=page]{background:#e3eee8;color:#1f4a3c}
+}
+@media(min-width:721px){
+ #nav{gap:4px;padding:6px 12px;flex-wrap:wrap}
+ #nav button{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:9px 16px;font:inherit;font-size:15px;font-weight:600;color:#3d5a4c;background:transparent;border:0;border-bottom:3px solid transparent;border-radius:10px 10px 0 0;cursor:pointer}
+ #nav button:hover{background:#eef4f0}
+ #nav button[aria-current=page]{color:#1f4a3c;background:#e8f1ec;border-bottom-color:#2f6555}
+ #nav .bnav-icon{display:inline-flex;align-items:center;width:22px;height:22px}
+ #nav .bnav-icon svg{width:22px;height:22px}
+}
+.gsearch{position:relative;margin-top:20px;max-width:680px}
+.gsearch-field{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid #7fa391;border-radius:18px;padding:0 8px 0 16px;min-height:58px;box-shadow:0 2px 12px #21382d14}
+.gsearch-field:focus-within{border-color:#244d40;box-shadow:0 0 0 4px #2f655533}
+.gsearch-field>svg{width:22px;height:22px;flex:none;color:#3d5a4c}
+.gsearch #gsearch-input{flex:1;min-width:0;width:auto;height:auto;border:0;outline:0;background:transparent;box-shadow:none;font:inherit;font-size:17px;color:#1d2f27;padding:15px 4px;margin:0;border-radius:0;-webkit-appearance:none;appearance:none}
+.gsearch #gsearch-input::placeholder{color:#5f7468;opacity:1}
+.gsearch #gsearch-input::-webkit-search-cancel-button{display:none}
+#gsearch-clear{flex:none;width:44px;height:44px;border:0;border-radius:50%;background:transparent;color:#3d5a4c;font-size:26px;line-height:1;cursor:pointer}
+#gsearch-clear:hover{background:#eef4f0}
+#gsearch-clear[hidden]{display:none}
+.gsearch-results{margin-top:10px;background:#fffefb;border:1px solid #c2d4c9;border-radius:16px;box-shadow:0 6px 24px #21382d1f;overflow:hidden;overflow-y:auto;max-height:min(62vh,520px)}
+.gsearch-results[hidden]{display:none}
+.gs-item{display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:12px 16px;min-height:56px;text-decoration:none;color:#1d2f27;border-bottom:1px solid #e2eae4}
+.gs-item:last-child{border-bottom:0}
+.gs-item:hover,.gs-item.is-active{background:#eaf2ed}
+.gs-type{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:#e3eee8;color:#1f4a3c;white-space:nowrap}
+.gs-title{font-size:16px;font-weight:650;line-height:1.35}
+.gs-snip{font-size:13.5px;line-height:1.5;color:#51655a;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.gs-item.gs-urgent{background:#fff3e5}
+.gs-item.gs-urgent .gs-type{background:#b84a14;color:#fff}
+.gs-more,.gs-empty{padding:14px 16px;font-size:14.5px;line-height:1.6;color:#3d5a4c}
+.gs-more a,.gs-empty a{color:#1f4a3c;font-weight:600}
+.gsearch-hint{margin:10px 4px 0;font-size:13.5px;color:#5b6f63}
 </style><!-- /MOBILE-STYLES --><meta name="robots" content="index,follow,max-image-preview:large">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"بعد الولادة والرضاعة","description":"بعد الولادة والرضاعة: افتحي","url":"https://public.ob-gyn-pharma.com/ar-chapter-after","inLanguage":"ar","isPartOf":{"@type":"WebSite","name":"Women & Families","url":"https://public.ob-gyn-pharma.com/"},"publisher":{"@type":"Organization","name":"OB-GYN Pharma","url":"https://www.ob-gyn-pharma.com/"}}</script>
 </head><body><a class="skip-main" href="#app" id="skip-main">Skip to content</a><header><div class="top"><a class="brand" href="#preview-home"><span class="brandmark" aria-hidden="true">♡</span><span><small>OB-GYN PHARMA</small><b id="brand-title">Women & Families</b></span></a><div class="tools"><a href="https://www.ob-gyn-pharma.com/" target="_blank" rel="noopener" id="professional">For professionals ↗</a><label class="sr" for="language-select">Language / اللغة</label><select class="language" id="language-select"><option value="en">English</option><option value="ar">العربية</option></select><a id="manage-language" href="#languages">Languages +</a></div></div><nav id="nav" aria-label="Main navigation"><a href="#preview-home">🏠 For you</a><a href="#preview-pregnancy">🌱 Journey</a><a href="#preview-checker">💊 Medicines</a><a href="#preview-plan">📋 My plan</a></nav></header>
 <div id="life-stage-bar" aria-label="Life stage navigation" role="navigation"><div class="life-stage-inner"></div></div><div class="statusline" id="statusline"></div><div id="toast" role="status" hidden></div><div id="preview-message" class="notice" style="max-width:1080px;margin:16px auto">This review copy displays without JavaScript. Interactive tools need a JavaScript-enabled browser. <br>تظهر هذه النسخة دون JavaScript. تحتاج الأدوات التفاعلية إلى متصفح يسمح بتشغيله.</div><main id="app"><div class="breadcrumbs"><button type="button" class="secondary" data-action="back">رجوع</button><a class="secondary" href="#home">الرئيسية</a><a class="textbutton" href="#tools">كل الأدوات</a></div><div class="eyebrow">Women &amp; Families</div><h1 tabindex="-1">بعد الولادة والرضاعة</h1><p class="lead">اختاري دليلًا أو أداة. يمكنك استكشاف أي مرحلة في أي عمر.</p><div class="cards spaced"><article class="panel"><h2>التعافي بعد الولادة</h2><div class="actions"><a class="secondary" href="#postpartum">افتحي</a></div></article><article class="panel"><h2>دعم الرضاعة</h2><div class="actions"><a class="secondary" href="#breastfeeding">افتحي</a></div></article><article class="panel"><h2>الصحة النفسية بعد الولادة</h2><div class="actions"><a class="secondary" href="/ar-guide-postnatal-mood" data-spa-route="topic-postnatal-mood">افتحي</a></div></article><article class="panel"><h2>الوقت منذ الولادة</h2><div class="actions"><a class="secondary" href="#calc-postpartum">افتحي</a></div></article><article class="panel"><h2>ألم الرضاعة ومخاوف الحليب والتهاب الثدي</h2><div class="actions"><a class="secondary" href="/ar-guide-feeding-problems" data-spa-route="topic-feeding-problems">افتحي</a></div></article><article class="panel"><h2>الألم أثناء الجماع وجفاف المهبل</h2><div class="actions"><a class="secondary" href="/ar-guide-pain-sex" data-spa-route="topic-pain-sex">افتحي</a></div></article><article class="panel"><h2>الأعراض العاجلة أثناء الحمل وبعد الولادة</h2><div class="actions"><a class="secondary" href="/ar-guide-maternal-warning" data-spa-route="topic-maternal-warning">افتحي</a></div></article><article class="panel"><h2>بعد الولادة: التعافي والتغذية والصحة النفسية</h2><div class="actions"><a class="secondary" href="/ar-guide-recovery-care" data-spa-route="topic-recovery-care">افتحي</a></div></article></div><div class="actions"><a class="secondary" href="/ar-guides" data-spa-route="index">كل الموضوعات</a><a class="secondary" href="/ar-urgent-help" data-spa-route="urgent">متى أطلب المساعدة؟</a></div></main><footer><span id="foot"></span><a href="#preview-roadmap" id="roadlink">Development roadmap</a></footer><div id="print-content"></div>
 <!-- App code. Order matters (shared global scope). Keep in sync with sw.js CORE. -->
 <script>window.__PRERENDER={"route":"chapter-after","lang":"ar"};</script>
-<script src="js/01-core.js?v=2026.10.31-r18"></script>
-<script src="js/02-views-legacy.js?v=2026.10.31-r18"></script>
-<script src="js/03-i18n-base.js?v=2026.10.31-r18"></script>
-<script src="js/04-tools.js?v=2026.10.31-r18"></script>
-<script src="js/05-life-topics.js?v=2026.10.31-r18"></script>
-<script src="js/06-i18n-life.js?v=2026.10.31-r18"></script>
-<script src="js/07-review-offline.js?v=2026.10.31-r18"></script>
-<script src="js/08-guide-data.js?v=2026.10.31-r18"></script>
-<script src="js/09-guides.js?v=2026.10.31-r18"></script>
-<script src="js/10-urgent-learn.js?v=2026.10.31-r18"></script>
-<script src="js/11-state-calc.js?v=2026.10.31-r18"></script>
-<script src="js/12-journey-diary.js?v=2026.10.31-r18"></script>
-<script src="js/13-feedback-backup.js?v=2026.10.31-r18"></script>
-<script src="js/14-home-more.js?v=2026.10.31-r18"></script>
-<script src="js/15-i18n-late.js?v=2026.10.31-r18"></script>
-<script src="js/16-boot.js?v=2026.10.31-r18"></script>
-<script src="js/17-nav-titles.js?v=2026.10.31-r18"></script>
-<script src="js/18-wizard.js?v=2026.10.31-r18"></script>
-<script src="js/19-seo.js?v=2026.10.31-r18"></script>
+<script src="js/01-core.js?v=2026.10.31-r19"></script>
+<script src="js/02-views-legacy.js?v=2026.10.31-r19"></script>
+<script src="js/03-i18n-base.js?v=2026.10.31-r19"></script>
+<script src="js/04-tools.js?v=2026.10.31-r19"></script>
+<script src="js/05-life-topics.js?v=2026.10.31-r19"></script>
+<script src="js/06-i18n-life.js?v=2026.10.31-r19"></script>
+<script src="js/07-review-offline.js?v=2026.10.31-r19"></script>
+<script src="js/08-guide-data.js?v=2026.10.31-r19"></script>
+<script src="js/09-guides.js?v=2026.10.31-r19"></script>
+<script src="js/10-urgent-learn.js?v=2026.10.31-r19"></script>
+<script src="js/11-state-calc.js?v=2026.10.31-r19"></script>
+<script src="js/12-journey-diary.js?v=2026.10.31-r19"></script>
+<script src="js/13-feedback-backup.js?v=2026.10.31-r19"></script>
+<script src="js/14-home-more.js?v=2026.10.31-r19"></script>
+<script src="js/15-i18n-late.js?v=2026.10.31-r19"></script>
+<script src="js/16-boot.js?v=2026.10.31-r19"></script>
+<script src="js/17-nav-titles.js?v=2026.10.31-r19"></script>
+<script src="js/18-wizard.js?v=2026.10.31-r19"></script>
+<script src="js/19-seo.js?v=2026.10.31-r19"></script>
+<script src="js/20-search.js?v=2026.10.31-r19"></script>
 <!-- ── Welcome Wizard (Phase 1a) ────────────────────────────────── -->
 <div id="wf-wizard-overlay" hidden aria-modal="true" role="dialog" aria-labelledby="wiz-title">
   <div id="wf-wizard">

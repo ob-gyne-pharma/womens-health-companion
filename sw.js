@@ -1,10 +1,28 @@
 'use strict';
-const RELEASE='2026.10.30-r16';
+const RELEASE='2026.10.31-r17';
 const CACHE='wf-public-'+RELEASE;
 const BASE=new URL('./',self.location.href);
 const CORE=[
   './',
   './manifest.webmanifest',
+  './js/01-core.js?v=2026.10.31-r17',
+  './js/02-views-legacy.js?v=2026.10.31-r17',
+  './js/03-i18n-base.js?v=2026.10.31-r17',
+  './js/04-tools.js?v=2026.10.31-r17',
+  './js/05-life-topics.js?v=2026.10.31-r17',
+  './js/06-i18n-life.js?v=2026.10.31-r17',
+  './js/07-review-offline.js?v=2026.10.31-r17',
+  './js/08-guide-data.js?v=2026.10.31-r17',
+  './js/09-guides.js?v=2026.10.31-r17',
+  './js/10-urgent-learn.js?v=2026.10.31-r17',
+  './js/11-state-calc.js?v=2026.10.31-r17',
+  './js/12-journey-diary.js?v=2026.10.31-r17',
+  './js/13-feedback-backup.js?v=2026.10.31-r17',
+  './js/14-home-more.js?v=2026.10.31-r17',
+  './js/15-i18n-late.js?v=2026.10.31-r17',
+  './js/16-boot.js?v=2026.10.31-r17',
+  './js/17-nav-titles.js?v=2026.10.31-r17',
+  './js/18-wizard.js?v=2026.10.31-r17',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './images/mother.jpg',

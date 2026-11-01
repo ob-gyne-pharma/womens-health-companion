@@ -26,6 +26,8 @@ const CORE=[
   './js/19-seo.js?v=2026.10.31-r19',
   './js/20-search.js?v=2026.10.31-r19',
   './js/21-symptom-checker.js?v=2026.10.31-r19',
+  './js/22-reminders.js?v=2026.10.31-r19',
+  './js/23-analytics.js?v=2026.10.31-r19',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './images/mother.jpg',

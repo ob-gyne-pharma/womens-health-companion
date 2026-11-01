@@ -42,7 +42,7 @@ for (const f of jsFiles) {
 }
 
 // 5. Files the service worker precaches must exist (icons are the usual miss).
-for (const m of sw.matchAll(/'\.\/([^'?]+\.(?:png|jpg|webmanifest|js))(?:\?v=[^']*)?'/g)) {
+for (const m of sw.matchAll(/'\.\/([^'?]+\.(?:png|jpg|webp|webmanifest|js))(?:\?v=[^']*)?'/g)) {
   if (!existsSync(join(root, m[1]))) fail(`MISSING sw.js precaches ./${m[1]} but the file is not in the repo. Service worker install will fail.`);
 }
 

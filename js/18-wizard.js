@@ -1,4 +1,4 @@
-/* Women & Families 2026.10.31-r19 | js/18-wizard.js
+/* Women & Families 2026.11.01-r21 | js/18-wizard.js
    Welcome wizard (own closure).
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */
@@ -133,6 +133,9 @@
 
   // Check if wizard should show (first visit, wizard not yet completed)
   function maybeShowWizard() {
+    // Someone who arrives on a guide, the symptom checker or urgent help (a search result, a shared link) must see that page at once.
+    // The welcome question is only for visitors who start on the home page.
+    if (typeof page !== 'undefined' && page !== 'home') return;
     // Don't show if returning user who completed it
     if (state.wizardComplete) return;
     // Don't show if they already have data (stage was explicitly set, have meds/diary/plan)

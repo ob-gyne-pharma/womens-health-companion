@@ -1,4 +1,4 @@
-/* Women & Families 2026.10.31-r19 | js/19-seo.js
+/* Women & Families 2026.11.01-r21 | js/19-seo.js
    Search-engine support: real URLs for guide links, per-page browser titles.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */
@@ -22,6 +22,8 @@
     if(route.startsWith('chapter-')&&chapterIds.has(route.slice(8)))return '/'+pre+'chapter-'+route.slice(8);
     if(route==='learn'||route==='index')return '/'+pre+'guides';
     if(route==='urgent')return '/'+pre+'urgent-help';
+    if(route==='privacy')return '/'+pre+'privacy';
+    if(route==='symptoms')return '/'+pre+'symptoms';
     return null;
   }
 
@@ -39,7 +41,7 @@
   function syncTitle(){
     const h1=app.querySelector('h1');
     /* Arabic home is a real page (ar-home.html) with an Arabic title; English home keeps the site title. */
-    const isContent=/^(topic-|chapter-|learn$|index$|urgent$)/.test(page)||(page==='home'&&state.lang==='ar');
+    const isContent=/^(topic-|chapter-|learn$|index$|urgent$|privacy$|symptoms$)/.test(page)||(page==='home'&&state.lang==='ar');
     /* English chapter pages get "(all guides)" so they never share a title with the guide of the same name. */
     const qual=page.startsWith('chapter-')&&state.lang!=='ar'?' (all guides)':'';
     const want=isContent&&h1&&h1.textContent.trim()?h1.textContent.trim()+qual+' \u2014 Women & Families':ROOT_TITLE;

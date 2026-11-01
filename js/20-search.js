@@ -1,4 +1,4 @@
-/* Women & Families 2026.10.31-r19 | js/20-search.js
+/* Women & Families 2026.11.01-r21 | js/20-search.js
    Whole-app search on the home page: guides, tools and sections, English and Arabic.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */
@@ -69,6 +69,8 @@
     ['breastfeeding','section',['Breastfeeding','أرضع'],'nursing milk latch feeding baby','رضاعه لبن'],
     ['postpartum','section',['After birth','بعد الولادة'],'postnatal newborn recovery baby blues stitches','نفاس مولود'],
     ['contraception','section',['Contraception','منع الحمل'],'birth control pill iud coil implant condom injection family planning','حبوب لولب عازل حقنه تنظيم الاسره'],
+    ['symptoms','tool',['Symptom checker','فاحص الأعراض'],'symptoms symptom checker triage red amber green when to worry should i see a doctor fever bleeding headache pain','اعراض فحص فرز احمر برتقالي اخضر متى اقلق'],
+    ['privacy','section',['Privacy & your data','الخصوصية وبياناتك'],'privacy private data safe security tracking cookies delete my data stored on device backup','خصوصيه بيانات امان حذف بياناتي'],
     ['journey','section',['Journey','رحلتي'],'stages life chapters','مراحل']
   ];
 
@@ -91,6 +93,11 @@
     });
     PAGES.forEach(p=>docs.push({route:p[0],type:p[1],title:p[2],snip:null,boost:p[0]==='urgent'?6:0,
       phr:norm(p[2].join(' ')+' '+p[3]),f:[field(10,p[2].join(' ')),field(5,p[3]+' '+p[4])]}));
+    /* the symptom checker is found by the symptoms it lists, in both languages */
+    const symDoc=docs.find(d=>d.route==='symptoms');
+    if(symDoc&&typeof SYMPTOMS!=='undefined'){
+      symDoc.f.push(field(6,SYMPTOMS.map(s=>s.en+' '+s.ar).join(' ')),field(2,SYMPTOMS.map(s=>s.guidance.en+' '+s.guidance.ar).join(' ')));
+    }
     return docs;
   }
 

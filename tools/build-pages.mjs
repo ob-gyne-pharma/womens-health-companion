@@ -68,6 +68,8 @@ for (const lang of ['en', 'ar']) {
   const pre = lang === 'ar' ? 'ar-' : '';
   if (lang === 'ar') specs.push({ lang, route: 'home', file: 'ar-home', type: 'WebPage' });
   specs.push({ lang, route: 'learn', file: pre + 'guides', type: 'WebPage' });
+  specs.push({ lang, route: 'privacy', file: pre + 'privacy', type: 'WebPage' });
+  specs.push({ lang, route: 'symptoms', file: pre + 'symptoms', type: 'MedicalWebPage' });
   specs.push({ lang, route: 'urgent', file: pre + 'urgent-help', type: 'MedicalWebPage' });
   ids.chapters.forEach((c) => specs.push({ lang, route: 'chapter-' + c, file: pre + 'chapter-' + c, type: 'WebPage' }));
   ids.topics.forEach((t) => specs.push({ lang, route: 'topic-' + t, file: pre + 'guide-' + t, type: 'MedicalWebPage' }));
@@ -151,6 +153,7 @@ for (const s of specs) {
   const a = h.indexOf('<main id="app">');
   const b = h.indexOf('</main>', a);
   h = h.slice(0, a) + '<main id="app">' + s.html + h.slice(b);
+  h = h.replace(/<noscript id="root-noscript">[\s\S]*?<\/noscript>/g, ''); // generated pages already contain their content
   h = h.replace(/<noscript>[\s\S]*?<\/noscript>/g, (m) => (m.length > 100000 ? '' : m));
   const c = h.indexOf('<script src="js/01-core.js');
   h = h.slice(0, c) + `<script>window.__PRERENDER=${JSON.stringify({ route: s.route, lang: s.lang })};</script>\n` + h.slice(c);

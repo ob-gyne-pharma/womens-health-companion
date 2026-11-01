@@ -111,10 +111,10 @@ main{max-width:1120px;margin:auto;padding:32px 24px 48px;min-height:400px}
   min-height:180px;background-repeat:no-repeat}
 .hero .photo{height:340px;border-radius:80px 20px 20px 20px;
   background-position:65% center;box-shadow:var(--shadow-md)}
-.mother{background-image:url("./images/mother.jpg")}
-.pregnant{background-image:url("./images/pregnant.jpg")}
-.meds{background-image:url("./images/meds.jpg")}
-.consult{background-image:url("./images/consult.jpg")}
+.mother{background-image:url("./images/mother.webp")}
+.pregnant{background-image:url("./images/pregnant.webp")}
+.meds{background-image:url("./images/meds.webp")}
+.consult{background-image:url("./images/consult.webp")}
 
 /* ── Buttons ─────────────────────────────────────────────────────── */
 .row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
@@ -572,7 +572,7 @@ details p{font-size:14px;color:var(--muted);margin-top:10px;line-height:1.7}
   #wf-wizard-overlay{align-items:flex-end;padding:0}
   .wiz-stages{grid-template-columns:1fr 1fr}
 }
-</style><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%228%22%20fill%3D%22%232f6555%22%2F%3E%3Ctext%20x%3D%2216%22%20y%3D%2224%22%20text-anchor%3D%22middle%22%20font-size%3D%2226%22%20fill%3D%22white%22%3E%E2%99%A1%3C%2Ftext%3E%3C%2Fsvg%3E"><meta name="app-release" content="2026.10.31-r19"><meta name="mobile-web-app-capable" content="yes">
+</style><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%228%22%20fill%3D%22%232f6555%22%2F%3E%3Ctext%20x%3D%2216%22%20y%3D%2224%22%20text-anchor%3D%22middle%22%20font-size%3D%2226%22%20fill%3D%22white%22%3E%E2%99%A1%3C%2Ftext%3E%3C%2Fsvg%3E"><meta name="app-release" content="2026.11.01-r21"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Women & Families"><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icons/icon-192.png"><!-- REVIEW-STYLES --><style>.review-hero{grid-template-columns:1.3fr .7fr;gap:24px;margin-bottom:25px}
 .review-hero .photo{height:245px;border-radius:24px;order:0}
 .review-hero h1{font-size:clamp(30px,4vw,48px)}
@@ -719,33 +719,79 @@ body{background:var(--cream);line-height:1.65}h1{font-size:clamp(32px,4.5vw,48px
 .gs-more,.gs-empty{padding:14px 16px;font-size:14.5px;line-height:1.6;color:#3d5a4c}
 .gs-more a,.gs-empty a{color:#1f4a3c;font-weight:600}
 .gsearch-hint{margin:10px 4px 0;font-size:13.5px;color:#5b6f63}
+.privacy-list{margin:0;padding-inline-start:1.2em;display:grid;gap:12px;line-height:1.65}
+footer a+a{margin-inline-start:16px}
+
+/* ---- r21: emergency numbers, symptom checker --------------------------------- */
+.home-shortcuts{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:721px){.home-shortcuts{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.emergency-box{background:linear-gradient(135deg,#a8281d,#7f1f17);color:#fff;border-radius:var(--r-xl,20px);padding:20px 22px;margin:0 0 20px}
+.emergency-box h2{margin:0 0 10px;font-size:19px;color:#fff}
+.emergency-box label{display:block;font-size:14px;margin-bottom:8px}
+.emergency-box select{width:100%;min-height:48px;border-radius:12px;border:2px solid #fff;background:#fff;color:#1d2f27;font:inherit;font-size:16px;padding:8px 12px}
+.em-result{margin:14px 0 4px;font-size:16px;line-height:1.6}
+.em-num{display:inline-block;font-size:34px;font-weight:800;letter-spacing:.02em;margin-inline-end:6px;line-height:1.2}
+.em-note{display:block;font-size:14px;opacity:.95;margin-top:4px}
+.em-list{margin-top:10px;font-size:14px}
+.em-list{border:0}
+.em-list summary{cursor:pointer;font-weight:600;min-height:32px;color:#fff}
+.em-list summary::marker{color:#fff}
+.em-list ul{margin:8px 0 0;padding-inline-start:1.2em;columns:2;column-gap:20px}
+.em-small{font-size:12.5px;opacity:.92;margin:10px 0 0}
+.em-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 20px}
+.em-card{display:block;background:var(--paper,#fff);border:1px solid var(--line);border-radius:var(--r-lg,16px);padding:14px;text-decoration:none;color:var(--ink)}
+.em-card strong{display:block;font-size:15px}.em-card span{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+.sc-disclaimer{margin-bottom:18px}
+.sc-stage{margin:0 0 20px;font-size:14px}
+.sc-pill{display:inline-block;background:#1f4a3c;color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:16px}
+.sc-group{margin-bottom:26px}
+.sc-group h2{display:flex;align-items:center;gap:10px;font-size:16px;margin:0 0 12px}
+.sc-dot{width:12px;height:12px;border-radius:50%;flex:none}
+.sc-red h2{color:#b3261e}.sc-red .sc-dot{background:#b3261e;box-shadow:0 0 0 3px #b3261e33}
+.sc-amber h2{color:#a84300}.sc-amber .sc-dot{background:#a84300;box-shadow:0 0 0 3px #a8430033}
+.sc-green h2{color:#1b7a43}.sc-green .sc-dot{background:#1b7a43;box-shadow:0 0 0 3px #1b7a4333}
+.sc-symptom{border:1px solid var(--line);border-radius:var(--r-md,12px);margin-bottom:10px;background:var(--paper,#fff);overflow:hidden}
+.sc-toggle{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;min-height:56px;padding:14px 16px;background:transparent;border:0;border-radius:0;font:inherit;font-size:15px;font-weight:500;line-height:1.45;color:var(--ink);text-align:start;cursor:pointer}
+.sc-toggle:hover{background:var(--soft)}
+.sc-toggle:focus-visible{outline:3px solid #2f6555;outline-offset:-3px}
+.sc-chevron{font-size:20px;color:var(--muted);flex:none;transition:transform .15s ease}
+.sc-toggle[aria-expanded=true] .sc-chevron{transform:rotate(90deg)}
+[dir=rtl] .sc-chevron{transform:scaleX(-1)}
+[dir=rtl] .sc-toggle[aria-expanded=true] .sc-chevron{transform:scaleX(-1) rotate(90deg)}
+.sc-detail{padding:0 16px 16px;border-top:1px solid var(--line)}
+.sc-detail p{margin:8px 0;font-size:14.5px;line-height:1.65}
+.sc-badge{display:inline-block;color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:12px}
+.sc-red .sc-badge{background:#b3261e}.sc-amber .sc-badge{background:#a84300}.sc-green .sc-badge{background:#1b7a43}
+.sc-detail .sc-action{border-inline-start:4px solid;padding:10px 12px;border-radius:6px;font-weight:600;background:#f6f4ee}
+.sc-red .sc-action{border-color:#b3261e}.sc-amber .sc-action{border-color:#a84300}.sc-green .sc-action{border-color:#1b7a43}
+.sc-more{display:inline-block;margin-top:6px;font-weight:600;font-size:14px}
 </style><!-- /MOBILE-STYLES --><meta name="robots" content="index,follow,max-image-preview:large">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"فهم دورتي","description":"فهم دورتي: افتحي","url":"https://public.ob-gyn-pharma.com/ar-chapter-periods","inLanguage":"ar","isPartOf":{"@type":"WebSite","name":"Women & Families","url":"https://public.ob-gyn-pharma.com/"},"publisher":{"@type":"Organization","name":"OB-GYN Pharma","url":"https://www.ob-gyn-pharma.com/"}}</script>
 </head><body><a class="skip-main" href="#app" id="skip-main">Skip to content</a><header><div class="top"><a class="brand" href="#preview-home"><span class="brandmark" aria-hidden="true">♡</span><span><small>OB-GYN PHARMA</small><b id="brand-title">Women & Families</b></span></a><div class="tools"><a href="https://www.ob-gyn-pharma.com/" target="_blank" rel="noopener" id="professional">For professionals ↗</a><label class="sr" for="language-select">Language / اللغة</label><select class="language" id="language-select"><option value="en">English</option><option value="ar">العربية</option></select><a id="manage-language" href="#languages">Languages +</a></div></div><nav id="nav" aria-label="Main navigation"><a href="#preview-home">🏠 For you</a><a href="#preview-pregnancy">🌱 Journey</a><a href="#preview-checker">💊 Medicines</a><a href="#preview-plan">📋 My plan</a></nav></header>
-<div id="life-stage-bar" aria-label="Life stage navigation" role="navigation"><div class="life-stage-inner"></div></div><div class="statusline" id="statusline"></div><div id="toast" role="status" hidden></div><div id="preview-message" class="notice" style="max-width:1080px;margin:16px auto">This review copy displays without JavaScript. Interactive tools need a JavaScript-enabled browser. <br>تظهر هذه النسخة دون JavaScript. تحتاج الأدوات التفاعلية إلى متصفح يسمح بتشغيله.</div><main id="app"><div class="breadcrumbs"><button type="button" class="secondary" data-action="back">رجوع</button><a class="secondary" href="#home">الرئيسية</a><a class="textbutton" href="#tools">كل الأدوات</a></div><div class="eyebrow">Women &amp; Families</div><h1 tabindex="-1">فهم دورتي</h1><p class="lead">اختاري دليلًا أو أداة. يمكنك استكشاف أي مرحلة في أي عمر.</p><div class="cards spaced"><article class="panel"><h2>آلام الدورة</h2><div class="actions"><a class="secondary" href="/ar-guide-period-pain" data-spa-route="topic-period-pain">افتحي</a></div></article><article class="panel"><h2>غزارة الدورة</h2><div class="actions"><a class="secondary" href="/ar-guide-heavy-periods" data-spa-route="topic-heavy-periods">افتحي</a></div></article><article class="panel"><h2>تأخر الدورة أو غيابها</h2><div class="actions"><a class="secondary" href="/ar-guide-missed-periods" data-spa-route="topic-missed-periods">افتحي</a></div></article><article class="panel"><h2>المزاج وأعراض ما قبل الدورة</h2><div class="actions"><a class="secondary" href="/ar-guide-pms" data-spa-route="topic-pms">افتحي</a></div></article><article class="panel"><h2>حساب الفاصل بين الدورات</h2><div class="actions"><a class="secondary" href="#calc-cycle">افتحي</a></div></article><article class="panel"><h2>سجل الدورة والاستعداد للإنجاب</h2><div class="actions"><a class="secondary" href="#fertility">افتحي</a></div></article><article class="panel"><h2>الدورة والألم والنزف: خطوات عملية</h2><div class="actions"><a class="secondary" href="/ar-guide-period-care" data-spa-route="topic-period-care">افتحي</a></div></article></div><div class="actions"><a class="secondary" href="/ar-guides" data-spa-route="index">كل الموضوعات</a><a class="secondary" href="/ar-urgent-help" data-spa-route="urgent">متى أطلب المساعدة؟</a></div></main><footer><span id="foot"></span><a href="#preview-roadmap" id="roadlink">Development roadmap</a></footer><div id="print-content"></div>
+<div id="life-stage-bar" aria-label="Life stage navigation" role="navigation"><div class="life-stage-inner"></div></div><div class="statusline" id="statusline"></div><div id="toast" role="status" hidden></div><div id="preview-message" class="notice" style="max-width:1080px;margin:16px auto">This review copy displays without JavaScript. Interactive tools need a JavaScript-enabled browser. <br>تظهر هذه النسخة دون JavaScript. تحتاج الأدوات التفاعلية إلى متصفح يسمح بتشغيله.</div><main id="app"><div class="breadcrumbs"><button type="button" class="secondary" data-action="back">رجوع</button><a class="secondary" href="#home">الرئيسية</a><a class="textbutton" href="#tools">كل الأدوات</a></div><div class="eyebrow">Women &amp; Families</div><h1 tabindex="-1">فهم دورتي</h1><p class="lead">اختاري دليلًا أو أداة. يمكنك استكشاف أي مرحلة في أي عمر.</p><div class="cards spaced"><article class="panel"><h2>آلام الدورة</h2><div class="actions"><a class="secondary" href="/ar-guide-period-pain" data-spa-route="topic-period-pain">افتحي</a></div></article><article class="panel"><h2>غزارة الدورة</h2><div class="actions"><a class="secondary" href="/ar-guide-heavy-periods" data-spa-route="topic-heavy-periods">افتحي</a></div></article><article class="panel"><h2>تأخر الدورة أو غيابها</h2><div class="actions"><a class="secondary" href="/ar-guide-missed-periods" data-spa-route="topic-missed-periods">افتحي</a></div></article><article class="panel"><h2>المزاج وأعراض ما قبل الدورة</h2><div class="actions"><a class="secondary" href="/ar-guide-pms" data-spa-route="topic-pms">افتحي</a></div></article><article class="panel"><h2>حساب الفاصل بين الدورات</h2><div class="actions"><a class="secondary" href="#calc-cycle">افتحي</a></div></article><article class="panel"><h2>سجل الدورة والاستعداد للإنجاب</h2><div class="actions"><a class="secondary" href="#fertility">افتحي</a></div></article><article class="panel"><h2>الدورة والألم والنزف: خطوات عملية</h2><div class="actions"><a class="secondary" href="/ar-guide-period-care" data-spa-route="topic-period-care">افتحي</a></div></article></div><div class="actions"><a class="secondary" href="/ar-guides" data-spa-route="index">كل الموضوعات</a><a class="secondary" href="/ar-urgent-help" data-spa-route="urgent">متى أطلب المساعدة؟</a></div></main><footer><span id="foot"></span><a href="#preview-roadmap" id="roadlink">Development roadmap</a><a href="/privacy" data-spa-route="privacy" id="privlink">Privacy</a></footer><div id="print-content"></div>
 <!-- App code. Order matters (shared global scope). Keep in sync with sw.js CORE. -->
 <script>window.__PRERENDER={"route":"chapter-periods","lang":"ar"};</script>
-<script src="js/01-core.js?v=2026.10.31-r19"></script>
-<script src="js/02-views-legacy.js?v=2026.10.31-r19"></script>
-<script src="js/03-i18n-base.js?v=2026.10.31-r19"></script>
-<script src="js/04-tools.js?v=2026.10.31-r19"></script>
-<script src="js/05-life-topics.js?v=2026.10.31-r19"></script>
-<script src="js/06-i18n-life.js?v=2026.10.31-r19"></script>
-<script src="js/07-review-offline.js?v=2026.10.31-r19"></script>
-<script src="js/08-guide-data.js?v=2026.10.31-r19"></script>
-<script src="js/09-guides.js?v=2026.10.31-r19"></script>
-<script src="js/10-urgent-learn.js?v=2026.10.31-r19"></script>
-<script src="js/11-state-calc.js?v=2026.10.31-r19"></script>
-<script src="js/12-journey-diary.js?v=2026.10.31-r19"></script>
-<script src="js/13-feedback-backup.js?v=2026.10.31-r19"></script>
-<script src="js/14-home-more.js?v=2026.10.31-r19"></script>
-<script src="js/15-i18n-late.js?v=2026.10.31-r19"></script>
-<script src="js/16-boot.js?v=2026.10.31-r19"></script>
-<script src="js/17-nav-titles.js?v=2026.10.31-r19"></script>
-<script src="js/18-wizard.js?v=2026.10.31-r19"></script>
-<script src="js/19-seo.js?v=2026.10.31-r19"></script>
-<script src="js/20-search.js?v=2026.10.31-r19"></script>
-  <script src="js/21-symptom-checker.js?v=2026.10.31-r19"></script>
+<script src="js/01-core.js?v=2026.11.01-r21"></script>
+<script src="js/02-views-legacy.js?v=2026.11.01-r21"></script>
+<script src="js/03-i18n-base.js?v=2026.11.01-r21"></script>
+<script src="js/04-tools.js?v=2026.11.01-r21"></script>
+<script src="js/05-life-topics.js?v=2026.11.01-r21"></script>
+<script src="js/06-i18n-life.js?v=2026.11.01-r21"></script>
+<script src="js/07-review-offline.js?v=2026.11.01-r21"></script>
+<script src="js/08-guide-data.js?v=2026.11.01-r21"></script>
+<script src="js/09-guides.js?v=2026.11.01-r21"></script>
+<script src="js/10-urgent-learn.js?v=2026.11.01-r21"></script>
+<script src="js/11-state-calc.js?v=2026.11.01-r21"></script>
+<script src="js/12-journey-diary.js?v=2026.11.01-r21"></script>
+<script src="js/13-feedback-backup.js?v=2026.11.01-r21"></script>
+<script src="js/14-home-more.js?v=2026.11.01-r21"></script>
+<script src="js/15-i18n-late.js?v=2026.11.01-r21"></script>
+<script src="js/17-nav-titles.js?v=2026.11.01-r21"></script>
+<script src="js/18-wizard.js?v=2026.11.01-r21"></script>
+<script src="js/19-seo.js?v=2026.11.01-r21"></script>
+<script src="js/20-search.js?v=2026.11.01-r21"></script>
+<script src="js/21-symptom-checker.js?v=2026.11.01-r21"></script>
+<script src="js/22-boot.js?v=2026.11.01-r21"></script>
 <!-- ── Welcome Wizard (Phase 1a) ────────────────────────────────── -->
 <div id="wf-wizard-overlay" hidden aria-modal="true" role="dialog" aria-labelledby="wiz-title">
   <div id="wf-wizard">

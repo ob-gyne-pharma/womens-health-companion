@@ -1,5 +1,6 @@
-/* Women & Families 2026.10.31-r19 | js/16-boot.js
+/* Women & Families 2026.11.01-r21 | js/22-boot.js
    hashchange router start, first navigate(), modelContext tools.
+   Runs LAST on purpose: it draws the first page, so every function the pages use must already exist.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */
 'use strict';

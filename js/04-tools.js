@@ -1,4 +1,4 @@
-/* Women & Families 2026.10.31-r19 | js/04-tools.js
+/* Women & Families 2026.11.01-r21 | js/04-tools.js
    Little tools, examples, bag, language page.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */

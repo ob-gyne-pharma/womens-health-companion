@@ -1,39 +1,29 @@
-/* Women & Families 2026.10.31-r19 | js/22-reminders.js
-   Phase 3: In-app milestone reminders & appointment alerts
-   - No push notifications needed — checked at app open, stored in localStorage
-   - Pregnancy week milestones (antenatal schedule: NICE NG201)
-   - Postpartum milestones (6-week check, 8-week vaccine, etc.)
-   - Appointment "due soon" alerts (24h and 1-week ahead)
-   - Medication / supplement reminders (folic acid, vitamin D)
-   - All bilingual en/ar
-   - Renders a dismissible banner at top of app when due
-   ------------------------------------------------------------------ */
+/* Women & Families 2026.11.01-r22 | js/22-reminders.js
+   Reminders and milestones: appointment alerts, antenatal and postpartum milestones, supplement reminders.
+   Classic script (not a module): shares one global scope with every other js/ file,
+   so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */
 'use strict';
 
-/* ── Storage key ─────────────────────────────────────────────────── */
+/* Privacy rules for this file (the privacy page promises them):
+   - Nothing is sent anywhere. Reminders are worked out on the device from data the woman already entered.
+   - Her "dismissed" choices are kept in memory. They are written to localStorage ONLY while device saving is on,
+     and they are removed when device saving is off or "Delete my plan" is used. The ids name her stage
+     (for example the week-20 scan), so they must never be stored without her consent.
+   - Reminder text is built with esc(): appointment titles come from the user (or from a restored backup). */
+
 const REM_KEY = 'wf-reminders-v1';
+const REM = { ANTENATAL: 'antenatal', POSTPARTUM: 'postpartum', APPOINTMENT: 'appointment', SUPPLEMENT: 'supplement' };
 
-/* ── Reminder types ──────────────────────────────────────────────── */
-const REM = {
-  ANTENATAL:   'antenatal',
-  POSTPARTUM:  'postpartum',
-  APPOINTMENT: 'appointment',
-  SUPPLEMENT:  'supplement',
-  MILESTONE:   'milestone'
-};
-
-/* ── Pregnancy antenatal schedule (NICE NG201 / NHS) ───────────────
-   weeks: the recommended week for each contact
-   Each item: { week, en, ar, type }                                  */
+/* UK schedule (NICE NG201, NHS). Other countries follow different schedules: the page says so. */
 const ANTENATAL_SCHEDULE = [
   {week:8,  en:'Booking appointment — blood tests, dating scan referral',
             ar:'موعد التسجيل — فحوصات الدم وإحالة لمسح التاريخ'},
-  {week:10, en:'Down syndrome & chromosomal screening window (10–14 weeks)',
-            ar:'نافذة فحص متلازمة داون (10–14 أسبوعاً)'},
+  {week:10, en:'Down syndrome and other screening: the combined test is usually offered at about 11–14 weeks',
+            ar:'فحص متلازمة داون وغيره: يُعرض الفحص المدمج عادةً بين الأسبوعين 11 و14 تقريباً'},
   {week:12, en:'Dating scan (nuchal translucency ultrasound)',
             ar:'مسح الأسبوع 12 (قياس الشفافية القفوية)'},
-  {week:16, en:'Midwife appointment — results review, iron check',
-            ar:'موعد المولّدة — مراجعة النتائج وفحص الحديد'},
+  {week:16, en:'Midwife appointment — results review, iron check. The whooping cough vaccine can be given from about now.',
+            ar:'موعد المولّدة — مراجعة النتائج وفحص الحديد. يمكن إعطاء تطعيم السعال الديكي من هذا الوقت تقريباً.'},
   {week:20, en:'Anomaly scan (20-week structural ultrasound)',
             ar:'مسح الأسبوع 20 (فحص التشوهات الهيكلية)'},
   {week:24, en:'Midwife appointment — fundal height, blood pressure',
@@ -44,8 +34,8 @@ const ANTENATAL_SCHEDULE = [
             ar:'حقنة Anti-D إذا كانت فصيلة دمكِ سالبة · انتبهي لحركة الجنين'},
   {week:31, en:'Midwife appointment — blood pressure, urinalysis',
             ar:'موعد المولّدة — ضغط الدم وتحليل البول'},
-  {week:34, en:'Midwife appointment — whooping cough vaccine window',
-            ar:'موعد المولّدة — نافذة تطعيم السعال الديكي'},
+  {week:34, en:'Midwife appointment — whooping cough vaccine if you have not had it yet (best between 16 and 32 weeks, still possible until labour)',
+            ar:'موعد المولّدة — تطعيم السعال الديكي إن لم تأخذيه بعد (الأفضل بين الأسبوعين 16 و32، ويمكن حتى الولادة)'},
   {week:36, en:'Midwife appointment — baby position check, birth plan discussion',
             ar:'موعد المولّدة — وضع الجنين ومناقشة خطة الولادة'},
   {week:38, en:'Midwife appointment — signs of labour discussion',
@@ -53,10 +43,9 @@ const ANTENATAL_SCHEDULE = [
   {week:40, en:'Midwife appointment — sweep offered if not in labour',
             ar:'موعد المولّدة — عرض الكنس إذا لم تبدأ الولادة'},
   {week:41, en:'Consultant review — induction of labour discussion',
-            ar:'مراجعة الاستشاري — مناقشة تحريض الولادة'},
+            ar:'مراجعة الاستشاري — مناقشة تحريض الولادة'}
 ];
 
-/* ── Postpartum schedule (NICE PH11, NHS schedule) ─────────────── */
 const POSTPARTUM_SCHEDULE = [
   {days:1,   en:'First midwife home visit — feeding, wound check',
              ar:'أول زيارة منزلية للمولّدة — الرضاعة وفحص الجرح'},
@@ -64,347 +53,287 @@ const POSTPARTUM_SCHEDULE = [
              ar:'فحص نقطة الدم للمولود (وخز الكعب)'},
   {days:5,   en:'Midwife visit — jaundice check, weight, feeding',
              ar:'زيارة المولّدة — فحص اليرقان والوزن والرضاعة'},
-  {days:10,  en:'Midwife care may transfer to health visitor',
-             ar:'قد تنتقل الرعاية من المولّدة إلى المرشدة الصحية'},
-  {days:14,  en:'Health visitor first visit — Edinburgh postnatal depression score',
-             ar:'أول زيارة للمرشدة الصحية — مقياس ادنبره لاكتئاب ما بعد الولادة'},
-  {days:28,  en:'8-week baby vaccines due (booking reminder)',
-             ar:'تذكير بحجز تطعيمات الطفل في الأسبوع الثامن'},
-  {days:42,  en:'6-week postnatal check — your GP and your baby\'s check',
+  {days:10,  en:'Midwife care may pass to a health visitor (UK)',
+             ar:'قد تنتقل الرعاية من المولّدة إلى المرشدة الصحية (المملكة المتحدة)'},
+  {days:14,  en:'Health visitor first visit (UK) — postnatal mood check',
+             ar:'أول زيارة للمرشدة الصحية (المملكة المتحدة) — فحص المزاج بعد الولادة'},
+  {days:28,  en:'Booking reminder: baby\'s first routine vaccines (UK: 8 weeks — your country\'s schedule may differ)',
+             ar:'تذكير بحجز أول تطعيمات روتينية للطفل (المملكة المتحدة: الأسبوع 8 — قد يختلف جدول بلدكِ)'},
+  {days:42,  en:'6-week postnatal check — your check and your baby\'s check with a doctor',
              ar:'الفحص السداسي بعد الولادة — فحصكِ وفحص طفلكِ عند الطبيب'},
-  {days:56,  en:'8-week baby vaccines (first immunisations)',
-             ar:'تطعيمات الطفل في الأسبوع الثامن (التطعيمات الأولى)'},
-  {days:84,  en:'12-week baby vaccines — second round',
-             ar:'تطعيمات الطفل في الأسبوع 12 — الجولة الثانية'},
-  {days:112, en:'16-week baby vaccines — third round',
-             ar:'تطعيمات الطفل في الأسبوع 16 — الجولة الثالثة'},
+  {days:56,  en:'Baby\'s first routine vaccines (UK: 8 weeks — your country\'s schedule may differ)',
+             ar:'أول تطعيمات روتينية للطفل (المملكة المتحدة: الأسبوع 8 — قد يختلف جدول بلدكِ)'},
+  {days:84,  en:'Baby\'s second round of vaccines (UK: 12 weeks — your country\'s schedule may differ)',
+             ar:'الجولة الثانية من تطعيمات الطفل (المملكة المتحدة: الأسبوع 12 — قد يختلف جدول بلدكِ)'},
+  {days:112, en:'Baby\'s third round of vaccines (UK: 16 weeks — your country\'s schedule may differ)',
+             ar:'الجولة الثالثة من تطعيمات الطفل (المملكة المتحدة: الأسبوع 16 — قد يختلف جدول بلدكِ)'}
 ];
 
-/* ── Supplement reminders ────────────────────────────────────────── */
 const SUPPLEMENT_REMINDERS = {
   prep: [
-    {id:'folic',   en:'Take 400 mcg folic acid daily — start 3 months before conception',
-                   ar:'تناولي 400 ميكروغرام حمض الفوليك يومياً — ابدئي قبل 3 أشهر من الحمل'},
-    {id:'vitd',    en:'Consider vitamin D 10 mcg daily, especially autumn/winter',
-                   ar:'فكّري في تناول فيتامين د 10 ميكروغرام يومياً، خاصة في الخريف والشتاء'},
+    {id:'folic', en:'Take 400 mcg folic acid daily — start 3 months before conception. Your doctor may advise a different dose.',
+                 ar:'تناولي 400 ميكروغرام حمض الفوليك يومياً — ابدئي قبل 3 أشهر من الحمل. قد تنصحكِ طبيبتكِ بجرعة مختلفة.'},
+    {id:'vitd',  en:'Consider vitamin D 10 mcg daily, especially autumn/winter',
+                 ar:'فكّري في تناول فيتامين د 10 ميكروغرام يومياً، خاصة في الخريف والشتاء'}
   ],
   pregnancy: [
-    {id:'folic-preg', en:'Continue folic acid 400 mcg daily until week 12',
-                      ar:'استمري في تناول حمض الفوليك 400 ميكروغرام حتى الأسبوع 12'},
+    {id:'folic-preg', en:'Continue folic acid 400 mcg daily until week 12. Your doctor may advise a different dose.',
+                      ar:'استمري في تناول حمض الفوليك 400 ميكروغرام حتى الأسبوع 12. قد تنصحكِ طبيبتكِ بجرعة مختلفة.'},
     {id:'vitd-preg',  en:'Take vitamin D 10 mcg daily throughout pregnancy',
-                      ar:'تناولي فيتامين د 10 ميكروغرام يومياً طوال الحمل'},
+                      ar:'تناولي فيتامين د 10 ميكروغرام يومياً طوال الحمل'}
   ],
   breastfeeding: [
-    {id:'vitd-bf',  en:'Continue vitamin D 10 mcg daily while breastfeeding',
-                    ar:'استمري في تناول فيتامين د 10 ميكروغرام أثناء الرضاعة'},
+    {id:'vitd-bf', en:'Continue vitamin D 10 mcg daily while breastfeeding',
+                   ar:'استمري في تناول فيتامين د 10 ميكروغرام أثناء الرضاعة'}
   ]
 };
 
-/* ── Reminder storage helpers ────────────────────────────────────── */
-function loadDismissed() {
-  try {
-    var raw = localStorage.getItem(REM_KEY);
-    return raw ? JSON.parse(raw) : {};
-  } catch (e) { return {}; }
-}
+/* ── Dismissed reminders: memory first, disk only with consent ───── */
+let remDismissed = null;
 
-function saveDismissed(obj) {
-  try { localStorage.setItem(REM_KEY, JSON.stringify(obj)); } catch (e) {}
-}
-
-function dismissReminder(id) {
-  var d = loadDismissed();
-  d[id] = Date.now();
-  saveDismissed(d);
-  var banner = document.getElementById('rem-banner-' + id);
-  if (banner) {
-    banner.style.opacity = '0';
-    banner.style.transform = 'translateY(-8px)';
-    setTimeout(function() { if (banner.parentNode) banner.parentNode.removeChild(banner); }, 300);
-  }
-}
-
-/* ── Core reminder calculation ────────────────────────────────────── */
-function calcReminders() {
-  var today = new Date();
-  today.setHours(0,0,0,0);
-  var reminders = [];
-  var dismissed = loadDismissed();
-  var stage = state.stage || 'pregnancy';
-
-  /* ── 1. Upcoming booked appointments (next 7 days) ─────────────── */
-  (state.appointments || []).forEach(function(appt) {
-    var apptDate = new Date(appt.date);
-    apptDate.setHours(0,0,0,0);
-    var daysUntil = Math.round((apptDate - today) / 86400000);
-    if (daysUntil < 0 || daysUntil > 7) return;
-    var id = 'appt-' + (appt.id || appt.date) + '-' + daysUntil;
-    if (dismissed[id]) return;
-
-    var when = daysUntil === 0 ? T('Today','اليوم')
-             : daysUntil === 1 ? T('Tomorrow','غداً')
-             : T('In ','بعد ') + daysUntil + T(' days',' أيام');
-
-    reminders.push({
-      id: id,
-      type: REM.APPOINTMENT,
-      priority: daysUntil === 0 ? 1 : 2,
-      en: when + ': ' + appt.title,
-      ar: when + ': ' + appt.title,
-      action: {en:'Open my plan',ar:'افتحي خطتي'},
-      actionHash: 'plan',
-      colour: daysUntil === 0 ? '#c0392b' : '#d35400'
-    });
-  });
-
-  /* ── 2. Antenatal milestones (if pregnant with EDD) ────────────── */
-  if (stage === 'pregnancy' && state.edd) {
-    var edd = new Date(state.edd);
-    edd.setHours(0,0,0,0);
-    var daysToEdd = Math.round((edd - today) / 86400000);
-    var currentWeek = Math.round((280 - daysToEdd) / 7);
-
-    ANTENATAL_SCHEDULE.forEach(function(milestone) {
-      var weeksUntil = milestone.week - currentWeek;
-      if (weeksUntil < 0 || weeksUntil > 2) return; // show 2 weeks ahead
-      var id = 'antenatal-wk' + milestone.week;
-      if (dismissed[id]) return;
-
-      var when = weeksUntil === 0 ? T('This week (week ','هذا الأسبوع (الأسبوع ') + milestone.week + ')'
-               : T('Next week (week ','الأسبوع القادم (الأسبوع ') + milestone.week + ')';
-
-      reminders.push({
-        id: id,
-        type: REM.ANTENATAL,
-        priority: weeksUntil === 0 ? 1 : 3,
-        en: when + ': ' + milestone.en,
-        ar: when + ': ' + milestone.ar,
-        action: {en:'My pregnancy',ar:'رحلة حملي'},
-        actionHash: 'pregnancy',
-        colour: '#2a5e4e'
-      });
-    });
-  }
-
-  /* ── 3. Postpartum milestones (if postpartum with birth date) ───── */
-  if ((stage === 'postpartum' || stage === 'breastfeeding') && state.forms && state.forms.birthdate) {
-    var birthDate = new Date(state.forms.birthdate);
-    birthDate.setHours(0,0,0,0);
-    var daysPostpartum = Math.round((today - birthDate) / 86400000);
-
-    POSTPARTUM_SCHEDULE.forEach(function(milestone) {
-      var daysUntil = milestone.days - daysPostpartum;
-      if (daysUntil < 0 || daysUntil > 14) return; // show 2 weeks ahead
-      var id = 'postpartum-d' + milestone.days;
-      if (dismissed[id]) return;
-
-      var when = daysUntil === 0 ? T('Today','اليوم')
-               : daysUntil === 1 ? T('Tomorrow','غداً')
-               : T('In ','بعد ') + daysUntil + T(' days',' أيام');
-
-      reminders.push({
-        id: id,
-        type: REM.POSTPARTUM,
-        priority: daysUntil === 0 ? 1 : 3,
-        en: when + ': ' + milestone.en,
-        ar: when + ': ' + milestone.ar,
-        action: {en:'After birth guides',ar:'أدلة ما بعد الولادة'},
-        actionHash: 'postpartum',
-        colour: '#7a9e8a'
-      });
-    });
-  }
-
-  /* ── 4. Supplement reminders (stage-based, show once per session) ─ */
-  var suppList = SUPPLEMENT_REMINDERS[stage] || [];
-  suppList.forEach(function(supp) {
-    var id = 'supp-' + supp.id;
-    // Only show once — dismissed permanently
-    if (dismissed[id]) return;
-    reminders.push({
-      id: id,
-      type: REM.SUPPLEMENT,
-      priority: 4,
-      en: '💊 ' + supp.en,
-      ar: '💊 ' + supp.ar,
-      action: {en:'Medicine checker',ar:'فاحص الأدوية'},
-      actionHash: 'checker',
-      colour: '#7b6fa0'
-    });
-  });
-
-  // Sort by priority (1 = most urgent)
-  reminders.sort(function(a,b) { return a.priority - b.priority; });
-  return reminders;
-}
-
-/* ── Reminder banner HTML ─────────────────────────────────────────── */
-function reminderBannerHtml(rem) {
-  var lang = state.lang || 'en';
-  var text = lang === 'ar' ? rem.ar : rem.en;
-  var actionLabel = lang === 'ar' ? rem.action.ar : rem.action.en;
-
-  return '<div id="rem-banner-' + rem.id + '" role="alert" ' +
-    'style="background:' + rem.colour + ';color:#fff;' +
-    'padding:12px 16px;display:flex;gap:12px;align-items:center;' +
-    'font-size:14px;line-height:1.5;' +
-    'transition:opacity .3s ease,transform .3s ease;">' +
-    '<span style="flex:1">' + text + '</span>' +
-    '<a href="#' + rem.actionHash + '" ' +
-      'style="background:rgba(255,255,255,.2);color:#fff;' +
-      'padding:6px 12px;border-radius:20px;font-size:13px;' +
-      'font-weight:600;text-decoration:none;white-space:nowrap;' +
-      'flex-shrink:0">' + actionLabel + '</a>' +
-    '<button onclick="dismissReminder(\'' + rem.id + '\')" ' +
-      'aria-label="' + T('Dismiss','رفض') + '" ' +
-      'style="background:none;border:none;color:rgba(255,255,255,.8);' +
-      'font-size:22px;line-height:1;padding:0 4px;cursor:pointer;' +
-      'flex-shrink:0">×</button>' +
-    '</div>';
-}
-
-/* ── Mount reminders into the page ──────────────────────────────── */
-function mountReminders() {
-  // Remove any existing reminder container
-  var existing = document.getElementById('rem-container');
-  if (existing) existing.parentNode.removeChild(existing);
-
-  var reminders = calcReminders();
-  if (!reminders.length) return;
-
-  // Show max 2 reminders at a time to avoid overwhelming the user
-  var toShow = reminders.slice(0, 2);
-
-  var container = document.createElement('div');
-  container.id = 'rem-container';
-  container.style.cssText = 'position:sticky;top:0;z-index:150;';
-  container.innerHTML = toShow.map(reminderBannerHtml).join('');
-
-  // Insert after the life-stage bar (before main)
-  var main = document.querySelector('main') || document.querySelector('#app');
-  if (main && main.parentNode) {
-    main.parentNode.insertBefore(container, main);
-  }
-}
-
-/* ── Reminders page (accessible via #reminders) ─────────────────── */
-function remindersPage() {
-  var reminders = calcReminders();
-  var dismissed = loadDismissed();
-  var stage = state.stage || 'pregnancy';
-
-  // Count dismissed
-  var dismissedCount = Object.keys(dismissed).length;
-
-  var content = head(
-    T('Reminders & milestones','التذكيرات والمعالم'),
-    T('Upcoming health milestones and appointment reminders based on your stage.',
-      'المعالم الصحية القادمة وتذكيرات المواعيد بناءً على مرحلتكِ.')
-  );
-
-  // Active reminders
-  if (reminders.length) {
-    content += '<div style="margin:20px 0">';
-    content += '<h3 style="font-size:15px;margin-bottom:12px">' +
-      T('Due now or coming soon','مستحقة الآن أو قريباً') + '</h3>';
-    reminders.forEach(function(rem) {
-      var lang = state.lang || 'en';
-      var text = lang === 'ar' ? rem.ar : rem.en;
-      content += '<div style="display:flex;gap:12px;align-items:flex-start;' +
-        'padding:14px 0;border-bottom:1px solid var(--line)">' +
-        '<span style="width:10px;height:10px;border-radius:50%;' +
-          'background:' + rem.colour + ';flex-shrink:0;margin-top:5px;' +
-          'box-shadow:0 0 0 3px ' + rem.colour + '22"></span>' +
-        '<span style="flex:1;font-size:14px;line-height:1.6">' + text + '</span>' +
-        '<button onclick="dismissReminder(\'' + rem.id + '\')" ' +
-          'style="background:var(--soft);border:none;border-radius:12px;' +
-          'padding:4px 10px;font-size:12px;color:var(--muted);cursor:pointer">' +
-          T('Dismiss','رفض') + '</button>' +
-        '</div>';
-    });
-    content += '</div>';
-  } else {
-    content += '<p class="empty">' +
-      T('No reminders due right now.','لا توجد تذكيرات مستحقة الآن.') +
-      '</p>';
-  }
-
-  // Antenatal schedule (if pregnant)
-  if (stage === 'pregnancy') {
-    content += '<details style="margin-top:24px"><summary>' +
-      T('Antenatal care schedule (NICE NG201)','جدول الرعاية السابقة للولادة (NICE NG201)') +
-      '</summary><div style="padding:12px 0">';
-    var edd = state.edd;
-    var today = new Date(); today.setHours(0,0,0,0);
-    ANTENATAL_SCHEDULE.forEach(function(m) {
-      var done = false;
-      if (edd) {
-        var eddDate = new Date(edd); eddDate.setHours(0,0,0,0);
-        var currentWeek = Math.round((280 - Math.round((eddDate-today)/86400000)) / 7);
-        done = m.week < currentWeek;
+function remLoad() {
+  if (remDismissed) return remDismissed;
+  remDismissed = {};
+  if (state.save === true) {
+    try {
+      const o = JSON.parse(localStorage.getItem(REM_KEY) || '{}');
+      if (o && typeof o === 'object' && !Array.isArray(o)) {
+        Object.keys(o).forEach(function(k) {
+          if (/^[a-z0-9-]{1,80}$/i.test(k) && typeof o[k] === 'number') remDismissed[k] = o[k];
+        });
       }
-      content += '<div style="display:flex;gap:12px;padding:10px 0;' +
-        'border-bottom:1px solid var(--line);opacity:' + (done?'0.5':'1') + '">' +
-        '<span style="font-size:12px;font-weight:700;color:var(--muted);' +
-          'width:32px;flex-shrink:0;padding-top:2px">' +
-          (done ? '✓' : T('Wk','أسبوع') + ' ' + m.week) + '</span>' +
-        '<span style="font-size:14px;line-height:1.55">' +
-          T(m.en, m.ar) + '</span>' +
-        '</div>';
-    });
-    content += '</div></details>';
+    } catch (e) { /* unreadable: start empty */ }
   }
-
-  // Postpartum schedule
-  if (stage === 'postpartum' || stage === 'breastfeeding') {
-    content += '<details style="margin-top:24px"><summary>' +
-      T('Postpartum care schedule','جدول رعاية ما بعد الولادة') +
-      '</summary><div style="padding:12px 0">';
-    POSTPARTUM_SCHEDULE.forEach(function(m) {
-      content += '<div style="display:flex;gap:12px;padding:10px 0;' +
-        'border-bottom:1px solid var(--line)">' +
-        '<span style="font-size:12px;font-weight:700;color:var(--muted);' +
-          'width:48px;flex-shrink:0;padding-top:2px">' +
-          T('Day','يوم') + ' ' + m.days + '</span>' +
-        '<span style="font-size:14px;line-height:1.55">' +
-          T(m.en, m.ar) + '</span>' +
-        '</div>';
-    });
-    content += '</div></details>';
-  }
-
-  // Dismissed count + clear
-  if (dismissedCount > 0) {
-    content += '<div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--line)">' +
-      '<p style="font-size:13px;color:var(--muted)">' +
-        dismissedCount + ' ' + T('reminder(s) dismissed.','تذكير(ات) تم رفضها.') +
-      '</p>' +
-      '<button onclick="clearDismissedReminders()" ' +
-        'style="background:var(--soft);border:none;border-radius:20px;' +
-        'padding:8px 16px;font-size:13px;cursor:pointer;margin-top:8px">' +
-        T('Reset dismissed reminders','إعادة تعيين التذكيرات المرفوضة') +
-      '</button>' +
-    '</div>';
-  }
-
-  // NICE source note
-  content += '<div class="notice" style="margin-top:24px;font-size:13px">' +
-    T('Schedule based on NICE NG201 (antenatal care), NICE PH11, and NHS routine care pathways. Timings are approximate — always follow your midwife\'s or GP\'s advice.',
-      'الجدول مبني على NICE NG201 (رعاية ما قبل الولادة) وNICE PH11 ومسارات الرعاية الروتينية في NHS. المواعيد تقريبية — اتبعي دائماً نصيحة مولّدتكِ أو طبيبتكِ.') +
-  '</div>';
-
-  return content;
+  return remDismissed;
 }
 
-/* ── Clear dismissed ─────────────────────────────────────────────── */
-function clearDismissedReminders() {
-  saveDismissed({});
+function remPersist() {
+  try {
+    if (state.save === true) localStorage.setItem(REM_KEY, JSON.stringify(remDismissed || {}));
+    else localStorage.removeItem(REM_KEY);
+  } catch (e) { /* storage unavailable: the choice still holds for this visit */ }
+}
+
+function remDismiss(id) {
+  const d = remLoad();
+  d[id] = Date.now();
+  remPersist();
+  remMount(true);
+  if (page === 'reminders' && typeof render === 'function') render();
+}
+
+function remClearDismissed() {
+  remDismissed = {};
+  remPersist();
+  remMount(true);
   if (typeof render === 'function') render();
 }
 
-/* ── Hook into app boot ──────────────────────────────────────────── */
-/* mountReminders() is called from render() — see wiring below */
-document.addEventListener('DOMContentLoaded', function() {
-  // Small delay so app renders first
-  setTimeout(mountReminders, 800);
+const remSafeId = s => String(s).replace(/[^a-z0-9-]/gi, '').slice(0, 80);
+
+/* ── Work out what is due (same data and logic as before, with safe dates) ── */
+function remGestWeek() {
+  /* same rule as the rest of the app: round((280 - days to due date) / 7) */
+  if (!state.edd) return null;
+  const edd = parse(state.edd);
+  if (!Number.isFinite(edd)) return null;
+  return Math.round((280 - Math.round((edd - today()) / DAY)) / 7);
+}
+
+function calcReminders() {
+  const dismissed = remLoad();
+  const stage = state.stage || 'pregnancy';
+  const t0 = today();
+  const out = [];
+
+  /* 1. Booked appointments in the next 7 days */
+  (Array.isArray(state.appointments) ? state.appointments : []).forEach(function(appt) {
+    const d = parse(appt && appt.date);
+    if (!Number.isFinite(d)) return;
+    const daysUntil = Math.round((d - t0) / DAY);
+    if (daysUntil < 0 || daysUntil > 7) return;
+    const id = remSafeId('appt-' + (appt.id || appt.date) + '-' + daysUntil);
+    if (dismissed[id]) return;
+    const title = String(appt.title || '').slice(0, 120);
+    out.push({
+      id: id, type: REM.APPOINTMENT, priority: daysUntil === 0 ? 1 : 2, today: daysUntil === 0,
+      when: [daysUntil === 0 ? 'Today' : daysUntil === 1 ? 'Tomorrow' : 'In ' + daysUntil + ' days',
+             daysUntil === 0 ? 'اليوم' : daysUntil === 1 ? 'غداً' : 'بعد ' + daysUntil + ' أيام'],
+      detail: [title, title],
+      private: ['You have an appointment coming up.', 'لديكِ موعد قريب.'],
+      action: ['Open my plan', 'افتحي خطتي'], hash: 'plan'
+    });
+  });
+
+  /* 2. Antenatal milestones: only when she has entered a due date */
+  const wk = (stage === 'pregnancy') ? remGestWeek() : null;
+  if (wk !== null) {
+    ANTENATAL_SCHEDULE.forEach(function(m) {
+      const ahead = m.week - wk;
+      if (ahead < 0 || ahead > 2) return;
+      const id = 'antenatal-wk' + m.week;
+      if (dismissed[id]) return;
+      out.push({
+        id: id, type: REM.ANTENATAL, priority: ahead === 0 ? 1 : 3,
+        when: [ahead === 0 ? 'This week (week ' + m.week + ')' : 'Next week (week ' + m.week + ')',
+               ahead === 0 ? 'هذا الأسبوع (الأسبوع ' + m.week + ')' : 'الأسبوع القادم (الأسبوع ' + m.week + ')'],
+        detail: [m.en, m.ar],
+        private: ['You have a health milestone coming up.', 'لديكِ معلم صحي قادم.'],
+        action: ['My pregnancy', 'رحلة حملي'], hash: 'pregnancy'
+      });
+    });
+  }
+
+  /* 3. Postpartum milestones: only when she has entered a birth date */
+  const birth = (state.forms && state.forms.birthdate) ? parse(state.forms.birthdate) : NaN;
+  if ((stage === 'postpartum' || stage === 'breastfeeding') && Number.isFinite(birth)) {
+    const daysPP = Math.round((t0 - birth) / DAY);
+    POSTPARTUM_SCHEDULE.forEach(function(m) {
+      const ahead = m.days - daysPP;
+      if (ahead < 0 || ahead > 14) return;
+      const id = 'postpartum-d' + m.days;
+      if (dismissed[id]) return;
+      out.push({
+        id: id, type: REM.POSTPARTUM, priority: ahead === 0 ? 1 : 3,
+        when: [ahead === 0 ? 'Today' : ahead === 1 ? 'Tomorrow' : 'In ' + ahead + ' days',
+               ahead === 0 ? 'اليوم' : ahead === 1 ? 'غداً' : 'بعد ' + ahead + ' أيام'],
+        detail: [m.en, m.ar],
+        private: ['You have a health milestone coming up.', 'لديكِ معلم صحي قادم.'],
+        action: ['After birth guides', 'أدلة ما بعد الولادة'], hash: 'postpartum'
+      });
+    });
+  }
+
+  /* 4. Supplements: never assumed. Only when her own entries show the stage
+        (a due date, a birth date, or "preparing for pregnancy" chosen). */
+  let suppKey = null;
+  if (stage === 'prep') suppKey = 'prep';
+  else if (stage === 'pregnancy' && wk !== null) suppKey = 'pregnancy';
+  else if (stage === 'breastfeeding' && Number.isFinite(birth)) suppKey = 'breastfeeding';
+  (SUPPLEMENT_REMINDERS[suppKey] || []).forEach(function(s) {
+    const id = 'supp-' + s.id;
+    if (dismissed[id]) return;
+    out.push({
+      id: id, type: REM.SUPPLEMENT, priority: 4,
+      when: ['', ''], detail: [s.en, s.ar],
+      private: ['You have a health reminder.', 'لديكِ تذكير صحي.'],
+      action: ['Medicine checker', 'فاحص الأدوية'], hash: 'checker'
+    });
+  });
+
+  out.sort(function(a, b) { return a.priority - b.priority; });
+  return out;
+}
+
+const remText = r => {
+  const l = state.lang === 'ar' ? 1 : 0;
+  if (state.homePrivate) return r.private[l];          /* respects "Hide personal details on Home" */
+  return (r.when[l] ? r.when[l] + ': ' : '') + r.detail[l];
+};
+
+/* ── Banner at the top of the app (not sticky, so it never covers the header) ── */
+function remBannerHtml(r) {
+  const l = state.lang === 'ar' ? 1 : 0;
+  return '<div class="rem-banner" role="status" data-type="' + (r.today ? 'today' : r.type) + '">' +
+    '<span class="rem-text">' + esc(remText(r)) + '</span>' +
+    '<a class="rem-action" href="#' + r.hash + '">' + esc(r.action[l]) + '</a>' +
+    '<button type="button" class="rem-dismiss" data-rem-dismiss="' + esc(r.id) + '" aria-label="' + esc(T('Dismiss', 'رفض')) + '">×</button>' +
+    '</div>';
+}
+
+let remSig = '';
+function remMount(force) {
+  /* with device saving off, nothing about reminders may remain on disk (also cleans up older leftovers) */
+  if (state.save !== true) { try { localStorage.removeItem(REM_KEY); } catch (e) {} }
+  const main = document.querySelector('main');
+  if (!main || !main.parentNode) return;
+  const list = (page === 'reminders') ? [] : calcReminders().slice(0, 2);   /* the Reminders page lists everything itself */
+  const html = list.map(remBannerHtml).join('');
+  const sig = state.lang + '|' + (state.homePrivate ? 'p' : 'o') + '|' + html;
+  let box = document.getElementById('rem-container');
+  if (!force && box && sig === remSig) return;
+  remSig = sig;
+  if (!html) { if (box) box.parentNode.removeChild(box); return; }
+  if (!box) {
+    box = document.createElement('div');
+    box.id = 'rem-container';
+    box.className = 'rem-container';
+    main.parentNode.insertBefore(box, main);
+  }
+  box.innerHTML = html;
+}
+
+/* ── The Reminders page (#reminders) ─────────────────────────────── */
+function remindersPage() {
+  const l = state.lang === 'ar' ? 1 : 0;
+  const stage = state.stage || 'pregnancy';
+  const list = calcReminders();
+  const wk = (stage === 'pregnancy') ? remGestWeek() : null;
+  const birth = (state.forms && state.forms.birthdate) ? parse(state.forms.birthdate) : NaN;
+  const dismissedCount = Object.keys(remLoad()).length;
+
+  let html = head(T('Reminders & milestones', 'التذكيرات والمعالم'),
+                  T('Upcoming health milestones and appointment reminders based on your stage.', 'المعالم الصحية القادمة وتذكيرات المواعيد بناءً على مرحلتكِ.'));
+
+  html += '<section class="panel spaced"><h2>' + esc(T('Due now or coming soon', 'مستحقة الآن أو قريباً')) + '</h2>';
+  if (list.length) {
+    html += list.map(function(r) {
+      return '<div class="rem-row"><span class="rem-dot" data-type="' + (r.today ? 'today' : r.type) + '" aria-hidden="true"></span>' +
+        '<span class="rem-row-text">' + esc((r.when[l] ? r.when[l] + ': ' : '') + r.detail[l]) + '</span>' +
+        '<a class="rem-row-link" href="#' + r.hash + '">' + esc(r.action[l]) + '</a>' +
+        '<button type="button" class="rem-row-btn" data-rem-dismiss="' + esc(r.id) + '">' + esc(T('Dismiss', 'رفض')) + '</button></div>';
+    }).join('');
+  } else {
+    html += '<p class="empty">' + esc(T('No reminders due right now.', 'لا توجد تذكيرات مستحقة الآن.')) + '</p>';
+    if (stage === 'pregnancy' && wk === null) {
+      html += '<p class="small">' + esc(T('Add your due date in the pregnancy calculator to see antenatal milestones.', 'أضيفي تاريخ الولادة المتوقع في حاسبة الحمل لرؤية معالم الرعاية قبل الولادة.')) + '</p>';
+    }
+  }
+  html += '</section>';
+
+  if (stage === 'pregnancy') {
+    html += '<details class="panel spaced rem-sched"><summary>' + esc(T('Antenatal care schedule (UK, NICE NG201)', 'جدول الرعاية قبل الولادة (المملكة المتحدة، NICE NG201)')) + '</summary>' +
+      ANTENATAL_SCHEDULE.map(function(m) {
+        const done = wk !== null && m.week < wk;
+        return '<div class="rem-sched-row' + (done ? ' is-done' : '') + '"><span class="rem-sched-when">' + esc(done ? '✓' : T('Wk', 'أسبوع') + ' ' + m.week) + '</span><span>' + esc(m[l ? 'ar' : 'en']) + '</span></div>';
+      }).join('') + '</details>';
+  }
+  if (stage === 'postpartum' || stage === 'breastfeeding') {
+    html += '<details class="panel spaced rem-sched"><summary>' + esc(T('Postpartum care schedule (UK)', 'جدول رعاية ما بعد الولادة (المملكة المتحدة)')) + '</summary>' +
+      POSTPARTUM_SCHEDULE.map(function(m) {
+        return '<div class="rem-sched-row"><span class="rem-sched-when">' + esc(T('Day', 'يوم') + ' ' + m.days) + '</span><span>' + esc(m[l ? 'ar' : 'en']) + '</span></div>';
+      }).join('') + '</details>';
+  }
+
+  if (dismissedCount > 0) {
+    html += '<p class="small">' + esc(dismissedCount + ' ' + T('reminder(s) dismissed.', 'تذكير(ات) تم رفضها.')) +
+      ' <button type="button" class="textbutton" data-rem-reset>' + esc(T('Reset dismissed reminders', 'إعادة تعيين التذكيرات المرفوضة')) + '</button></p>';
+  }
+
+  html += '<div class="notice small">' + esc(T(
+    'Schedules follow UK guidance (NICE, NHS). Other countries follow different schedules, so always follow your own midwife or doctor. Timings are approximate. Reminders are worked out on your device and never sent anywhere.',
+    'الجداول مبنية على إرشادات المملكة المتحدة (NICE وNHS). تختلف الجداول من بلد إلى آخر، فاتبعي دائماً مولّدتكِ أو طبيبتكِ. المواعيد تقريبية. تُحسب التذكيرات على جهازكِ ولا تُرسل إلى أي جهة.')) + '</div>';
+  return html;
+}
+
+/* ── Wiring ──────────────────────────────────────────────────────── */
+document.addEventListener('click', function(e) {
+  const t = e.target && e.target.closest ? e.target : null;
+  if (!t) return;
+  const d = t.closest('[data-rem-dismiss]');
+  if (d) { remDismiss(d.getAttribute('data-rem-dismiss')); return; }
+  if (t.closest('[data-rem-reset]')) remClearDismissed();
 });
+
+/* Keep the banner right when the page, language or stage changes (the app redraws #app each time). */
+(function() {
+  const app = document.getElementById('app');
+  if (!app) return;
+  let queued = false;
+  new MutationObserver(function() {
+    if (queued) return;
+    queued = true;
+    queueMicrotask(function() { queued = false; remMount(false); });
+  }).observe(app, { childList: true });
+  remMount(false);
+})();

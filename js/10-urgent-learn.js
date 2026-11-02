@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.01-r21 | js/10-urgent-learn.js
+/* Women & Families 2026.11.01-r22 | js/10-urgent-learn.js
    Urgent signs, pregnancy lifecycle, learn pages.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */

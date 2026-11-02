@@ -572,7 +572,7 @@ details p{font-size:14px;color:var(--muted);margin-top:10px;line-height:1.7}
   #wf-wizard-overlay{align-items:flex-end;padding:0}
   .wiz-stages{grid-template-columns:1fr 1fr}
 }
-</style><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%228%22%20fill%3D%22%232f6555%22%2F%3E%3Ctext%20x%3D%2216%22%20y%3D%2224%22%20text-anchor%3D%22middle%22%20font-size%3D%2226%22%20fill%3D%22white%22%3E%E2%99%A1%3C%2Ftext%3E%3C%2Fsvg%3E"><meta name="app-release" content="2026.11.01-r21"><meta name="mobile-web-app-capable" content="yes">
+</style><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%228%22%20fill%3D%22%232f6555%22%2F%3E%3Ctext%20x%3D%2216%22%20y%3D%2224%22%20text-anchor%3D%22middle%22%20font-size%3D%2226%22%20fill%3D%22white%22%3E%E2%99%A1%3C%2Ftext%3E%3C%2Fsvg%3E"><meta name="app-release" content="2026.11.01-r22"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Women & Families"><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icons/icon-192.png"><!-- REVIEW-STYLES --><style>.review-hero{grid-template-columns:1.3fr .7fr;gap:24px;margin-bottom:25px}
 .review-hero .photo{height:245px;border-radius:24px;order:0}
 .review-hero h1{font-size:clamp(30px,4vw,48px)}
@@ -765,33 +765,105 @@ footer a+a{margin-inline-start:16px}
 .sc-detail .sc-action{border-inline-start:4px solid;padding:10px 12px;border-radius:6px;font-weight:600;background:#f6f4ee}
 .sc-red .sc-action{border-color:#b3261e}.sc-amber .sc-action{border-color:#a84300}.sc-green .sc-action{border-color:#1b7a43}
 .sc-more{display:inline-block;margin-top:6px;font-weight:600;font-size:14px}
+
+/* ---- r22: install prompt -------------------------------------------------------- */
+.install-banner{position:fixed;inset-inline:12px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:40;display:grid;grid-template-columns:auto 1fr auto;gap:10px 12px;align-items:start;background:var(--paper,#fff);border:1px solid var(--line);border-radius:var(--r-xl,20px);padding:16px;box-shadow:0 8px 32px #1a332933;animation:slideUpBanner .3s ease}
+@keyframes slideUpBanner{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.install-banner{animation:none}}
+.install-icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#2a5e4e,#3a7a66);display:flex;align-items:center;justify-content:center;font-size:26px}
+.install-body strong{display:block;font-size:14.5px;line-height:1.35;color:var(--ink)}
+.install-body span{display:block;font-size:13px;color:var(--muted);line-height:1.45;margin-top:3px}
+.install-body .install-ios{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:8px;font-size:12.5px}
+.install-ios svg{width:18px;height:18px;flex:none}
+.install-x{width:44px;height:44px;margin:-10px -10px 0 0;background:transparent;border:0;border-radius:50%;color:var(--muted);font-size:26px;line-height:1;cursor:pointer}
+[dir=rtl] .install-x{margin:-10px 0 0 -10px}
+.install-actions{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end;align-items:center}
+.install-later{min-height:44px;padding:0 14px;background:none;border:0;color:var(--muted);font:inherit;font-size:14px;cursor:pointer}
+.install-go{min-height:44px;padding:0 22px;background:#1f4a3c;color:#fff;border:0;border-radius:24px;font:inherit;font-size:14.5px;font-weight:700;cursor:pointer}
+.install-wide{width:100%;margin-top:6px}
+.install-modal{position:fixed;inset:0;z-index:500;background:rgba(26,51,41,.55);display:flex;align-items:flex-end;justify-content:center}
+.install-sheet{background:var(--paper,#fff);border-radius:var(--r-xl,20px) var(--r-xl,20px) 0 0;padding:26px 22px calc(26px + env(safe-area-inset-bottom));width:100%;max-width:480px}
+.install-sheet h2{font-size:18px;margin:0 0 18px}
+.install-step{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px}
+.install-step strong{display:block;font-size:14.5px;margin-bottom:2px}.install-step span:not(.install-num){display:block;font-size:13px;color:var(--muted);line-height:1.5}
+.install-num{flex:none;width:28px;height:28px;border-radius:50%;background:#1f4a3c;color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}
+/* ---- r22: reminders and insights ------------------------------------------------ */
+.rem-container{display:grid;gap:1px}
+.rem-banner{display:flex;align-items:center;gap:12px;padding:12px 16px;color:#fff;font-size:14px;line-height:1.5;background:#2a5e4e}
+.rem-banner[data-type=today]{background:#b3261e}.rem-banner[data-type=appointment]{background:#a84300}
+.rem-banner[data-type=postpartum]{background:#3f6b57}.rem-banner[data-type=supplement]{background:#5b4f86}
+.rem-text{flex:1;min-width:0}
+.rem-action{flex:none;display:inline-flex;align-items:center;min-height:34px;background:rgba(255,255,255,.2);color:#fff;padding:7px 14px;border-radius:20px;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap}
+.rem-action:hover{background:rgba(255,255,255,.32)}
+.rem-dismiss{flex:none;min-width:44px;min-height:44px;background:transparent;border:0;color:#fff;font-size:26px;line-height:1;cursor:pointer;border-radius:50%}
+.rem-row{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.rem-dot{width:12px;height:12px;border-radius:50%;margin-top:6px;flex:none;background:#2a5e4e}
+.rem-dot[data-type=today]{background:#b3261e}.rem-dot[data-type=appointment]{background:#a84300}.rem-dot[data-type=postpartum]{background:#3f6b57}.rem-dot[data-type=supplement]{background:#5b4f86}
+.rem-row-text{flex:1 1 220px;font-size:14.5px;line-height:1.6}
+.rem-row-link{font-weight:600;font-size:14px}
+.rem-row-btn{min-height:40px;padding:6px 14px;border:1px solid var(--line);border-radius:20px;background:var(--soft);color:var(--ink);font:inherit;font-size:13px;cursor:pointer}
+.rem-sched summary,.ins-table summary{cursor:pointer;font-weight:600;min-height:36px}
+.rem-sched-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.55}
+.rem-sched-row.is-done{opacity:.55}
+.rem-sched-when{width:52px;flex:none;font-size:12px;font-weight:700;color:var(--muted);padding-top:2px}
+.ins-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px}
+.ins-head h2{margin:0 0 4px}
+.ins-days{text-align:center;padding:10px 14px;background:#1f4a3c;color:#fff;border-radius:var(--r-md,12px);flex:none}
+.ins-days strong{display:block;font-size:22px}.ins-days span{font-size:12px}
+.ins-bar{position:relative;height:12px;background:#dde8d9;border-radius:8px;overflow:hidden}
+.ins-bar-fill{height:100%;background:linear-gradient(90deg,#6b8f71,#1f4a3c);border-radius:8px}
+.ins-bar-mark{position:absolute;top:0;width:2px;height:100%;background:rgba(255,255,255,.75)}
+.ins-bar-labels{display:grid;grid-template-columns:30% 37.5% 32.5%;font-size:12px;color:var(--muted);margin:4px 0 16px}
+.ins-fetal{display:flex;gap:14px;align-items:flex-start;background:var(--soft);border-radius:var(--r-lg,16px);padding:16px}
+.ins-fetal-icon{font-size:32px;flex:none}.ins-fetal p{margin:4px 0 0;font-size:14px;line-height:1.6}
+.ins-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:16px}
+@media(min-width:721px){.ins-stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.ins-stat{text-align:center;padding:12px 8px;background:var(--soft);border-radius:var(--r-md,12px)}
+.ins-stat strong{display:block;font-size:20px;color:#1f4a3c}.ins-stat span{font-size:12px;color:var(--muted)}
+.ins-sparkwrap{direction:ltr;overflow-x:auto;margin-bottom:8px}.ins-spark{display:block;overflow:visible}
+.ins-legend{display:flex;gap:4px;align-items:center;font-size:12px;color:var(--muted);margin-bottom:8px;direction:ltr}
+.ins-swatch{width:14px;height:14px;border-radius:3px;display:inline-block}
+.ins-heat{display:grid;grid-template-columns:repeat(13,minmax(0,1fr));gap:3px;direction:ltr}
+.ins-week{display:grid;gap:3px}.ins-week span{display:block;aspect-ratio:1;border-radius:3px}
+.ins-phase{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+.ins-phase.is-done{opacity:.6}
+.ins-phase-dot{flex:none;width:24px;height:24px;border-radius:50%;background:var(--line);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:2px}
+.ins-phase.is-done .ins-phase-dot{background:#1f4a3c}.ins-phase.is-active .ins-phase-dot{background:#a84300}
+.ins-phase.is-active strong{color:#a84300}.ins-phase p{margin:3px 0 0;font-size:13.5px;color:var(--muted);line-height:1.55}
+.ins-row{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.ins-row.is-past{opacity:.55}.ins-row.is-current{background:var(--soft);border-radius:8px;padding-inline:10px}
+.ins-row-week{width:44px;flex:none;font-size:12px;font-weight:700;color:var(--muted);padding-top:3px}
+.ins-row small{color:var(--muted)}.ins-row p{margin:2px 0 0;font-size:14px;line-height:1.55}
 </style><!-- /MOBILE-STYLES --><meta name="robots" content="index,follow,max-image-preview:large">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"MedicalWebPage","name":"Bleeding after menopause","description":"Bleeding after menopause needs assessment, even if it happens only once or is a small amount. Several causes are possible, including conditions that need…","url":"https://public.ob-gyn-pharma.com/guide-postmenopausal-bleeding","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"Women & Families","url":"https://public.ob-gyn-pharma.com/"},"publisher":{"@type":"Organization","name":"OB-GYN Pharma","url":"https://www.ob-gyn-pharma.com/"}}</script>
 </head><body><a class="skip-main" href="#app" id="skip-main">Skip to content</a><header><div class="top"><a class="brand" href="#preview-home"><span class="brandmark" aria-hidden="true">♡</span><span><small>OB-GYN PHARMA</small><b id="brand-title">Women & Families</b></span></a><div class="tools"><a href="https://www.ob-gyn-pharma.com/" target="_blank" rel="noopener" id="professional">For professionals ↗</a><label class="sr" for="language-select">Language / اللغة</label><select class="language" id="language-select"><option value="en">English</option><option value="ar">العربية</option></select><a id="manage-language" href="#languages">Languages +</a></div></div><nav id="nav" aria-label="Main navigation"><a href="#preview-home">🏠 For you</a><a href="#preview-pregnancy">🌱 Journey</a><a href="#preview-checker">💊 Medicines</a><a href="#preview-plan">📋 My plan</a></nav></header>
 <div id="life-stage-bar" aria-label="Life stage navigation" role="navigation"><div class="life-stage-inner"></div></div><div class="statusline" id="statusline"></div><div id="toast" role="status" hidden></div><div id="preview-message" class="notice" style="max-width:1080px;margin:16px auto">This review copy displays without JavaScript. Interactive tools need a JavaScript-enabled browser. <br>تظهر هذه النسخة دون JavaScript. تحتاج الأدوات التفاعلية إلى متصفح يسمح بتشغيله.</div><main id="app"><div class="breadcrumbs"><button type="button" class="secondary" data-action="back">Back</button><a class="secondary" href="#home">Home</a><a class="textbutton" href="#tools">All tools</a></div><div class="eyebrow">Women &amp; Families</div><h1 tabindex="-1">Bleeding after menopause</h1><p class="lead">Bleeding after menopause needs assessment, even if it happens only once or is a small amount. Several causes are possible, including conditions that need prompt treatment.</p><div class="guide-meta">A guide to understand and prepare</div><section class="notice caution deep-help"><h2>When to seek care</h2><p>Arrange a medical appointment. Do not assume it is a period returning.</p><a class="textbutton" href="/urgent-help" data-spa-route="urgent">Urgent-help guide</a></section><div class="guide-jumps" role="group" aria-label="Sections in this guide"><button type="button" data-guide-jump="understand">Understand the concern</button><button type="button" data-guide-jump="assessment">What assessment may involve</button><button type="button" data-guide-jump="options">Care options to discuss</button><button type="button" data-guide-jump="next">Practical next steps</button><button type="button" data-guide-jump="followup">Follow-up and decisions</button><button type="button" data-guide-jump="questions">My questions</button><button type="button" class="textbutton" data-action="expand-guide">Expand all</button></div><div class="guide-layout"><article><details class="guide-detail" id="guide-understand" open=""><summary>Understand the concern</summary><div><p>Possible causes include fragile tissues, polyps or changes in the womb lining. Cancer is one reason investigation matters, not an automatic diagnosis.</p></div></details><details class="guide-detail" id="guide-assessment"><summary>What assessment may involve</summary><div><p>Assessment may include examination, vaginal ultrasound, and sometimes hysteroscopy or a sample of the womb lining.</p></div></details><details class="guide-detail" id="guide-options"><summary>Care options to discuss</summary><div><p>Treatment depends on the findings. Tell the team about hormone therapy and any further bleeding while awaiting assessment.</p><p class="small">These are discussion points, not a prescription. Suitability and availability vary.</p></div></details><details class="guide-detail" id="guide-next"><summary>Practical next steps</summary><div><p>Arrange assessment even for a single episode or small amount of spotting after menopause. Record the date, amount and associated discomfort, and mention HRT or other medicines. Do not wait to see whether it happens repeatedly before seeking advice.</p></div></details><details class="guide-detail" id="guide-followup"><summary>Follow-up and decisions</summary><div><p>You may be offered an examination, vaginal ultrasound, hysteroscopy or a tissue sample depending on findings. Ask how to prepare and how discomfort will be managed. Confirm who explains results and what to do if bleeding returns after an initial reassuring assessment.</p></div></details><section class="panel spaced"><h2>A question you may have</h2><details class="guide-faq"><summary>Does one small episode still need checking?</summary><p>Yes. Arrange assessment even if the bleeding has stopped.</p></details></section><section class="panel spaced" id="guide-questions"><h2 tabindex="-1">Prepare for your appointment</h2><h3>What to record</h3><p>Record the date, amount and any hormone treatment.</p><h3>Questions worth asking</h3><ul class="list"><li><p>Which tests will investigate the womb lining?</p><button type="button" class="secondary" data-action="deep-question" data-topic="postmenopausal-bleeding" data-question="0">Add this question</button></li><li><p>What should I do if bleeding happens again?</p><button type="button" class="secondary" data-action="deep-question" data-topic="postmenopausal-bleeding" data-question="1">Add this question</button></li></ul><div class="actions"><a class="primary" href="#plan">Open my health plan</a><button type="button" class="secondary" data-action="bookmark-topic" data-topic="postmenopausal-bleeding" aria-pressed="false">Save guide</button></div></section></article><aside class="guide-aside"><section class="panel"><h2>Related concerns</h2><div class="guide-related"><a class="textbutton" href="/guide-menopause-treatment" data-spa-route="topic-menopause-treatment">Menopause treatment choices</a><a class="textbutton" href="/guide-examination" data-spa-route="topic-examination">Your appointment and examination</a></div></section><section class="panel spaced"><h2>Sources &amp; scope</h2><ul class="source-list"><li><a href="https://www.nhs.uk/symptoms/post-menopausal-bleeding/" target="_blank" rel="noopener">NHS: Bleeding after menopause</a></li></ul><p class="small">Sources consulted 3–4 October 2026. Opening them needs internet. The summaries and Arabic translation have not yet received clinical sign-off.</p><p class="small">NHS: UK information. CDC: US information. WHO: international information. Local tests, treatments, consent and referral arrangements may differ.</p></section></aside></div><details class="panel spaced"><summary>About this information</summary><dl><dt>Editorial update</dt><dd>4 October 2026</dd><dt>Clinical reviewer</dt><dd>Not assigned — approval pending</dd><dt>Arabic language review</dt><dd>Pending</dd><dt>Next editorial review target</dt><dd>4 January 2027 · earlier for reported errors</dd><dt>Country applicability</dt><dd>General education. No country edition has been clinically approved.</dd></dl><p>Sources are linked below each guide. Publication is not clinical approval. Updates and corrections require another content review.</p><a class="secondary" href="#feedback">Report a content problem</a></details><p class="actions"><button type="button" class="textbutton" data-action="report-guide">Report a problem with this guide</button></p></main><footer><span id="foot"></span><a href="#preview-roadmap" id="roadlink">Development roadmap</a><a href="/privacy" data-spa-route="privacy" id="privlink">Privacy</a></footer><div id="print-content"></div>
 <!-- App code. Order matters (shared global scope). Keep in sync with sw.js CORE. -->
 <script>window.__PRERENDER={"route":"topic-postmenopausal-bleeding","lang":"en"};</script>
-<script src="js/01-core.js?v=2026.11.01-r21"></script>
-<script src="js/02-views-legacy.js?v=2026.11.01-r21"></script>
-<script src="js/03-i18n-base.js?v=2026.11.01-r21"></script>
-<script src="js/04-tools.js?v=2026.11.01-r21"></script>
-<script src="js/05-life-topics.js?v=2026.11.01-r21"></script>
-<script src="js/06-i18n-life.js?v=2026.11.01-r21"></script>
-<script src="js/07-review-offline.js?v=2026.11.01-r21"></script>
-<script src="js/08-guide-data.js?v=2026.11.01-r21"></script>
-<script src="js/09-guides.js?v=2026.11.01-r21"></script>
-<script src="js/10-urgent-learn.js?v=2026.11.01-r21"></script>
-<script src="js/11-state-calc.js?v=2026.11.01-r21"></script>
-<script src="js/12-journey-diary.js?v=2026.11.01-r21"></script>
-<script src="js/13-feedback-backup.js?v=2026.11.01-r21"></script>
-<script src="js/14-home-more.js?v=2026.11.01-r21"></script>
-<script src="js/15-i18n-late.js?v=2026.11.01-r21"></script>
-<script src="js/17-nav-titles.js?v=2026.11.01-r21"></script>
-<script src="js/18-wizard.js?v=2026.11.01-r21"></script>
-<script src="js/19-seo.js?v=2026.11.01-r21"></script>
-<script src="js/20-search.js?v=2026.11.01-r21"></script>
-<script src="js/21-symptom-checker.js?v=2026.11.01-r21"></script>
-<script src="js/22-boot.js?v=2026.11.01-r21"></script>
+<script src="js/01-core.js?v=2026.11.01-r22"></script>
+<script src="js/02-views-legacy.js?v=2026.11.01-r22"></script>
+<script src="js/03-i18n-base.js?v=2026.11.01-r22"></script>
+<script src="js/04-tools.js?v=2026.11.01-r22"></script>
+<script src="js/05-life-topics.js?v=2026.11.01-r22"></script>
+<script src="js/06-i18n-life.js?v=2026.11.01-r22"></script>
+<script src="js/07-review-offline.js?v=2026.11.01-r22"></script>
+<script src="js/08-guide-data.js?v=2026.11.01-r22"></script>
+<script src="js/09-guides.js?v=2026.11.01-r22"></script>
+<script src="js/10-urgent-learn.js?v=2026.11.01-r22"></script>
+<script src="js/11-state-calc.js?v=2026.11.01-r22"></script>
+<script src="js/12-journey-diary.js?v=2026.11.01-r22"></script>
+<script src="js/13-feedback-backup.js?v=2026.11.01-r22"></script>
+<script src="js/14-home-more.js?v=2026.11.01-r22"></script>
+<script src="js/15-i18n-late.js?v=2026.11.01-r22"></script>
+<script src="js/17-nav-titles.js?v=2026.11.01-r22"></script>
+<script src="js/18-wizard.js?v=2026.11.01-r22"></script>
+<script src="js/19-seo.js?v=2026.11.01-r22"></script>
+<script src="js/20-search.js?v=2026.11.01-r22"></script>
+<script src="js/21-symptom-checker.js?v=2026.11.01-r22"></script>
+<script src="js/22-reminders.js?v=2026.11.01-r22"></script>
+<script src="js/23-analytics.js?v=2026.11.01-r22"></script>
+<script src="js/24-install-banner.js?v=2026.11.01-r22"></script>
+<script src="js/25-boot.js?v=2026.11.01-r22"></script>
 <!-- ── Welcome Wizard (Phase 1a) ────────────────────────────────── -->
 <div id="wf-wizard-overlay" hidden aria-modal="true" role="dialog" aria-labelledby="wiz-title">
   <div id="wf-wizard">

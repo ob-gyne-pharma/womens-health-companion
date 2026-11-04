@@ -81,9 +81,64 @@ for (const l of locs) {
   if (!existsSync(join(root, t + '.html'))) fail(`SITEMAP lists ${l} but ${t}.html does not exist`);
 }
 
+// 7. PRIVACY GUARD. The privacy page is a specification; this section enforces it.
+//    If a change here is intentional, update the privacy page in the same change, then update the lists below.
+//    Allowed: the three localStorage keys below, user-initiated sharing (navigator.share), the service worker's own fetches.
+const ALLOWED_STORAGE_KEYS = new Set([
+  'wf-companion-prototype-v1', // saved plan, only when device saving is on
+  'wf-reminders-v1',           // dismissed reminders, only when device saving is on
+  'wf-install-v1',             // one note: install prompt closed, snoozed or installed
+]);
+const ALLOWED_RESOURCE_HOSTS = new Set(['public.ob-gyn-pharma.com']);   // scripts, styles, images, fonts must come from our own origin
+const FORBIDDEN_API = [
+  [/\bsendBeacon\s*\(/, 'navigator.sendBeacon'],
+  [/\bnew\s+XMLHttpRequest\b|\bXMLHttpRequest\s*\(/, 'XMLHttpRequest'],
+  [/\bnew\s+WebSocket\s*\(/, 'WebSocket'],
+  [/\bnew\s+EventSource\s*\(/, 'EventSource'],
+  [/\bsessionStorage\b/, 'sessionStorage'],
+  [/\bindexedDB\b/, 'indexedDB (allowed only after the passport storage design is approved; add it to this guard then)'],
+  [/\bdocument\.cookie\b/, 'document.cookie'],
+  [/\bdocument\.write\s*\(/, 'document.write'],
+  [/\beval\s*\(|\bnew\s+Function\s*\(/, 'eval / new Function'],
+  [/\bimportScripts\s*\(/, 'importScripts'],
+];
+const stripBlockComments = (t) => t.replace(/\/\*[\s\S]*?\*\//g, (m) => m.replace(/[^\n]/g, ' '));
+const stripLineComments = (t) => t.split('\n').map((l) => (/^\s*\/\//.test(l) ? '' : l)).join('\n');
+const constMaps = {};                // per-file string constants whose name ends in KEY
+for (const f of jsFiles) {
+  const m = {};
+  for (const x of read('js/' + f).matchAll(/\b([A-Z_]*KEY)\s*=\s*'([^']*)'/g)) m[x[1]] = x[2];
+  constMaps[f] = m;
+}
+for (const f of jsFiles) {
+  const code = stripLineComments(stripBlockComments(read('js/' + f)));
+  for (const [re, name] of FORBIDDEN_API) if (re.test(code)) fail(`PRIVACY js/${f} uses ${name}. See the privacy page and the guard in tools/check.mjs.`);
+  // fetch(): the only approved call is the dormant feedback sender, and only while its endpoint is empty
+  if (/\bfetch\s*\(/.test(code)) {
+    const dormant = f === '13-feedback-backup.js' && /const DIRECT_FEEDBACK_ENDPOINT\s*=\s*''/.test(code) && (code.match(/\bfetch\s*\(/g) || []).length === 1 && /fetch\(DIRECT_FEEDBACK_ENDPOINT/.test(code);
+    if (!dormant) fail(`PRIVACY js/${f} calls fetch(). Only the feedback sender may, and only while DIRECT_FEEDBACK_ENDPOINT is an empty string. Enabling it sends users' words to a third party: update the privacy page, get sign-off, then change this guard.`);
+  }
+  // every localStorage call must use an approved key
+  for (const x of code.matchAll(/\blocalStorage\.(?:getItem|setItem|removeItem)\(\s*([A-Za-z_]\w*|'[^']*')/g)) {
+    const arg = x[1];
+    const key = arg.startsWith("'") ? arg.slice(1, -1) : (constMaps[f][arg] ?? constMaps['01-core.js'][arg]);
+    if (key === undefined) fail(`PRIVACY js/${f}: localStorage key ${arg} cannot be resolved. Use a constant ending in KEY with a string value.`);
+    else if (!ALLOWED_STORAGE_KEYS.has(key)) fail(`PRIVACY js/${f}: localStorage key "${key}" is not approved. Update the privacy page, then add it to ALLOWED_STORAGE_KEYS in tools/check.mjs.`);
+  }
+  if (/\blocalStorage\.clear\(/.test(code)) fail(`PRIVACY js/${f} calls localStorage.clear(), which would also erase other sites' ... on shared origins; remove specific keys instead.`);
+}
+for (const f of ['index.html', ...pageFiles]) {
+  const h = read(f);
+  for (const m of h.matchAll(/<(script|img|iframe|source|video|audio|embed|link)\b[^>]*?\b(?:src|href)=["'](https?:)?\/\/([^/"']+)/gi)) {
+    const tag = m[0];
+    if (/^<link/i.test(tag) && !/rel=["']?(stylesheet|preload|prefetch|modulepreload|icon|apple-touch-icon|manifest)/i.test(tag)) continue; // canonical / alternate links are not resources
+    if (!ALLOWED_RESOURCE_HOSTS.has(m[3])) fail(`PRIVACY ${f} loads a ${m[1]} from ${m[3]}. Third-party resources can track readers; host it on our own origin or update the guard.`);
+  }
+}
+
 if (problems.length) {
   console.error(`\n✗ ${problems.length} problem(s):\n`);
   problems.forEach((p) => console.error('  - ' + p + '\n'));
   process.exit(1);
 }
-console.log(`✓ OK: ${jsFiles.length} js files pass syntax check; release ${metaRelease} consistent in index.html, sw.js and app code; script order and offline file list match; ${pageFiles.length} static pages current, unique and in the sitemap.`);
+console.log(`✓ OK: ${jsFiles.length} js files pass syntax check; release ${metaRelease} consistent in index.html, sw.js and app code; script order and offline file list match; ${pageFiles.length} static pages current, unique and in the sitemap; privacy guard clean (no network calls, ${ALLOWED_STORAGE_KEYS.size} approved storage keys, no third-party resources).`);

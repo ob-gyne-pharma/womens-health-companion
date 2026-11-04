@@ -1,0 +1,34 @@
+name: Site check
+
+# Runs tools/check.mjs on every push and every pull request that touches main.
+# This is the single gate that stops a broken or privacy-violating release from
+# reaching production. It does NOT deploy anything by itself — Cloudflare Pages
+# deploys separately when it sees a new commit on main, the same as always.
+#
+# To make this binding: in the repo's Settings -> Branches -> branch protection
+# rule for "main", enable "Require status checks to pass before merging" and
+# select "check" (the job name below). Without that setting this workflow runs
+# and reports red/green, but a push directly to main can still go through.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # The real repo has icons/icon-192.png and icons/icon-512.png committed.
+      # If check.mjs fails here with MISSING icons, it means they are missing
+      # from the repository itself, not from this workflow — fix that in git,
+      # don't change this file.
+      - name: Run tools/check.mjs
+        run: node tools/check.mjs

@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.01-r22 | js/20-search.js
+/* Women & Families 2026.11.04-r23 | js/20-search.js
    Whole-app search on the home page: guides, tools and sections, English and Arabic.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */
@@ -69,6 +69,7 @@
     ['breastfeeding','section',['Breastfeeding','أرضع'],'nursing milk latch feeding baby','رضاعه لبن'],
     ['postpartum','section',['After birth','بعد الولادة'],'postnatal newborn recovery baby blues stitches','نفاس مولود'],
     ['contraception','section',['Contraception','منع الحمل'],'birth control pill iud coil implant condom injection family planning','حبوب لولب عازل حقنه تنظيم الاسره'],
+    ['passport','tool',['My health passport','خطتي الصحية'],'passport records allergies medicines medications conditions procedures pregnancies investigations family history emergency card encrypted','خطتي الصحية سجلات حساسية ادوية حالات اجراءات حمل فحوصات تاريخ عائلي بطاقة طوارئ مشفر'],
     ['symptoms','tool',['Symptom checker','فاحص الأعراض'],'symptoms symptom checker triage red amber green when to worry should i see a doctor fever bleeding headache pain','اعراض فحص فرز احمر برتقالي اخضر متى اقلق'],
     ['reminders','tool',['Reminders & milestones','التذكيرات والمعالم'],'reminders reminder milestones appointments scan antenatal schedule vaccine folic acid vitamin d','تذكيرات معالم مواعيد موعد'],
     ['insights','tool',['My health insights','رؤى صحتي'],'insights charts cycle length trend pregnancy progress week fetal development baby size symptom heatmap recovery timeline','رؤى رسوم دورة طول الدورة تقدم الحمل نمو الجنين'],

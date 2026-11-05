@@ -572,7 +572,7 @@ details p{font-size:14px;color:var(--muted);margin-top:10px;line-height:1.7}
   #wf-wizard-overlay{align-items:flex-end;padding:0}
   .wiz-stages{grid-template-columns:1fr 1fr}
 }
-</style><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%228%22%20fill%3D%22%232f6555%22%2F%3E%3Ctext%20x%3D%2216%22%20y%3D%2224%22%20text-anchor%3D%22middle%22%20font-size%3D%2226%22%20fill%3D%22white%22%3E%E2%99%A1%3C%2Ftext%3E%3C%2Fsvg%3E"><meta name="app-release" content="2026.11.01-r22"><meta name="mobile-web-app-capable" content="yes">
+</style><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%228%22%20fill%3D%22%232f6555%22%2F%3E%3Ctext%20x%3D%2216%22%20y%3D%2224%22%20text-anchor%3D%22middle%22%20font-size%3D%2226%22%20fill%3D%22white%22%3E%E2%99%A1%3C%2Ftext%3E%3C%2Fsvg%3E"><meta name="app-release" content="2026.11.04-r23"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Women & Families"><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icons/icon-192.png"><!-- REVIEW-STYLES --><style>.review-hero{grid-template-columns:1.3fr .7fr;gap:24px;margin-bottom:25px}
 .review-hero .photo{height:245px;border-radius:24px;order:0}
 .review-hero h1{font-size:clamp(30px,4vw,48px)}
@@ -834,33 +834,57 @@ footer a+a{margin-inline-start:16px}
 .ins-row.is-past{opacity:.55}.ins-row.is-current{background:var(--soft);border-radius:8px;padding-inline:10px}
 .ins-row-week{width:44px;flex:none;font-size:12px;font-weight:700;color:var(--muted);padding-top:3px}
 .ins-row small{color:var(--muted)}.ins-row p{margin:2px 0 0;font-size:14px;line-height:1.55}
+
+/* ---- r23: passport, emergency card ---------------------------------------------- */
+.pp-sheet h2{margin-top:0}
+.pp-input{width:100%;min-height:52px;font-size:16px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;margin-bottom:10px;box-sizing:border-box}
+.pp-err{color:#b3261e;font-size:13.5px;margin:-4px 0 10px}
+.pp-locked{text-align:center}
+.pp-row-flex{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.pp-section h2{margin-bottom:10px}
+.pp-list{list-style:none;margin:0 0 10px;padding:0}
+.pp-list-item{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:48px;padding:10px 4px;background:none;border:0;border-bottom:1px solid var(--line);font:inherit;font-size:15px;text-align:start;cursor:pointer;color:var(--ink)}
+.pp-list-item:hover{background:var(--soft)}
+.pp-add{min-height:40px;padding:0 14px;background:var(--soft);border:1px solid var(--line);border-radius:20px;font:inherit;font-size:13.5px;cursor:pointer}
+.pp-field{margin-bottom:12px}
+.pp-field label{display:block;font-size:13px;color:var(--muted);margin-bottom:4px}
+.pp-field input[type=text],.pp-field textarea,.pp-field select{width:100%;min-height:44px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;font-size:15px;box-sizing:border-box}
+.pp-field textarea{min-height:72px;resize:vertical}
+.pp-check{display:flex;align-items:center;gap:10px;min-height:44px;font-size:14.5px}
+.pp-form-actions{display:flex;gap:10px;margin-top:14px}
+.pp-ec-card{background:#fff3e5;border:2px solid #a84300}
+.pp-ec-row{padding:8px 0;border-bottom:1px solid #e8cdae}
+.pp-ec-row strong{display:block;font-size:12.5px;color:#a84300;text-transform:uppercase;letter-spacing:.02em}
+.pp-ec-row span{font-size:15px}
+@media print{header,#review-bottom,#nav,.pp-ec:first-of-type,.notice{display:none!important}}
 </style><!-- /MOBILE-STYLES --></head><body><a class="skip-main" href="#app" id="skip-main">Skip to content</a><header><div class="top"><a class="brand" href="#preview-home"><span class="brandmark" aria-hidden="true">♡</span><span><small>OB-GYN PHARMA</small><b id="brand-title">Women & Families</b></span></a><div class="tools"><a href="https://www.ob-gyn-pharma.com/" target="_blank" rel="noopener" id="professional">For professionals ↗</a><label class="sr" for="language-select">Language / اللغة</label><select class="language" id="language-select"><option value="en">English</option><option value="ar">العربية</option></select><a id="manage-language" href="#languages">Languages +</a></div></div><nav id="nav" aria-label="Main navigation"><a href="#preview-home">🏠 For you</a><a href="#preview-pregnancy">🌱 Journey</a><a href="#preview-checker">💊 Medicines</a><a href="#preview-plan">📋 My plan</a></nav></header>
 <div id="life-stage-bar" aria-label="Life stage navigation" role="navigation"><div class="life-stage-inner"></div></div><div class="statusline" id="statusline"></div><div id="toast" role="status" hidden></div><div id="preview-message" class="notice" style="max-width:1080px;margin:16px auto">This review copy displays without JavaScript. Interactive tools need a JavaScript-enabled browser. <br>تظهر هذه النسخة دون JavaScript. تحتاج الأدوات التفاعلية إلى متصفح يسمح بتشغيله.</div><main id="app"><div class="hero"><div><div class="eyebrow">Your health companion</div><h1 tabindex="-1">Here for every chapter.</h1><p class="lead">From planning ahead to life after birth. Clear information, useful tools, and a little more confidence.</p><div class="actions"><a class="primary" href="#preview-pregnancy">Continue: My pregnancy</a><a class="secondary" href="#preview-checker">Medicine checker</a></div></div><div class="photo mother" role="img" aria-label="Mother holding her baby"></div></div><div class="notice">Your information stays in this session unless you choose “Remember my plan on this device.” No accounts or uploads.</div><div class="sectionhead"><h2>What would you like help with?</h2><span class="small">Choose any stage</span></div><div class="cards"><article class="card"><div class="photo consult" role="img" aria-label="Preparing for pregnancy"></div><div class="pad"><h3>Preparing for pregnancy</h3><p>Start with a thoughtful health checklist.</p><div class="actions"><a class="secondary" href="#preview-prep">Explore →</a><button type="button" class="textbutton" data-action="stage" data-stage="prep">Set as my stage</button></div></div></article><article class="card"><div class="photo pregnant" role="img" aria-label="Trying to conceive"></div><div class="pad"><h3>Trying to conceive</h3><p>Keep track and prepare your questions.</p><div class="actions"><a class="secondary" href="#preview-fertility">Explore →</a><button type="button" class="textbutton" data-action="stage" data-stage="fertility">Set as my stage</button></div></div></article><article class="card"><div class="photo pregnant" role="img" aria-label="My pregnancy"></div><div class="pad"><h3>My pregnancy</h3><p>Your dates, milestones, and appointments.</p><div class="actions"><a class="secondary" href="#preview-pregnancy">Explore →</a><button type="button" class="textbutton" data-action="stage" data-stage="pregnancy">My current stage</button></div></div></article><article class="card"><div class="photo meds" role="img" aria-label="Contraception"></div><div class="pad"><h3>Contraception</h3><p>Explore options and what matters to you.</p><div class="actions"><a class="secondary" href="#preview-contraception">Explore →</a><button type="button" class="textbutton" data-action="stage" data-stage="contraception">Set as my stage</button></div></div></article><article class="card"><div class="photo mother" role="img" aria-label="Breastfeeding"></div><div class="pad"><h3>Breastfeeding</h3><p>Support for feeding conversations.</p><div class="actions"><a class="secondary" href="#preview-breastfeeding">Explore →</a><button type="button" class="textbutton" data-action="stage" data-stage="breastfeeding">Set as my stage</button></div></div></article><article class="card"><div class="photo mother" role="img" aria-label="After birth"></div><div class="pad"><h3>After birth</h3><p>Space for your recovery and wellbeing.</p><div class="actions"><a class="secondary" href="#preview-postpartum">Explore →</a><button type="button" class="textbutton" data-action="stage" data-stage="postpartum">Set as my stage</button></div></div></article></div><div class="help"><h3>A plan you can bring to your appointment</h3><p>Collect questions, medicines, and appointments in one place.</p><div class="actions"><a class="primary" href="#preview-plan">Open my health plan</a></div></div></main><noscript id="root-noscript"><style>#preview-message{display:none!important}.nojs{max-width:720px;margin:24px auto;padding:0 18px calc(24px + env(safe-area-inset-bottom));line-height:1.75}.nojs a{font-weight:600}</style><div class="nojs"><p>The interactive tools need JavaScript. You can still read the guides without it:</p><ul><li><a href="/guides">All guides</a></li><li><a href="/urgent-help">When to get help</a></li><li><a href="/privacy">Privacy &amp; your data</a></li></ul><p dir="rtl" lang="ar">يمكنك قراءة الأدلة بدون JavaScript:</p><ul dir="rtl" lang="ar"><li><a href="/ar-guides">كل الأدلة</a></li><li><a href="/ar-urgent-help">متى أحتاج مساعدة؟</a></li><li><a href="/ar-privacy">الخصوصية وبياناتك</a></li></ul></div></noscript><footer><span id="foot"></span><a href="#preview-roadmap" id="roadlink">Development roadmap</a><a href="/privacy" data-spa-route="privacy" id="privlink">Privacy</a></footer><div id="print-content"></div>
 <!-- App code. Order matters (shared global scope). Keep in sync with sw.js CORE. -->
-<script src="js/01-core.js?v=2026.11.01-r22"></script>
-<script src="js/02-views-legacy.js?v=2026.11.01-r22"></script>
-<script src="js/03-i18n-base.js?v=2026.11.01-r22"></script>
-<script src="js/04-tools.js?v=2026.11.01-r22"></script>
-<script src="js/05-life-topics.js?v=2026.11.01-r22"></script>
-<script src="js/06-i18n-life.js?v=2026.11.01-r22"></script>
-<script src="js/07-review-offline.js?v=2026.11.01-r22"></script>
-<script src="js/08-guide-data.js?v=2026.11.01-r22"></script>
-<script src="js/09-guides.js?v=2026.11.01-r22"></script>
-<script src="js/10-urgent-learn.js?v=2026.11.01-r22"></script>
-<script src="js/11-state-calc.js?v=2026.11.01-r22"></script>
-<script src="js/12-journey-diary.js?v=2026.11.01-r22"></script>
-<script src="js/13-feedback-backup.js?v=2026.11.01-r22"></script>
-<script src="js/14-home-more.js?v=2026.11.01-r22"></script>
-<script src="js/15-i18n-late.js?v=2026.11.01-r22"></script>
-<script src="js/17-nav-titles.js?v=2026.11.01-r22"></script>
-<script src="js/18-wizard.js?v=2026.11.01-r22"></script>
-<script src="js/19-seo.js?v=2026.11.01-r22"></script>
-<script src="js/20-search.js?v=2026.11.01-r22"></script>
-<script src="js/21-symptom-checker.js?v=2026.11.01-r22"></script>
-<script src="js/22-reminders.js?v=2026.11.01-r22"></script>
-<script src="js/23-analytics.js?v=2026.11.01-r22"></script>
-<script src="js/24-install-banner.js?v=2026.11.01-r22"></script>
-<script src="js/25-boot.js?v=2026.11.01-r22"></script>
+<script src="js/01-core.js?v=2026.11.04-r23"></script>
+<script src="js/02-views-legacy.js?v=2026.11.04-r23"></script>
+<script src="js/03-i18n-base.js?v=2026.11.04-r23"></script>
+<script src="js/04-tools.js?v=2026.11.04-r23"></script>
+<script src="js/05-life-topics.js?v=2026.11.04-r23"></script>
+<script src="js/06-i18n-life.js?v=2026.11.04-r23"></script>
+<script src="js/07-review-offline.js?v=2026.11.04-r23"></script>
+<script src="js/08-guide-data.js?v=2026.11.04-r23"></script>
+<script src="js/09-guides.js?v=2026.11.04-r23"></script>
+<script src="js/10-urgent-learn.js?v=2026.11.04-r23"></script>
+<script src="js/11-state-calc.js?v=2026.11.04-r23"></script>
+<script src="js/12-journey-diary.js?v=2026.11.04-r23"></script>
+<script src="js/13-feedback-backup.js?v=2026.11.04-r23"></script>
+<script src="js/14-home-more.js?v=2026.11.04-r23"></script>
+<script src="js/15-i18n-late.js?v=2026.11.04-r23"></script>
+<script src="js/17-nav-titles.js?v=2026.11.04-r23"></script>
+<script src="js/18-wizard.js?v=2026.11.04-r23"></script>
+<script src="js/19-seo.js?v=2026.11.04-r23"></script>
+<script src="js/20-search.js?v=2026.11.04-r23"></script>
+<script src="js/21-symptom-checker.js?v=2026.11.04-r23"></script>
+<script src="js/22-reminders.js?v=2026.11.04-r23"></script>
+<script src="js/23-analytics.js?v=2026.11.04-r23"></script>
+<script src="js/24-install-banner.js?v=2026.11.04-r23"></script>
+<script src="js/26-passport.js?v=2026.11.04-r23"></script>
+<script src="js/27-boot.js?v=2026.11.04-r23"></script>
 <!-- ── Welcome Wizard (Phase 1a) ────────────────────────────────── -->
 <div id="wf-wizard-overlay" hidden aria-modal="true" role="dialog" aria-labelledby="wiz-title">
   <div id="wf-wizard">

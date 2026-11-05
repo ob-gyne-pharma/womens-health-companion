@@ -15,6 +15,34 @@ a session updates it. Whoever starts one reads it before doing anything else.
 
 ## What changed since the last packet
 
+**4 Nov 2026 — Agent 1, A1-6/A1-7/A1-8/A1-9 (passport storage + first record screens + emergency card + export)**
+
+- New `js/26-passport.js`. `js/25-boot.js` renamed to `js/27-boot.js` (passport module loads
+  before boot, which must stay last).
+- Storage: IndexedDB (`wf-passport-v1`), AES-GCM-256 encrypted, key from a passphrase via
+  PBKDF2-SHA256 (210,000 iterations). The privacy guard in `tools/check.mjs` no longer
+  blocks `indexedDB` — this was the one thing it was waiting on (see the guard's comment).
+  **Nothing beyond that is checked automatically**: the encryption design itself needs a
+  human security review before any pilot (per the Master Plan's pilot gate).
+- Record categories: condition, allergy, medication, pregnancy, procedure, investigation,
+  family history — generic form renderer, one schema per category in `PP_CATEGORIES`.
+  Default field wording is a first draft; **Agent 2 needs to review and refine it**
+  (Master Plan A2-5).
+- App lock: 5-minute idle timeout, locks when the tab is hidden, locks on reload. No
+  password reset, by design — stated to the woman before she sets a passphrase.
+- Emergency card at `#emergency-card`: offline, built only from fields she explicitly
+  ticks, nothing shown by default.
+- Export: local JSON download, FHIR-shaped field names (not a certified FHIR Bundle —
+  `FACTSHEET.md` is worded carefully here, don't round this up in outreach material).
+- Privacy page (`js/14-home-more.js`) and `FACTSHEET.md` §3a updated in the same change.
+- **Tested:** crypto round-trip, wrong-passphrase rejection, and tamper detection verified
+  in isolation (Node's Web Crypto implementation) before writing the browser code, since
+  this is the security-critical part. Full list of what's been checked is in the chat
+  reply for this release — re-run that test suite before trusting a further change to this
+  file.
+- **Not tested:** no independent security review has happened (that's a human task, not
+  something I can do from here). No usability testing with real women yet.
+
 **3 Nov 2026 — Agent 1, week-0 setup (tasks A1-1 to A1-4 from the Master Plan)**
 
 - `tools/check.mjs` gained a privacy guard: it now fails the build if the code calls a

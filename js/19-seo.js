@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.01-r22 | js/19-seo.js
+/* Women & Families 2026.11.04-r23 | js/19-seo.js
    Search-engine support: real URLs for guide links, per-page browser titles.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */

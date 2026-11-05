@@ -57,14 +57,34 @@ clinically validated. Those become true only when the features and evidence in s
   sends nothing while blank. If it is ever turned on, the privacy page and this file must be
   updated first, and that change is gated (see §9).
 
+## 3a. My health passport (added r23, 4 Nov 2026 — not yet independently reviewed)
+
+A new, separate feature at `#passport`. It lets a woman record, on this device only:
+conditions, allergies, medicines, procedures, pregnancies, investigations and family
+history — plus a profile and an emergency card built from whichever of those she chooses to
+include.
+
+- Stored in IndexedDB, **encrypted with AES-GCM** (256-bit), with the key derived from a
+  passphrase she chooses via PBKDF2-SHA256 (210,000 iterations). We never see or store the
+  passphrase itself.
+- **There is no password reset.** If she forgets the passphrase, the data cannot be
+  recovered — this is stated to her before she sets it up, not buried in a policy.
+- Auto-locks after 5 minutes idle, when the tab is hidden, or on reload.
+- Export is a local JSON download only (FHIR-R4-shaped field names, not a certified FHIR
+  export) — nothing is transmitted.
+- Every record shows "entered by you" — nothing is auto-upgraded to "clinician verified."
+- **Not yet done:** document/photo attachments, an independent encryption/security review,
+  a security audit of this specific feature, usability testing with real women, default
+  field wording reviewed by a clinician (the field labels are a first draft, pending Agent 2
+  sign-off per the Master Plan). Do not describe this as "clinically validated" or
+  "professionally reviewed" until that review has happened and is on record.
+
 ## 4. What it does NOT do today (do not claim these)
 
 - No accounts, no login, no cloud storage, no sync across devices.
-- No encryption of saved data on the device.
-- No personal medical record vault (profile, allergies, medicine list, procedures,
-  investigations) — this is the next phase, not yet built.
 - No document upload or OCR of lab reports.
-- No FHIR export or import.
+- No FHIR *import*, and the export is FHIR-shaped field names only, not a certified FHIR
+  Bundle — don't call it "FHIR-compliant" without a real conformance check.
 - No app-store listing (Android or iOS) — it is a installable web app only.
 - No independent security audit.
 - No independent accessibility audit (some contrast and keyboard checks have been done
@@ -135,3 +155,6 @@ merged, and the person making it is told exactly why and what to update first.
 **Change log**
 - 3 Nov 2026 — v1 created. All counts in §2 re-verified against the live r22 codebase and the
   118 generated static pages. Privacy guard added to tools/check.mjs and documented here.
+- 4 Nov 2026 — r23: added §3a, the health passport (encrypted local records + emergency
+  card). Updated §4 to drop "no encryption" and "no passport" now that they exist in a
+  limited first form; narrowed the FHIR-export line to be accurate.

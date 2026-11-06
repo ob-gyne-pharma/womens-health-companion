@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.04-r23 | js/26-passport.js
+/* Women & Families 2026.11.05-r24 | js/26-passport.js
    Personal health passport: encrypted local records (profile, allergies, medicines,
    conditions, procedures, pregnancies, investigations, family history) and an offline
    emergency card built from them.

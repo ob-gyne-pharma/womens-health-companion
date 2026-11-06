@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.04-r23 | js/14-home-more.js
+/* Women & Families 2026.11.05-r24 | js/14-home-more.js
    Final home, more page, polish, continuity cards.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */

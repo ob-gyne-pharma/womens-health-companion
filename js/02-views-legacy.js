@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.04-r23 | js/02-views-legacy.js
+/* Women & Families 2026.11.05-r24 | js/02-views-legacy.js
    Original home/pregnancy/checker/plan views, coreRender, navigate, first event handlers.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */

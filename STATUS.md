@@ -15,6 +15,62 @@ a session updates it. Whoever starts one reads it before doing anything else.
 
 ## What changed since the last packet
 
+**5 Nov 2026 — Agent 1: processed Agent 2's week-0 handoff (CR-1, CR-2 stage 1, CR-5, CR-6, CR-7)**
+
+Agent 2 delivered A2-1 to A2-4 as files (`content-register-v1.xlsx`, `fix-list-v1.md`,
+`emergency-numbers-verification-v1.md`, `change-requests-for-agent-1.md`) plus 7 change
+requests. Per `CONTRIBUTING.md`, Agent 2 made no code changes — this entry is Agent 1
+applying the approved ones.
+
+- **CR-1 (approved 5 Nov):** emergency numbers go from 9 to 12 countries — added Kuwait
+  (112), Jordan (911), Lebanon (140, Red Cross ambulance); dropped the unverified "112 also
+  works from mobile" notes on UAE and Qatar (only the UK's, which has 2 independent
+  sources, is kept). Iraq stays off the list — sources conflict. The new Arabic wording for
+  Kuwait/Jordan/Lebanon is Agent 2's own draft, **not yet reviewed by a native speaker**.
+- **CR-2 stage 1 (approved 5 Nov):** reminder banners for the antenatal/postpartum
+  schedule and the supplement reminders are now prefixed "UK schedule:" / "جدول المملكة
+  المتحدة:" in both the home banner and the Reminders page list. A personal appointment
+  (the woman's own entry) is correctly NOT labelled — verified by test. Stage 2 (a country
+  setting) waits on Agent 2's A2-6 country files, and per Agent 2's privacy note, storing
+  that choice needs a privacy-page and FACTSHEET update first — not done here.
+- **CR-3 (schema proposed, not implemented):** see "CR-3 schema proposal" below. No guide
+  content was touched — Agent 2 explicitly asked not to, since the real reviewer dates
+  aren't ready yet.
+- **CR-4 (symptom-checker content):** correctly NOT implemented — blocked on a named
+  clinical reviewer, per Agent 2's own request.
+- **CR-5:** `FACTSHEET.md` updated — emergency-number count (9→12) with a note on its
+  verification status; added the previously-missing "medicine information demo" entry
+  (Agent 2's F-17: it existed in the app but wasn't in this file at all, and was called two
+  different things in two places — fixed here).
+- **CR-6:** added a `clinical/` folder with Agent 2's 4 files. Confirmed `tools/check.mjs`
+  doesn't object to it (that was an explicit ask in CR-6) — tested directly, no errors.
+- **CR-7 (approved 5 Nov):** English footer now says "Clinical and Arabic review pending" —
+  matching what the Arabic footer already said. Verified in both languages.
+- **One gap in the handoff:** CR-6 lists `arabic-review-pack-since-r16.xlsx` (A2-2) as a
+  file being added, but it was not in the zip Agent 1 received — only 4 of the 5 files
+  listed. Not chased further; flagged for the founder/Agent 2 to resend.
+- **Tested:** 21 checks specific to CR-1/2/7 (all 12 country numbers, both dropped notes,
+  UK label present/absent in the right places, both languages), plus the full existing
+  regression suite (118 pages, navigation, symptom checker, reminders/insights, passport,
+  install banner, offline, 4 screen sizes, search) — all pass. A full r23-vs-r24 diff across
+  every route and 4 saved-data states shows only the `urgent` page's `#app` content
+  changed, exactly as expected from CR-1 (footer text isn't inside `#app`, so CR-7 doesn't
+  show in that diff tool, but was verified directly).
+
+### CR-3 schema proposal (for Agent 2 to fill, not yet wired into any guide)
+
+```js
+// Per guide, in addition to the existing title/body/url fields:
+sources: [[label, url], ...],   // already used by 18 of 42 guides; unchanged
+reviewedBy: '',                 // e.g. 'Dr X, consultant obstetrician' -- empty = unreviewed
+reviewedOn: '',                 // ISO date 'YYYY-MM-DD' -- empty = unreviewed
+```
+Display rule: if both `reviewedBy` and `reviewedOn` are empty, show "Clinical and Arabic
+review pending" (matching the footer wording from CR-7) instead of a date. The three
+different static "checked" strings Agent 2 found (`js/01-core.js`, `js/04-tools.js`,
+`js/05-life-topics.js`, `js/13-feedback-backup.js` — 7 call sites in total) all need to
+read from this field once Agent 2 supplies real values; none were touched in r24.
+
 **4 Nov 2026 — Agent 1, A1-6/A1-7/A1-8/A1-9 (passport storage + first record screens + emergency card + export)**
 
 - New `js/26-passport.js`. `js/25-boot.js` renamed to `js/27-boot.js` (passport module loads

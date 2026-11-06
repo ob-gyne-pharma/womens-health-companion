@@ -27,9 +27,19 @@ clinically validated. Those become true only when the features and evidence in s
 - 42 health guides and 12 life-stage chapters, in English and Arabic, right-to-left layout.
 - A symptom checker with 23 entries sorted into red (7), amber (9) and green (7) triage
   levels, based on RCOG, NICE and NHS guidance (not yet independently reviewed — see §6).
-- An emergency-numbers panel for 9 countries/regions (Egypt, Saudi Arabia, UAE, Qatar,
-  Bahrain, Oman, UK, EU, US/Canada), chosen by the woman — never guessed from app language.
+- An emergency-numbers panel for 12 countries/regions (Egypt, Saudi Arabia, UAE, Qatar,
+  Bahrain, Oman, UK, EU, US/Canada, Kuwait, Jordan, Lebanon), chosen by the woman — never
+  guessed from app language. Verified by Agent 2 against official sources, 4–5 Nov 2026 —
+  see `clinical/emergency-numbers-verification-v1.md`. This is Agent 2 reading official
+  pages, not a named clinician's sign-off; 6 of the 12 have 2+ independent sources, the
+  other 6 have 1. Iraq was checked and deliberately left off: its sources conflict.
 - A whole-app search covering every guide, tool and page in both languages.
+- A **medicine information demo**: two worked examples (amoxicillin, ibuprofen) showing
+  what a source says about pregnancy/breastfeeding use, clearly labelled "a source summary,
+  not personal clearance" and "a missing result does not mean it is safe." Do not call this
+  a "medicine checker" or imply it covers any medicine beyond the two examples — found by
+  Agent 2 (F-17, 5 Nov 2026) to be missing from this file entirely and referred to by two
+  different names in the app; both are being fixed.
 - Reminders and milestones (UK antenatal and postpartum schedule, clearly labelled as UK
   guidance), and a "My health insights" page (cycle-length trend, pregnancy week progress,
   postpartum timeline, a 90-day symptom heatmap) — all computed from the woman's own entries,
@@ -158,3 +168,5 @@ merged, and the person making it is told exactly why and what to update first.
 - 4 Nov 2026 — r23: added §3a, the health passport (encrypted local records + emergency
   card). Updated §4 to drop "no encryption" and "no passport" now that they exist in a
   limited first form; narrowed the FHIR-export line to be accurate.
+- 5 Nov 2026 — r24: emergency-number count 9→12 (Agent 2's CR-1, approved by founder);
+  added the medicine information demo entry, missing until now (Agent 2's F-17).

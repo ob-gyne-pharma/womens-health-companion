@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.01-r22 | js/01-core.js
+/* Women & Families 2026.11.05-r24 | js/01-core.js
    State, helpers, stages, checklists, UI primitives.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */

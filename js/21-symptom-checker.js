@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.01-r22 | js/21-symptom-checker.js
+/* Women & Families 2026.11.05-r24 | js/21-symptom-checker.js
    Phase 2: Enhanced interactive symptom checker
    - Multi-step stage-aware questioning
    - Green / amber / red severity triage mapped to RCOG/NICE

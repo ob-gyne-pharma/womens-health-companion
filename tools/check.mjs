@@ -84,6 +84,10 @@ for (const l of locs) {
 // 7. PRIVACY GUARD. The privacy page is a specification; this section enforces it.
 //    If a change here is intentional, update the privacy page in the same change, then update the lists below.
 //    Allowed: the three localStorage keys below, user-initiated sharing (navigator.share), the service worker's own fetches.
+// Passport data lives in IndexedDB (database 'wf-passport-v1'), AES-GCM encrypted with a
+// key derived from the woman's passphrase (PBKDF2, 210000 iterations). Nothing here is
+// enforceable by static analysis — js/26-passport.js is the one file allowed to touch
+// indexedDB, and any change to it needs a human security review, not just this check.
 const ALLOWED_STORAGE_KEYS = new Set([
   'wf-companion-prototype-v1', // saved plan, only when device saving is on
   'wf-reminders-v1',           // dismissed reminders, only when device saving is on
@@ -96,7 +100,6 @@ const FORBIDDEN_API = [
   [/\bnew\s+WebSocket\s*\(/, 'WebSocket'],
   [/\bnew\s+EventSource\s*\(/, 'EventSource'],
   [/\bsessionStorage\b/, 'sessionStorage'],
-  [/\bindexedDB\b/, 'indexedDB (allowed only after the passport storage design is approved; add it to this guard then)'],
   [/\bdocument\.cookie\b/, 'document.cookie'],
   [/\bdocument\.write\s*\(/, 'document.write'],
   [/\beval\s*\(|\bnew\s+Function\s*\(/, 'eval / new Function'],

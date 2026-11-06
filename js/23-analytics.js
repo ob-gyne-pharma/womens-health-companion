@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.01-r22 | js/23-analytics.js
+/* Women & Families 2026.11.05-r24 | js/23-analytics.js
    "My health insights": cycle length trend, pregnancy progress and fetal milestones, postpartum timeline, symptom heatmap.
    Everything is drawn on the device from data the woman already entered. Nothing is sent anywhere, nothing is stored here.
    Classic script (not a module): shares one global scope with every other js/ file,

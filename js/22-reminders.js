@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.01-r22 | js/22-reminders.js
+/* Women & Families 2026.11.05-r24 | js/22-reminders.js
    Reminders and milestones: appointment alerts, antenatal and postpartum milestones, supplement reminders.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */
@@ -225,10 +225,17 @@ function calcReminders() {
   return out;
 }
 
+/* CR-2 stage 1 (Agent 2, approved by founder 5 Nov 2026): the antenatal, postpartum and
+   supplement schedules are UK practice (NICE NG201 / NHS); banner text built only from
+   "when: detail" had no label saying so, unlike the schedule panel on the Reminders page,
+   which already says "(UK, NICE NG201)". A country setting (CR-2 stage 2) is the real fix
+   and needs the A2-6 country files; this is the interim label. */
+const UK_SCHEDULE_TYPES = [REM.ANTENATAL, REM.POSTPARTUM, REM.SUPPLEMENT];
 const remText = r => {
   const l = state.lang === 'ar' ? 1 : 0;
-  if (state.homePrivate) return r.private[l];          /* respects "Hide personal details on Home" */
-  return (r.when[l] ? r.when[l] + ': ' : '') + r.detail[l];
+  const ukTag = UK_SCHEDULE_TYPES.indexOf(r.type) >= 0 ? T('UK schedule: ', 'جدول المملكة المتحدة: ') : '';
+  if (state.homePrivate) return ukTag + r.private[l];   /* respects "Hide personal details on Home" */
+  return ukTag + (r.when[l] ? r.when[l] + ': ' : '') + r.detail[l];
 };
 
 /* ── Banner at the top of the app (not sticky, so it never covers the header) ── */
@@ -278,8 +285,9 @@ function remindersPage() {
   html += '<section class="panel spaced"><h2>' + esc(T('Due now or coming soon', 'مستحقة الآن أو قريباً')) + '</h2>';
   if (list.length) {
     html += list.map(function(r) {
+      const ukTag = UK_SCHEDULE_TYPES.indexOf(r.type) >= 0 ? T('UK schedule: ', 'جدول المملكة المتحدة: ') : '';   /* CR-2 stage 1 */
       return '<div class="rem-row"><span class="rem-dot" data-type="' + (r.today ? 'today' : r.type) + '" aria-hidden="true"></span>' +
-        '<span class="rem-row-text">' + esc((r.when[l] ? r.when[l] + ': ' : '') + r.detail[l]) + '</span>' +
+        '<span class="rem-row-text">' + esc(ukTag + (r.when[l] ? r.when[l] + ': ' : '') + r.detail[l]) + '</span>' +
         '<a class="rem-row-link" href="#' + r.hash + '">' + esc(r.action[l]) + '</a>' +
         '<button type="button" class="rem-row-btn" data-rem-dismiss="' + esc(r.id) + '">' + esc(T('Dismiss', 'رفض')) + '</button></div>';
     }).join('');

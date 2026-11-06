@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.01-r22 | js/10-urgent-learn.js
+/* Women & Families 2026.11.05-r24 | js/10-urgent-learn.js
    Urgent signs, pregnancy lifecycle, learn pages.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */
@@ -16,19 +16,25 @@ const urgentSigns=[
 ];
 function urgentBlock(){return '<section class="notice caution shared-urgent"><h2>'+T('Urgent symptoms: act now','أعراض عاجلة: تصرّفي الآن')+'</h2><ul>'+urgentSigns.map(x=>'<li>'+T(...x)+'</li>').join('')+'</ul><p>'+T('Contact emergency or maternity care promptly. Do not wait for an app result or your next appointment. Mention any pregnancy within the past year. This list is not exhaustive; seek care if something feels seriously wrong.','تواصلي سريعًا مع الطوارئ أو قسم الولادة. لا تنتظري نتيجة التطبيق أو الموعد المقبل. اذكري أي حمل خلال السنة الماضية. القائمة ليست شاملة؛ اطلبي الرعاية إذا شعرتِ بوجود مشكلة خطيرة.')+'</p><a href="https://www.cdc.gov/hearher/maternal-warning-signs/index.html" target="_blank" rel="noopener">CDC — '+T('Maternal warning signs (internet)','علامات الخطر للأمهات (إنترنت)')+'</a></section>';}
 /* Emergency numbers. The app never guesses a country from the language: the user chooses.
-   Sources: several independent public lists agree on these (Wikipedia "List of emergency telephone numbers", national
-   government travel tables). Countries whose sources disagree (Kuwait, Jordan, Lebanon, Iraq) are deliberately NOT listed.
+   Verified by Agent 2 against official sources, 4 Nov 2026 (see clinical/emergency-numbers-verification-v1.md).
+   Unreviewed by a named human clinician -- the verification is Agent 2 reading official pages, not a clinical review.
+   Egypt, UAE, Qatar, Bahrain, Oman and the UK have 2+ independent sources; Saudi Arabia, EU and US/Canada have 1.
+   Kuwait, Jordan and Lebanon meet the 2-source rule and were added 5 Nov 2026. Iraq's sources conflict and it
+   stays OFF this list until a second source or an Iraqi reviewer resolves them.
    Re-verify against official government sources before relying on or extending this list. */
 const EMERGENCY_NUMBERS=[
   ['eg',['Egypt','مصر'],'123',['Police 122','الشرطة 122']],
   ['sa',['Saudi Arabia','السعودية'],'997',['Unified emergency number 911','رقم الطوارئ الموحد 911']],
-  ['ae',['United Arab Emirates','الإمارات'],'998',['Police 999 · 112 from mobile phones','الشرطة 999 · 112 من الهواتف المحمولة']],
-  ['qa',['Qatar','قطر'],'999',['112 also works from mobile phones','يعمل 112 أيضاً من الهواتف المحمولة']],
+  ['ae',['United Arab Emirates','الإمارات'],'998',['Police 999','الشرطة 999']],
+  ['qa',['Qatar','قطر'],'999',['','']],
   ['bh',['Bahrain','البحرين'],'999',['','']],
   ['om',['Oman','عُمان'],'9999',['','']],
   ['gb',['United Kingdom','المملكة المتحدة'],'999',['112 also works','يعمل 112 أيضاً']],
   ['eu',['European Union','الاتحاد الأوروبي'],'112',['','']],
-  ['us',['United States and Canada','الولايات المتحدة وكندا'],'911',['','']]
+  ['us',['United States and Canada','الولايات المتحدة وكندا'],'911',['','']],
+  ['kw',['Kuwait','الكويت'],'112',['Ambulance, fire and police','الإسعاف والإطفاء والشرطة']],
+  ['jo',['Jordan','الأردن'],'911',['Emergency services','خدمات الطوارئ']],
+  ['lb',['Lebanon','لبنان'],'140',['Lebanese Red Cross ambulance. Police 112','إسعاف الصليب الأحمر اللبناني. الشرطة 112']]
 ];
 let emergencyChoice='';
 function emergencyResult(){

@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.05-r24 | js/22-reminders.js
+/* Women & Families 2026.11.08-r25 | js/22-reminders.js
    Reminders and milestones: appointment alerts, antenatal and postpartum milestones, supplement reminders.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */
@@ -217,7 +217,7 @@ function calcReminders() {
       id: id, type: REM.SUPPLEMENT, priority: 4,
       when: ['', ''], detail: [s.en, s.ar],
       private: ['You have a health reminder.', 'لديكِ تذكير صحي.'],
-      action: ['Medicine checker', 'فاحص الأدوية'], hash: 'checker'
+      action: ['Medicine information demo', 'نموذج معلومات الدواء'], hash: 'checker'
     });
   });
 

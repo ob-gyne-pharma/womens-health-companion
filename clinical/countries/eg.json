@@ -1,0 +1,359 @@
+{
+  "schemaVersion": "0.1",
+  "country": {
+    "code": "EG",
+    "name": {
+      "en": "Egypt",
+      "ar": "مصر"
+    }
+  },
+  "lastChecked": "2026-11-06",
+  "status": "pilot draft: unreviewed",
+  "arabicNote": "All Arabic text in this file is an Agent 2 draft. No native clinical reviewer has seen it.",
+  "sources": [
+    {
+      "id": "FCDO-EG",
+      "publisher": "UK Foreign, Commonwealth & Development Office",
+      "title": "Foreign travel advice: Egypt, Getting help",
+      "url": "https://www.gov.uk/foreign-travel-advice/egypt/getting-help",
+      "date": "n/d",
+      "accessed": "2026-11-04",
+      "kind": "government travel advice",
+      "caveat": "A foreign government, not an Egyptian source."
+    },
+    {
+      "id": "MENA-123",
+      "publisher": "Middle East News Agency (Egypt state news agency)",
+      "title": "Article referring to the 123 hotline",
+      "url": "https://www.mena.org.eg/en/news/dbcall/table/textnews/id/11191656",
+      "date": "n/d",
+      "accessed": "2026-11-04",
+      "kind": "state news agency",
+      "caveat": "Undated."
+    },
+    {
+      "id": "EMRO-IMM",
+      "publisher": "WHO Eastern Mediterranean Regional Office",
+      "title": "Prevention: immunization schedule (table for several countries, Arabic page)",
+      "url": "https://www.emro.who.int/ar/child-health/strategy-adaptation/prevention-immunization-schedule.html",
+      "date": "n/d",
+      "accessed": "2026-11-06",
+      "kind": "regional WHO page",
+      "caveat": "Undated table; may be out of date."
+    },
+    {
+      "id": "ET-VAX",
+      "publisher": "Egypt Today, citing Ministry of Health and Population reports",
+      "title": "How Egypt succeeded in containing infectious diseases after vaccinating more than 99% of children",
+      "url": "https://www.egypttoday.com/Article/1/146982/How-Egypt-succeeded-in-containing-infectious-diseases-after-vaccinating-more",
+      "date": "2026-05-07",
+      "accessed": "2026-11-06",
+      "kind": "news report citing the ministry",
+      "caveat": "News report, not the ministry schedule itself. Names BCG and hepatitis B as birth doses; lists no full schedule."
+    },
+    {
+      "id": "EKB-VAX",
+      "publisher": "Egyptian journal article (journals.ekb.eg), no ministry document cited",
+      "title": "Paper listing \"required compulsory vaccines in Egypt\"",
+      "url": "https://journals.ekb.eg/article_265617_44615fb7c6757669be94e5c1ae4cf626.pdf",
+      "date": "n/d",
+      "accessed": "2026-11-06",
+      "kind": "journal article",
+      "caveat": "No source or year given for the schedule."
+    },
+    {
+      "id": "ET-MH",
+      "publisher": "Egypt Today, citing the Ministry of Health",
+      "title": "Egypt allocates 2 hotlines for psychological support during Covid-19",
+      "url": "https://www.egypttoday.com/Article/1/83220/Egypt-allocates-2-hotlines-for-psychological-support-during-Covid-19",
+      "date": "2020-03-31",
+      "accessed": "2026-11-06",
+      "kind": "news report",
+      "caveat": "Pandemic-era announcement; current status unknown."
+    },
+    {
+      "id": "EI-MH",
+      "publisher": "Egypt Independent, citing the Health Ministry",
+      "title": "Egypt provides phone services to give psychological support under coronavirus outbreak",
+      "url": "https://www.egyptindependent.com/egypt-provides-phone-services-to-give-psychological-support-under-coronavirus-outbreak/",
+      "date": "2020-03-31",
+      "accessed": "2026-11-06",
+      "kind": "news report",
+      "caveat": "Pandemic-era announcement; says nothing about whether the lines still operate."
+    },
+    {
+      "id": "UNODC-NCW",
+      "publisher": "UN Office on Drugs and Crime (Regional Office for the Middle East and North Africa)",
+      "title": "Interview with the head of the complaints office, National Council for Women",
+      "url": "https://unodc.org/romena/en/Stories/2020/December/egypt_-on-the-other-side-of-the-hotline---interview-with-the-head-of-complaints-office-at-the-national-council-for-women-ncw.html",
+      "date": "2020-12-07",
+      "accessed": "2026-11-06",
+      "kind": "UN agency page",
+      "caveat": "One source; 2020."
+    },
+    {
+      "id": "WHO-ANC",
+      "publisher": "WHO (copy of the executive summary hosted by AIDS Data Hub)",
+      "title": "WHO recommendations on antenatal care for a positive pregnancy experience: executive summary (2016)",
+      "url": "https://new.aidsdatahub.org/sites/default/files/resource/who-recommendations-antenatal-care-positive-pregnancy-experience-executive-summary.pdf",
+      "date": "2016",
+      "accessed": "2026-11-06",
+      "kind": "international guideline",
+      "caveat": "Read through a third-party copy of the WHO document."
+    },
+    {
+      "id": "NHS-VITD",
+      "publisher": "NHS (UK)",
+      "title": "Vitamins and supplements in pregnancy",
+      "url": "https://www.nhs.uk/best-start-in-life/pregnancy/vitamins-and-supplements-in-pregnancy/",
+      "date": "n/d",
+      "accessed": "2026-11-04",
+      "kind": "UK national health service page",
+      "caveat": "UK guidance; says \"consider\" 10 micrograms vitamin D between October and March; folic acid 400 micrograms, ideally from 3 months before conception until week 12."
+    }
+  ],
+  "items": [
+    {
+      "id": "EG-EMG-01",
+      "section": "emergency",
+      "topic": "ambulance",
+      "content": {
+        "en": "Ambulance: 123",
+        "ar": "الإسعاف: 123"
+      },
+      "evidence": "confirmed",
+      "sourceIds": [
+        "FCDO-EG",
+        "MENA-123"
+      ],
+      "notes": "Also verified in the 4 Nov emergency-numbers report. Neither source is an Egyptian health ministry or ambulance-authority page.",
+      "reviewerMustSupply": "A first-hand Egyptian source (ministry or ambulance organisation).",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "EG-EMG-02",
+      "section": "emergency",
+      "topic": "police",
+      "content": {
+        "en": "Police: 122",
+        "ar": "الشرطة: 122"
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "FCDO-EG"
+      ],
+      "notes": "FCDO lists ambulance 123, police 122, fire 180, tourist police 126.",
+      "reviewerMustSupply": "A second source.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "EG-ANC-01",
+      "section": "antenatal",
+      "topic": "national visit schedule",
+      "content": {
+        "en": "No Egyptian national antenatal schedule was found. WHO recommends a minimum of eight contacts.",
+        "ar": "لم أجد جدولًا وطنيًا مصريًا لمتابعة الحمل. توصي منظمة الصحة العالمية بثماني زيارات على الأقل."
+      },
+      "evidence": "reference-only",
+      "sourceIds": [
+        "WHO-ANC"
+      ],
+      "notes": "The UK schedule in the app (NICE NG201) is not Egypt policy. Do not present WHO as Egypt policy.",
+      "reviewerMustSupply": "The Ministry of Health and Population antenatal-care protocol or guideline.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "EG-ANC-02",
+      "section": "antenatal",
+      "topic": "who to contact",
+      "content": {
+        "en": "Not found: whether women usually see an obstetrician-gynaecologist directly or go first to a primary-care unit.",
+        "ar": "لم أجد: هل تراجع النساء طبيب النساء والتوليد مباشرة أم وحدة الرعاية الأولية أولًا."
+      },
+      "evidence": "not-found",
+      "sourceIds": [],
+      "notes": "Matters because the checker says \"midwife or maternity unit\" (fix list F-13).",
+      "reviewerMustSupply": "A local clinician reviewer to describe the usual pathway, with a ministry source if possible.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "EG-VAX-01",
+      "section": "vaccination",
+      "topic": "in pregnancy",
+      "content": {
+        "en": "WHO recommends tetanus toxoid vaccination for all pregnant women. The Egyptian national schedule for pregnancy was not found.",
+        "ar": "توصي منظمة الصحة العالمية بتطعيم التيتانوس لجميع الحوامل. لم أجد الجدول الوطني المصري للحمل."
+      },
+      "evidence": "reference-only",
+      "sourceIds": [
+        "WHO-ANC"
+      ],
+      "notes": "",
+      "reviewerMustSupply": "Ministry schedule for pregnant women.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "EG-VAX-02",
+      "section": "vaccination",
+      "topic": "child: birth doses",
+      "content": {
+        "en": "Sources disagree on birth doses. A ministry-cited news report and a journal paper say BCG and hepatitis B are given at birth; a WHO regional table shows hepatitis B at 2 months and BCG \"birth to 3 months\".",
+        "ar": "تختلف المصادر في جرعات الولادة. يذكر تقرير صحفي ينقل عن الوزارة ومقال علمي أن BCG والتهاب الكبد B يُعطيان عند الولادة، بينما يظهر جدول لمنظمة الصحة العالمية التهاب الكبد B عند الشهرين."
+      },
+      "evidence": "conflict",
+      "sourceIds": [
+        "ET-VAX",
+        "EKB-VAX",
+        "EMRO-IMM"
+      ],
+      "notes": "The WHO regional table is undated and may be old. Do not publish any Egyptian child schedule until a ministry document is supplied.",
+      "reviewerMustSupply": "The current Ministry of Health and Population national immunization schedule (official document).",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "EG-VAX-03",
+      "section": "vaccination",
+      "topic": "child: later doses",
+      "content": {
+        "en": "Sources disagree on later doses: the WHO regional table shows measles at 9 months and MMR at 18 months; the journal paper shows MMR at 12 months and 18 months, plus Hib and vitamin A.",
+        "ar": "تختلف المصادر في الجرعات اللاحقة: يذكر جدول منظمة الصحة العالمية الحصبة عند 9 أشهر والحصبة والنكاف والحصبة الألمانية عند 18 شهرًا، بينما يذكر المقال العلمي الحصبة والنكاف والحصبة الألمانية عند 12 شهرًا وعند 18 شهرًا، إضافة إلى لقاح Hib وفيتامين أ."
+      },
+      "evidence": "conflict",
+      "sourceIds": [
+        "EMRO-IMM",
+        "EKB-VAX"
+      ],
+      "notes": "Same action as EG-VAX-02.",
+      "reviewerMustSupply": "Same document as EG-VAX-02.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "EG-SUP-01",
+      "section": "supplements",
+      "topic": "iron and folic acid",
+      "content": {
+        "en": "WHO recommends daily oral iron (30 to 60 mg) with 400 micrograms of folic acid in pregnancy. An Egyptian national recommendation was not found.",
+        "ar": "توصي منظمة الصحة العالمية بالحديد (30 إلى 60 ملغ) مع 400 ميكروغرام من حمض الفوليك يوميًا أثناء الحمل. لم أجد توصية وطنية مصرية."
+      },
+      "evidence": "reference-only",
+      "sourceIds": [
+        "WHO-ANC"
+      ],
+      "notes": "The app's folic acid reminders follow the NHS (400 micrograms; ideally from 3 months before conception). The app has no iron reminder.",
+      "reviewerMustSupply": "Ministry or society recommendation for Egypt.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "EG-SUP-02",
+      "section": "supplements",
+      "topic": "vitamin D",
+      "content": {
+        "en": "Authorities differ. WHO (2016) does not recommend vitamin D supplements in pregnancy for improving outcomes. The NHS says to consider 10 micrograms between October and March. No Egyptian recommendation was found.",
+        "ar": "تختلف الجهات. لا توصي منظمة الصحة العالمية (2016) بمكملات فيتامين د أثناء الحمل لتحسين النتائج، بينما تقول هيئة الخدمات الصحية الوطنية البريطانية (NHS) إنه يمكن التفكير في 10 ميكروغرامات بين أكتوبر ومارس. لم أجد توصية مصرية."
+      },
+      "evidence": "conflict",
+      "sourceIds": [
+        "WHO-ANC",
+        "NHS-VITD"
+      ],
+      "notes": "The NHS statement was read on 4 Nov 2026 (see fix list F-07). This is why the app's vitamin D wording needs a local decision.",
+      "reviewerMustSupply": "A local obstetric or pharmacy reviewer decision, with a national source.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "EG-HLP-01",
+      "section": "helplines",
+      "topic": "mental health",
+      "content": {
+        "en": "Candidate only: 08008880700 (and 0220816831), announced by the Ministry of Health in March 2020. Not confirmed as current. Do not show to users yet.",
+        "ar": "مرشح فقط: 08008880700 (و0220816831)، أعلنتها وزارة الصحة في مارس 2020. لم يُتأكد أنها ما زالت تعمل. لا تُعرض للمستخدمات بعد."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "ET-MH",
+        "EI-MH"
+      ],
+      "notes": "Two news reports, but both are the same March 2020 announcement, not independent confirmations, and neither says the lines still work. No official or recent page found.",
+      "reviewerMustSupply": "A current ministry page, or a reviewer who has called it and noted the date and hours.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "EG-HLP-02",
+      "section": "helplines",
+      "topic": "violence against women",
+      "content": {
+        "en": "Candidate only: 15115, the complaints hotline of the National Council for Women (UNODC page, December 2020). Not confirmed as current.",
+        "ar": "مرشح فقط: 15115، الخط الساخن لمكتب شكاوى المجلس القومي للمرأة (صفحة مكتب الأمم المتحدة المعني بالمخدرات والجريمة، ديسمبر 2020). لم يُتأكد أنه ما زال يعمل."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "UNODC-NCW"
+      ],
+      "notes": "Other pages in my search results mention 15115 (Ahram, Egypt Today, Egyptian Streets) but I could not read them.",
+      "reviewerMustSupply": "A second, current source.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "EG-REG-01",
+      "section": "medicines",
+      "topic": "regulator and medicine information",
+      "content": {
+        "en": "Not researched in this pass (Egyptian Drug Authority).",
+        "ar": "لم يُبحث في هذه المرحلة (هيئة الدواء المصرية)."
+      },
+      "evidence": "not-found",
+      "sourceIds": [],
+      "notes": "Needed for A2-7.",
+      "reviewerMustSupply": "Pharmacist reviewer to name the regulator pages to use.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    }
+  ]
+}

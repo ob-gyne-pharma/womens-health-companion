@@ -107,3 +107,30 @@ The string is a `T()` call in `js/07-review-offline.js` with a matching entry in
 - Who owns the next step: founder (decisions and reviewer names), then Agent 1 (CR-1, CR-2 stage 1, CR-3, CR-5, CR-6, CR-7).
   Agent 2 next: A2-5 passport field specification and A2-6 country files.
 ```
+
+---
+
+## CR-8 · Country file data format (proposal, from Agent 2, 6 Nov 2026)
+Agent 2 has produced pilot country files (`clinical/countries/eg.json`, `kw.json`, schema v0.1; see `countries/README.md`). Please confirm or change: (1) one JSON file per country with `sources[]` and `items[]`; (2) the app shows an item only if `evidence = confirmed` and `review.status = reviewed`; (3) where the files live and how they are loaded without a network call (build-time inclusion); (4) whether `check.mjs` should validate the schema. Nothing from these files is to be displayed yet: all items are unreviewed.
+
+## CR-9 · Passport spec questions
+See `passport-field-spec-v0.1.md` section 4. Five questions: status fields vs empty, storage wording SC-07A/B, per-field card switches, vault limits, whether country is stored (new storage key, ties to CR-2).
+
+## CR-10 · Medicine policy hooks
+When the policy is signed: medicine statements render from a reviewed, expiring data file; no entry is shown after its expiry date.
+
+## CR-11 · Add `lastReviewed` metadata to guide schema
+**Raised:** 2026-11-07
+**Context:** A2-9 guides sources audit found that none of the 42 topic guides carry a last-reviewed date. The clinical governance framework (§8) requires all clinical content to have one before it is considered governed.
+
+**Request:** Add a `lastReviewed` metadata object to the guide data structure (or as a parallel sidecar file keyed by guide ID), with the following fields:
+```json
+{
+  "lastReviewed": "YYYY-MM-DD",
+  "reviewer": "Full Name",
+  "nextReviewDue": "YYYY-MM-DD"
+}
+```
+**Display requirement:** Surface as a small "Last reviewed: Month YYYY" line in the guide footer, consistent with the NHS pattern. The line is advisory — it does not gate display (guides are not gated by evidence level the way country file items are).
+
+**Does not need to block current release.** But no guide should be described as clinically governed without it. Agent 2 will populate the dates once the field exists and a reviewer is named.

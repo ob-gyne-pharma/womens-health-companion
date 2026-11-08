@@ -139,9 +139,51 @@ for (const f of ['index.html', ...pageFiles]) {
   }
 }
 
+// 8. COUNTRY DATA (CR-8 / Clinical Governance Framework). js/28-countries.js is generated
+//    from clinical/countries/*.json by tools/build-countries.mjs. This section re-validates
+//    the same integrity rules independently (duplicate ids, valid evidence values, source
+//    references, confirmed/not-found source-count rules, non-empty EN/AR, a reviewed item
+//    always has a reviewer name and date) and confirms the generated file is not stale.
+const COUNTRY_SECTIONS = ['emergency', 'antenatal', 'postnatal', 'vaccination', 'supplements', 'helplines', 'medicines'];
+const countryDir = join(root, 'clinical', 'countries');
+if (existsSync(countryDir)) {
+  const countryFiles = readdirSync(countryDir).filter((f) => f.endsWith('.json')).sort();
+  const rebuilt = {};
+  for (const f of countryFiles) {
+    const code = f.replace('.json', '');
+    let d;
+    try { d = JSON.parse(read(join('clinical', 'countries', f))); }
+    catch (e) { fail(`COUNTRY  clinical/countries/${f} is not valid JSON (${e.message})`); continue; }
+    const srcIds = new Set((d.sources || []).map((s) => s.id));
+    const seen = new Set();
+    for (const it of d.items || []) {
+      const where = `clinical/countries/${f}: ${it.id}`;
+      if (seen.has(it.id)) fail(`COUNTRY  ${where} is a duplicate item id`);
+      seen.add(it.id);
+      if (!['confirmed', 'single-source', 'conflict', 'reference-only', 'not-found'].includes(it.evidence)) fail(`COUNTRY  ${where} has an invalid evidence value "${it.evidence}"`);
+      if (it.section && !COUNTRY_SECTIONS.includes(it.section)) fail(`COUNTRY  ${where} has an unrecognised section "${it.section}"`);
+      for (const sid of it.sourceIds || []) if (!srcIds.has(sid)) fail(`COUNTRY  ${where} cites unknown source "${sid}"`);
+      if (it.evidence === 'confirmed' && (it.sourceIds || []).length < 2) fail(`COUNTRY  ${where} is evidence=confirmed with fewer than 2 sources`);
+      if (it.evidence === 'not-found' && (it.sourceIds || []).length !== 0) fail(`COUNTRY  ${where} is evidence=not-found but lists sources`);
+      if (!it.content || !it.content.en || !it.content.en.trim()) fail(`COUNTRY  ${where} has empty English content`);
+      if (!it.content || !it.content.ar || !it.content.ar.trim()) fail(`COUNTRY  ${where} has empty Arabic content`);
+      const rv = it.review || {};
+      if (rv.status === 'reviewed' && (!rv.reviewer || !rv.date)) fail(`COUNTRY  ${where} is marked reviewed but has no reviewer name or date (Clinical Governance Framework §11)`);
+      if (rv.status !== 'reviewed' && rv.status !== 'unreviewed') fail(`COUNTRY  ${where} has an unrecognised review.status "${rv.status}"`);
+    }
+    rebuilt[code] = d;
+  }
+  if (!problems.some((p) => p.startsWith('COUNTRY'))) {
+    const expected = JSON.stringify(rebuilt, null, 2);
+    const generated = existsSync(join(root, 'js', '28-countries.js')) ? read('js/28-countries.js') : '';
+    if (!generated) fail('COUNTRY  js/28-countries.js is missing. Run: node tools/build-countries.mjs');
+    else if (!generated.includes(expected)) fail('COUNTRY  js/28-countries.js does not match clinical/countries/*.json. Run: node tools/build-countries.mjs');
+  }
+}
+
 if (problems.length) {
   console.error(`\n✗ ${problems.length} problem(s):\n`);
   problems.forEach((p) => console.error('  - ' + p + '\n'));
   process.exit(1);
 }
-console.log(`✓ OK: ${jsFiles.length} js files pass syntax check; release ${metaRelease} consistent in index.html, sw.js and app code; script order and offline file list match; ${pageFiles.length} static pages current, unique and in the sitemap; privacy guard clean (no network calls, ${ALLOWED_STORAGE_KEYS.size} approved storage keys, no third-party resources).`);
+console.log(`✓ OK: ${jsFiles.length} js files pass syntax check; release ${metaRelease} consistent in index.html, sw.js and app code; script order and offline file list match; ${pageFiles.length} static pages current, unique and in the sitemap; privacy guard clean (no network calls, ${ALLOWED_STORAGE_KEYS.size} approved storage keys, no third-party resources); country data current and valid.`);

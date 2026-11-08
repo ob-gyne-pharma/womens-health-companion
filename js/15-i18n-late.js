@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.05-r24 | js/15-i18n-late.js
+/* Women & Families 2026.11.08-r25 | js/15-i18n-late.js
    Late catalogue additions (data).
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */

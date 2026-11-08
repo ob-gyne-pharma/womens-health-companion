@@ -1,0 +1,529 @@
+{
+  "schemaVersion": "0.1",
+  "country": {
+    "code": "GB",
+    "name": {
+      "en": "United Kingdom",
+      "ar": "المملكة المتحدة"
+    }
+  },
+  "lastChecked": "2026-11-06",
+  "status": "pilot draft: unreviewed",
+  "arabicNote": "All Arabic text in this file is an Agent 2 draft. No native clinical reviewer has seen it.",
+  "scopeNote": "Mostly England (NHS). Scotland, Wales and Northern Ireland schedules can differ and were not checked.",
+  "sources": [
+    {
+      "id": "GOV-999",
+      "publisher": "UK Government (GOV.UK)",
+      "title": "999 and 112: the UK's national emergency numbers",
+      "url": "https://gov.uk/guidance/999-and-112-the-uks-national-emergency-numbers",
+      "date": "n/d",
+      "accessed": "2026-11-06",
+      "kind": "government guidance",
+      "caveat": "Read on 4 Nov 2026."
+    },
+    {
+      "id": "NHS-MH",
+      "publisher": "NHS (UK)",
+      "title": "Where to get urgent help for mental health",
+      "url": "https://www.nhs.uk/nhs-services/mental-health-services/where-to-get-urgent-help-for-mental-health/",
+      "date": "page reviewed 2026-10-23",
+      "accessed": "2026-11-06",
+      "kind": "UK national health service page",
+      "caveat": "Next review due 2029-10-23. Has no postnatal-specific text."
+    },
+    {
+      "id": "NHS-ANC",
+      "publisher": "NHS (UK)",
+      "title": "Your antenatal appointments",
+      "url": "https://www.nhs.uk/pregnancy/your-pregnancy-care/your-antenatal-appointments/",
+      "date": "page reviewed 2026-04-17",
+      "accessed": "2026-11-06",
+      "kind": "UK national health service page",
+      "caveat": "England-focused. Next review due 2029-04-17."
+    },
+    {
+      "id": "NHS-VAC-PREG",
+      "publisher": "NHS (UK)",
+      "title": "Vaccinations in pregnancy",
+      "url": "https://www.nhs.uk/pregnancy/keeping-well/vaccinations/",
+      "date": "page reviewed 2023-01-18",
+      "accessed": "2026-11-06",
+      "kind": "UK national health service page",
+      "caveat": "Stated next review due 2026-01-18 has passed, though page metadata shows a later modified date (2026-10-02). Treat as needing a re-check."
+    },
+    {
+      "id": "NHS-BSP",
+      "publisher": "NHS (UK)",
+      "title": "Newborn blood spot test FAQs",
+      "url": "https://www.nhs.uk/conditions/pregnancy-and-baby/newborn-blood-spot-faqs/",
+      "date": "page reviewed 2024-09-05",
+      "accessed": "2026-11-06",
+      "kind": "UK national health service page",
+      "caveat": "Next review due 2027-09-05."
+    },
+    {
+      "id": "NHS-PNC",
+      "publisher": "NHS (UK)",
+      "title": "Your 6-week postnatal check",
+      "url": "https://www.nhs.uk/baby/support-and-services/your-6-week-postnatal-check/",
+      "date": "page reviewed 2026-10-09",
+      "accessed": "2026-11-06",
+      "kind": "UK national health service page",
+      "caveat": "Next review due 2029-10-09."
+    },
+    {
+      "id": "NHS-VAC",
+      "publisher": "NHS (UK)",
+      "title": "NHS vaccinations and when to have them",
+      "url": "https://www.nhs.uk/conditions/vaccinations/NHS-vaccinations-and-when-to-have-them/",
+      "date": "page reviewed 2023-08-09",
+      "accessed": "2026-11-06",
+      "kind": "UK national health service page",
+      "caveat": "Stated next review due 2026-08-09 has passed; metadata shows modified 2026-09-01. Schedule has changed recently (MMRV). Re-check."
+    },
+    {
+      "id": "NHS-VITD",
+      "publisher": "NHS (UK)",
+      "title": "Vitamins and supplements in pregnancy",
+      "url": "https://www.nhs.uk/best-start-in-life/pregnancy/vitamins-and-supplements-in-pregnancy/",
+      "date": "n/d",
+      "accessed": "2026-11-06",
+      "kind": "UK national health service page",
+      "caveat": "Says \"consider\" vitamin D 10 micrograms October to March; folic acid 400 micrograms ideally from 3 months before conception until week 12."
+    },
+    {
+      "id": "UKTIS",
+      "publisher": "UK Teratology Information Service (via National Poisons Information Service)",
+      "title": "Medicines in Pregnancy (public summaries and BUMPS leaflets)",
+      "url": "https://www.medicinesinpregnancy.org/",
+      "date": "n/d",
+      "accessed": "2026-11-06",
+      "kind": "UK specialist service",
+      "caveat": "Full monographs are on TOXBASE (professionals only)."
+    }
+  ],
+  "items": [
+    {
+      "id": "UK-EMG-01",
+      "section": "emergency",
+      "topic": "ambulance, police, fire",
+      "content": {
+        "en": "Emergency: 999",
+        "ar": "الطوارئ: 999"
+      },
+      "evidence": "confirmed",
+      "sourceIds": [
+        "GOV-999",
+        "NHS-MH"
+      ],
+      "notes": "GOV.UK names 999 as the national emergency number; the NHS page says call 999 if life is at risk.",
+      "reviewerMustSupply": "",
+      "appItems": "EMERGENCY_NUMBERS: uk",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "UK-EMG-02",
+      "section": "emergency",
+      "topic": "112 also works",
+      "content": {
+        "en": "112 also works in the UK",
+        "ar": "الرقم 112 يعمل أيضًا في المملكة المتحدة"
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "GOV-999"
+      ],
+      "notes": "Earlier 4 Nov report also read GOV.UK only for this note.",
+      "reviewerMustSupply": "A second UK source.",
+      "appItems": "EMERGENCY_NUMBERS: uk note",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "UK-ANC-01",
+      "section": "antenatal",
+      "topic": "booking appointment",
+      "content": {
+        "en": "First midwife appointment at 8 to 12 weeks.",
+        "ar": "أول موعد مع القابلة بين الأسبوع 8 و12."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "NHS-ANC"
+      ],
+      "notes": "App says \"Week 8\". Within the range but narrower than the source.",
+      "reviewerMustSupply": "NICE guideline (second source) and a UK midwife.",
+      "appItems": "R-A01",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "UK-ANC-02",
+      "section": "antenatal",
+      "topic": "dating scan",
+      "content": {
+        "en": "11 to 14 week scan: checks due date and development; screening for Down's, Edwards' and Patau's syndromes can be offered, and it is her choice.",
+        "ar": "فحص بالموجات فوق الصوتية بين الأسبوع 11 و14: يحدد موعد الولادة ويتحقق من النمو. يمكن عرض فحص متلازمة داون وإدواردز وباتو، والقرار لكِ."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "NHS-ANC"
+      ],
+      "notes": "App R-A02 and R-A03 (week 10 and week 12) match the 11 to 14 week window only loosely.",
+      "reviewerMustSupply": "",
+      "appItems": "R-A02, R-A03",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "UK-ANC-03",
+      "section": "antenatal",
+      "topic": "16-week appointment",
+      "content": {
+        "en": "16 week appointment: previous screening results, blood pressure and urine tests.",
+        "ar": "موعد الأسبوع 16: نتائج الفحوص السابقة وقياس ضغط الدم وفحص البول."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "NHS-ANC"
+      ],
+      "notes": "App R-A04 adds an \"iron check\". The NHS page as read does not mention it: unverified.",
+      "reviewerMustSupply": "Source for the iron check, or remove it.",
+      "appItems": "R-A04",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "UK-ANC-04",
+      "section": "antenatal",
+      "topic": "20-week scan",
+      "content": {
+        "en": "18 to 21 week scan (screening scan): checks the baby's development.",
+        "ar": "فحص بين الأسبوع 18 و21: يتحقق من نمو الطفل."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "NHS-ANC"
+      ],
+      "notes": "App says week 20: inside the range.",
+      "reviewerMustSupply": "",
+      "appItems": "R-A05",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "UK-ANC-05",
+      "section": "antenatal",
+      "topic": "glucose test",
+      "content": {
+        "en": "Gestational diabetes test, only if she has a higher chance of it, between 24 and 28 weeks.",
+        "ar": "فحص سكري الحمل، فقط إذا كان احتمال الإصابة أعلى، بين الأسبوع 24 و28."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "NHS-ANC"
+      ],
+      "notes": "App says week 25: inside the range.",
+      "reviewerMustSupply": "",
+      "appItems": "R-A07",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "UK-ANC-06",
+      "section": "antenatal",
+      "topic": "appointment pattern depends on whether it is a first baby",
+      "content": {
+        "en": "At least 10 appointments for a first baby and at least 7 if she has had a baby before. Weeks 25, 31, 40 and 41 are listed for first babies.",
+        "ar": "عدد المواعيد 10 على الأقل في الحمل الأول و7 على الأقل إذا سبقت لها ولادة. المواعيد في الأسابيع 25 و31 و40 و41 مخصصة للحمل الأول."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "NHS-ANC"
+      ],
+      "notes": "DIFFERENCE FROM APP: the app shows weeks 24, 31, 40 and 41 for everyone and week 24 where the NHS says 25. The app does not ask whether it is a first baby.",
+      "reviewerMustSupply": "A UK midwife; NICE guideline.",
+      "appItems": "R-A06, R-A09, R-A13, R-A14",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "UK-ANC-07",
+      "section": "antenatal",
+      "topic": "28-week appointment",
+      "content": {
+        "en": "28 week appointment: blood test and, if the baby is at risk, an injection for rhesus disease.",
+        "ar": "موعد الأسبوع 28: فحص دم، وحقنة للوقاية من مرض الريسوس إذا كان الطفل معرضًا للخطر."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "NHS-ANC"
+      ],
+      "notes": "App R-A08 also says \"fetal movement awareness\" at 28 weeks. On this page, discussing movements is listed at 25 weeks. Reduced-movement advice is a separate safety item (fix-list F-03).",
+      "reviewerMustSupply": "",
+      "appItems": "R-A08",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "UK-ANC-08",
+      "section": "antenatal",
+      "topic": "34, 36, 38 weeks",
+      "content": {
+        "en": "34 week appointment (birth preparation, blood pressure, urine). 36 weeks: baby's position checked by feeling the bump. 38 weeks: position check and options if still pregnant after 40 weeks.",
+        "ar": "موعد الأسبوع 34 (التحضير للولادة وضغط الدم والبول). الأسبوع 36: فحص وضع الجنين بالجس. الأسبوع 38: فحص الوضع ومناقشة الخيارات إذا استمر الحمل بعد 40 أسبوعًا."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "NHS-ANC"
+      ],
+      "notes": "App R-A10 to R-A12 broadly match. The app's \"week 36 baby position check, birth plan discussion\" and week-38 \"signs of labour\" differ slightly in wording (fix-list F-10).",
+      "reviewerMustSupply": "",
+      "appItems": "R-A10, R-A11, R-A12",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "UK-ANC-09",
+      "section": "antenatal",
+      "topic": "41-week appointment",
+      "content": {
+        "en": "41 week appointment: options if still pregnant after 41 weeks.",
+        "ar": "موعد الأسبوع 41: مناقشة الخيارات إذا استمر الحمل بعد 41 أسبوعًا."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "NHS-ANC"
+      ],
+      "notes": "App says \"Consultant review\". The NHS page as read does not name a consultant. Also the app says a sweep is offered at week 40; not stated on this page.",
+      "reviewerMustSupply": "A UK midwife; NICE induction guidance.",
+      "appItems": "R-A13, R-A14",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "UK-VAC-01",
+      "section": "vaccination",
+      "topic": "whooping cough in pregnancy",
+      "content": {
+        "en": "Whooping cough vaccine: usually at 20 weeks, can be had from 16 weeks, and should be had before 32 weeks. If missed, it can still be given later.",
+        "ar": "لقاح السعال الديكي: يُعطى عادة في الأسبوع 20 ويمكن من الأسبوع 16، ويُفضّل قبل الأسبوع 32. إذا فاتك يمكن إعطاؤه لاحقًا."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "NHS-VAC-PREG"
+      ],
+      "notes": "App R-A10 says \"still possible until labour\". The page as read says \"later\" for whooping cough; \"up until labour\" appears for RSV. Treat \"until labour\" as unverified. Page review date has lapsed.",
+      "reviewerMustSupply": "A UK midwife; UKHSA/Green Book as second source.",
+      "appItems": "R-A04, R-A10",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "UK-VAC-02",
+      "section": "vaccination",
+      "topic": "RSV vaccine in pregnancy",
+      "content": {
+        "en": "RSV vaccine: offered around the 28-week appointment; can be given later if needed, up until labour.",
+        "ar": "لقاح الفيروس المخلوي التنفسي: يُعرض في موعد الأسبوع 28 تقريبًا، ويمكن إعطاؤه لاحقًا عند الحاجة حتى بدء المخاض."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "NHS-VAC-PREG"
+      ],
+      "notes": "MISSING FROM APP: no RSV item exists in the reminders. Page review date has lapsed; confirm current policy.",
+      "reviewerMustSupply": "UKHSA programme page; a UK midwife.",
+      "appItems": "(none)",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "UK-PNC-01",
+      "section": "postnatal",
+      "topic": "newborn blood spot test",
+      "content": {
+        "en": "Newborn blood spot (heel prick) test is normally done when the baby is 5 days old; sometimes earlier or later.",
+        "ar": "يُجرى فحص بقعة الدم (وخز الكعب) عادة عندما يبلغ الطفل 5 أيام، وأحيانًا أبكر أو أبعد."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "NHS-BSP"
+      ],
+      "notes": "DIFFERENCE FROM APP: R-P02 says Day 3.",
+      "reviewerMustSupply": "Second source (UK National Screening Committee).",
+      "appItems": "R-P02",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "UK-PNC-02",
+      "section": "postnatal",
+      "topic": "6-week check",
+      "content": {
+        "en": "Mother's postnatal check 6 to 8 weeks after the birth. The baby should also be checked by a GP at around this time.",
+        "ar": "فحص ما بعد الولادة للأم بعد 6 إلى 8 أسابيع من الولادة. ويُفحص الطفل أيضًا عند طبيب عام في هذا الوقت تقريبًا."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "NHS-PNC"
+      ],
+      "notes": "App R-P07 says Day 42 (6 weeks). Consistent, but the source gives a window.",
+      "reviewerMustSupply": "",
+      "appItems": "R-P07",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "UK-VAC-03",
+      "section": "vaccination",
+      "topic": "baby routine vaccines 8, 12, 16 weeks",
+      "content": {
+        "en": "8 weeks: 6-in-1 (1st), rotavirus (1st), MenB (1st). 12 weeks: 6-in-1 (2nd), MenB (2nd), rotavirus (2nd). 16 weeks: 6-in-1 (3rd), pneumococcal (1st).",
+        "ar": "عمر 8 أسابيع: السداسي (الجرعة 1) والروتا (1) والمكورات السحائية ب (1). عمر 12 أسبوعًا: السداسي (2) والمكورات السحائية ب (2) والروتا (2). عمر 16 أسبوعًا: السداسي (3) والمكورات الرئوية (1)."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "NHS-VAC"
+      ],
+      "notes": "Timing matches app R-P08 to R-P10. The app already labels these as UK. Page review date has lapsed and the schedule changed recently, so re-check before use. Arabic term for 6-in-1 is on the Arabic reviewer list (F-11).",
+      "reviewerMustSupply": "UKHSA Green Book or immunisation schedule PDF as second source.",
+      "appItems": "R-P06, R-P08, R-P09, R-P10",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "UK-SUP-01",
+      "section": "supplements",
+      "topic": "folic acid",
+      "content": {
+        "en": "Folic acid 400 micrograms a day, ideally from 3 months before conception until week 12 of pregnancy.",
+        "ar": "حمض الفوليك 400 ميكروغرام يوميًا، ويُفضّل من 3 أشهر قبل الحمل حتى الأسبوع 12 من الحمل."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "NHS-VITD"
+      ],
+      "notes": "Matches app R-S01 and R-S03. App adds \"your doctor may advise a different dose\": good.",
+      "reviewerMustSupply": "Second source (NICE or DHSC).",
+      "appItems": "R-S01, R-S03",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "UK-SUP-02",
+      "section": "supplements",
+      "topic": "vitamin D",
+      "content": {
+        "en": "The NHS says to consider vitamin D 10 micrograms a day between October and March. WHO does not recommend routine vitamin D supplements in pregnancy.",
+        "ar": "تقول هيئة الصحة البريطانية (NHS) إنه يمكن النظر في فيتامين د 10 ميكروغرام يوميًا بين أكتوبر ومارس. ولا توصي منظمة الصحة العالمية بمكملات فيتامين د الروتينية في الحمل."
+      },
+      "evidence": "conflict",
+      "sourceIds": [
+        "NHS-VITD"
+      ],
+      "notes": "DIFFERENCE FROM APP: R-S04 says \"throughout pregnancy\" and R-S02/R-S05 say daily without the October to March qualifier (fix-list F-07). The WHO position is from the Egypt pilot (WHO-ANC); not re-read here. Also see policy A2-7.",
+      "reviewerMustSupply": "Pharmacist and UK midwife to decide wording.",
+      "appItems": "R-S02, R-S04, R-S05",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "UK-HLP-01",
+      "section": "helplines",
+      "topic": "mental health urgent help",
+      "content": {
+        "en": "NHS: call 111 and choose the mental health option. Samaritans: 116 123, any time. If life is at risk, call 999 or go to A&E.",
+        "ar": "هيئة الصحة البريطانية: اتصلي بالرقم 111 واختاري خيار الصحة النفسية. منظمة سامريتانز: 116 123 في أي وقت. إذا كانت الحياة في خطر اتصلي بـ 999 أو توجهي إلى الطوارئ."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "NHS-MH"
+      ],
+      "notes": "Candidate for the self-harm safety item (fix-list F-04). The page has no postnatal-specific text. These are UK numbers: do not show to users in other countries.",
+      "reviewerMustSupply": "Second source; a UK perinatal mental-health service.",
+      "appItems": "F-04",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "UK-MED-01",
+      "section": "medicines",
+      "topic": "where UK pregnancy medicine information comes from",
+      "content": {
+        "en": "UKTIS publishes public summaries and leaflets on medicines in pregnancy (medicinesinpregnancy.org). Full monographs are for professionals.",
+        "ar": "تنشر خدمة UKTIS ملخصات ونشرات عامة عن الأدوية أثناء الحمل. والمراجع الكاملة مخصصة للمهنيين."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "UKTIS"
+      ],
+      "notes": "Reference for policy A2-7, not a statement about any medicine. UK service.",
+      "reviewerMustSupply": "Pharmacist to confirm as a tier-2 source.",
+      "appItems": "A2-7 section 3",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    }
+  ]
+}

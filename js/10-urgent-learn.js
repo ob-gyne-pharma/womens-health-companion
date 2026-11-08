@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.05-r24 | js/10-urgent-learn.js
+/* Women & Families 2026.11.08-r25 | js/10-urgent-learn.js
    Urgent signs, pregnancy lifecycle, learn pages.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */
@@ -53,7 +53,7 @@ function emergencyBox(){
 }
 function emergencyCards(){
   return '<div class="em-cards"><a class="em-card" href="#symptoms"><strong>'+esc(T('Symptom checker','فاحص الأعراض'))+'</strong><span>'+esc(T('Red · Amber · Green','أحمر · برتقالي · أخضر'))+'</span></a>'
-  +'<a class="em-card" href="#checker"><strong>'+esc(T('Medicine checker','فاحص الأدوية'))+'</strong><span>'+esc(T('Medicines in pregnancy and breastfeeding','الأدوية في الحمل والرضاعة'))+'</span></a></div>';
+  +'<a class="em-card" href="#checker"><strong>'+esc(T('Medicine information demo','نموذج معلومات الدواء'))+'</strong><span>'+esc(T('Medicines in pregnancy and breastfeeding','الأدوية في الحمل والرضاعة'))+'</span></a></div>';
 }
 document.addEventListener('change',e=>{
   if(e.target&&e.target.id==='em-country'){

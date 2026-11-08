@@ -1,0 +1,204 @@
+{
+  "schemaVersion": "0.1",
+  "country": {
+    "code": "SA",
+    "name": {
+      "en": "Saudi Arabia",
+      "ar": "المملكة العربية السعودية"
+    }
+  },
+  "lastChecked": "2026-11-07",
+  "status": "draft: unreviewed",
+  "arabicNote": "All Arabic text is an Agent 2 draft. No native clinical reviewer has seen it.",
+  "sources": [
+    {
+      "id": "FCDO-SA",
+      "publisher": "UK FCDO",
+      "title": "Foreign travel advice: Saudi Arabia, Getting help",
+      "url": "https://www.gov.uk/foreign-travel-advice/saudi-arabia/getting-help",
+      "date": "n/d",
+      "accessed": "2026-11-07",
+      "kind": "government travel advice",
+      "caveat": "Read 7 Nov 2026. Says 911 for ambulance, fire, police; \"call 112 if you don't have a Saudi SIM.\""
+    },
+    {
+      "id": "AUS-SA",
+      "publisher": "Australian Government Smartraveller",
+      "title": "Saudi Arabia travel advice – Emergency services",
+      "url": "https://www.smartraveller.gov.au/destinations/middle-east/saudi-arabia",
+      "date": "n/d",
+      "accessed": "2026-11-07",
+      "kind": "government travel advice",
+      "caveat": "Read 7 Nov 2026. Lists 997 ambulance, 999 police, 998 fire, 911 as general emergency."
+    },
+    {
+      "id": "MOH-SA",
+      "publisher": "Saudi Ministry of Health (news page)",
+      "title": "MOH Continues Its Awareness Efforts for Healthy and Safe Pregnancy",
+      "url": "https://www.moh.gov.sa/en/ministry/mediacenter/news/pages/news-2019-09-03-003.aspx",
+      "date": "2019-09-03",
+      "accessed": "2026-11-07",
+      "kind": "government health authority",
+      "caveat": "2019 page; folic acid mentioned without dose; vitamin D mentioned without dose; iron-rich foods but no supplement."
+    },
+    {
+      "id": "SFDA",
+      "publisher": "Saudi Food and Drug Authority",
+      "title": "sfda.gov.sa",
+      "url": "https://www.sfda.gov.sa",
+      "date": "n/d",
+      "accessed": "2026-11-07",
+      "kind": "drug regulator",
+      "caveat": "Not read in this pass. The SFDA is the medicines regulator; it was not reachable during this check."
+    },
+    {
+      "id": "WHO-ANC",
+      "publisher": "WHO",
+      "title": "WHO recommendations on antenatal care for a positive pregnancy experience: executive summary (2016)",
+      "url": "https://new.aidsdatahub.org/sites/default/files/resource/who-recommendations-antenatal-care-positive-pregnancy-experience-executive-summary.pdf",
+      "date": "2016",
+      "accessed": "2026-11-07",
+      "kind": "international guideline",
+      "caveat": "Read through a third-party copy."
+    }
+  ],
+  "items": [
+    {
+      "id": "SA-EMG-01",
+      "section": "emergency",
+      "topic": "ambulance and all emergency services",
+      "content": {
+        "en": "Ambulance, fire and police: 911 (unified). No Saudi SIM: call 112.",
+        "ar": "الإسعاف والإطفاء والشرطة: 911 (موحد). بدون شريحة سعودية: اتصلي بـ 112."
+      },
+      "evidence": "confirmed",
+      "sourceIds": [
+        "FCDO-SA",
+        "AUS-SA"
+      ],
+      "notes": "FCDO says 911 for ambulance/fire/police plus 112 for no-SIM. Smartraveller lists 997 ambulance, 999 police, 998 fire AND 911 general. App currently shows 997 with 911 as note (open founder decision). Both numbers well-evidenced. Recommend showing 911 as the primary unified number and 997 as the ambulance-specific note, pending founder decision.",
+      "reviewerMustSupply": "Founder to decide: 911 primary or 997 primary. A Saudi reviewer to confirm.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "SA-VAC-01",
+      "section": "vaccination",
+      "topic": "Tdap in pregnancy",
+      "content": {
+        "en": "Tdap vaccine is recommended in pregnancy in Saudi Arabia. The preferred window is 27 to 36 weeks (based on international guidance widely cited in the region; Saudi MOH specific timing not read).",
+        "ar": "لقاح الكزاز والدفتيريا والسعال الديكي (Tdap) موصى به في الحمل في المملكة العربية السعودية. النافذة المفضلة 27 إلى 36 أسبوعًا."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "MOH-SA"
+      ],
+      "notes": "Saudi MOH 2019 page does not give Tdap weeks. 27-36 weeks is from international consensus (CDC, ACOG) and is used in Bahrain and Qatar. A Saudi MOH vaccine page or SRCA guidance is needed.",
+      "reviewerMustSupply": "Saudi immunologist or MOH vaccine schedule page to confirm weeks and whether Tdap is routine or recommended.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "SA-SUP-01",
+      "section": "supplements",
+      "topic": "folic acid in pregnancy",
+      "content": {
+        "en": "The Saudi Ministry of Health advises folic acid from when planning a pregnancy until week 12. No specific dose was found on the page read.",
+        "ar": "توصي وزارة الصحة السعودية بحمض الفوليك من مرحلة التخطيط للحمل حتى الأسبوع 12. لم نجد جرعة محددة في الصفحة المقروءة."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "MOH-SA"
+      ],
+      "notes": "2019 page; dose not stated. WHO recommends 400 mcg daily (WHO-ANC).",
+      "reviewerMustSupply": "Saudi MOH or SFDA current leaflet for the dose.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "SA-SUP-02",
+      "section": "supplements",
+      "topic": "iron in pregnancy",
+      "content": {
+        "en": "The Saudi Ministry of Health recommends iron-rich foods to prevent anemia. No iron supplement dose was found on the MOH page read.",
+        "ar": "توصي وزارة الصحة السعودية بتناول أطعمة غنية بالحديد. لم يُذكر مكمل الحديد بجرعة محددة في الصفحة المقروءة."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "MOH-SA"
+      ],
+      "notes": "WHO recommends 30-60 mg daily (WHO-ANC). MOH page does not give a supplement dose.",
+      "reviewerMustSupply": "Saudi MOH or pharmacist to confirm supplement recommendation.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "SA-ANC-01",
+      "section": "antenatal",
+      "topic": "antenatal schedule",
+      "content": {
+        "en": "No Saudi Ministry of Health antenatal appointment schedule was found in this pass. WHO recommends a minimum of eight contacts during pregnancy.",
+        "ar": "لم نجد جدول مواعيد الرعاية السابقة للولادة من وزارة الصحة السعودية. منظمة الصحة العالمية توصي بما لا يقل عن 8 زيارات."
+      },
+      "evidence": "reference-only",
+      "sourceIds": [
+        "WHO-ANC"
+      ],
+      "notes": "No MOH schedule found; research articles confirm antenatal care is widespread but do not give an official appointment schedule.",
+      "reviewerMustSupply": "Saudi obstetrician or MOH maternal health page.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "SA-MED-01",
+      "section": "medicines",
+      "topic": "drug regulator",
+      "content": {
+        "en": "The Saudi Food and Drug Authority (SFDA, sfda.gov.sa) is the medicines regulator. Its pages were not read in this pass.",
+        "ar": "الهيئة السعودية للغذاء والدواء (SFDA) هي الجهة التنظيمية للأدوية. لم تُقرأ صفحاتها في هذه المرحلة."
+      },
+      "evidence": "not-found",
+      "sourceIds": [],
+      "notes": "Needed for A2-7.",
+      "reviewerMustSupply": "Pharmacist to supply the SFDA pregnancy/breastfeeding information pages to use.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "SA-HLP-01",
+      "section": "helplines",
+      "topic": "mental health / crisis",
+      "content": {
+        "en": "No official mental health or women's helpline for Saudi Arabia was found with two independent sources in this pass.",
+        "ar": "لم نجد خطًا ساخنًا رسميًا للصحة النفسية أو دعم المرأة بمصدرين مستقلين."
+      },
+      "evidence": "not-found",
+      "sourceIds": [],
+      "notes": "therapyroute.com lists a crisis line but is not an official source.",
+      "reviewerMustSupply": "A Saudi reviewer to name the official service.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "schemaVersion": "0.1",
+  "country": {
+    "code": "AE",
+    "name": {
+      "en": "United Arab Emirates",
+      "ar": "الإمارات العربية المتحدة"
+    }
+  },
+  "lastChecked": "2026-11-07",
+  "status": "draft: unreviewed",
+  "arabicNote": "All Arabic text is an Agent 2 draft. No native clinical reviewer has seen it.",
+  "sources": [
+    {
+      "id": "GOV-AE",
+      "publisher": "UAE Government portal (beta.government.ae)",
+      "title": "Handling emergencies",
+      "url": "https://beta.government.ae/information-and-services/justice-safety-and-the-law/handling-emergencies",
+      "date": "n/d",
+      "accessed": "2026-11-07",
+      "kind": "government portal",
+      "caveat": "Read 7 Nov 2026. Official UAE government site. Ambulance 998, police 999, fire 997."
+    },
+    {
+      "id": "FCDO-AE",
+      "publisher": "UK FCDO",
+      "title": "Foreign travel advice: UAE, Getting help",
+      "url": "https://www.gov.uk/foreign-travel-advice/united-arab-emirates/getting-help",
+      "date": "n/d",
+      "accessed": "2026-11-07",
+      "kind": "government travel advice",
+      "caveat": "Read in A2-4 (4 Nov 2026). Ambulance 998, fire 997, police 999. Saudi MOFA embassy page also says 998/999."
+    },
+    {
+      "id": "DOH-AE",
+      "publisher": "Abu Dhabi Department of Health",
+      "title": "Abu Dhabi Public Health Centre – RSV maternal immunisation",
+      "url": "https://pro.campus.sanofi/ae/respiratory-syncytial-virus/articles/rsv-prevention-guidelines-in-uae",
+      "date": "2026",
+      "accessed": "2026-11-07",
+      "kind": "government health authority (via Sanofi professional page)",
+      "caveat": "Specific gestational weeks for maternal RSV vaccine not stated. Covers infant monoclonal antibody programme."
+    },
+    {
+      "id": "WHO-ANC",
+      "publisher": "WHO",
+      "title": "WHO recommendations on antenatal care for a positive pregnancy experience: executive summary (2016)",
+      "url": "https://new.aidsdatahub.org/sites/default/files/resource/who-recommendations-antenatal-care-positive-pregnancy-experience-executive-summary.pdf",
+      "date": "2016",
+      "accessed": "2026-11-07",
+      "kind": "international guideline",
+      "caveat": "Read through a third-party copy."
+    }
+  ],
+  "items": [
+    {
+      "id": "AE-EMG-01",
+      "section": "emergency",
+      "topic": "ambulance",
+      "content": {
+        "en": "Ambulance: 998. Police: 999. Fire (Civil Defence): 997. All work from anywhere in the UAE.",
+        "ar": "الإسعاف: 998. الشرطة: 999. الإطفاء: 997. تعمل من أي مكان في الإمارات."
+      },
+      "evidence": "confirmed",
+      "sourceIds": [
+        "GOV-AE",
+        "FCDO-AE"
+      ],
+      "notes": "Official UAE portal and FCDO agree: 998 ambulance, 999 police, 997 fire. 112 notes removed per founder decision (A2-4 CR-1). App already shows 998 — consistent.",
+      "reviewerMustSupply": "",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "AE-VAC-01",
+      "section": "vaccination",
+      "topic": "RSV vaccine in pregnancy",
+      "content": {
+        "en": "The UAE has an RSV vaccination programme for pregnant women. Abu Dhabi and Dubai health authorities refer to maternal RSV vaccination, but specific gestational weeks were not confirmed from an official page in this pass.",
+        "ar": "يوجد في الإمارات برنامج لتطعيم الحوامل ضد فيروس RSV. أشارت سلطتا أبوظبي ودبي الصحيتان إليه دون تحديد أسابيع رسمية في الصفحات المقروءة."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "DOH-AE"
+      ],
+      "notes": "Professional-facing Sanofi page cites Abu Dhabi Public Health Centre and Dubai Health Authority guidelines. Direct MOH URL for gestational weeks not found.",
+      "reviewerMustSupply": "UAE obstetrician or MOH maternal vaccine circular to confirm weeks.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "AE-ANC-01",
+      "section": "antenatal",
+      "topic": "antenatal schedule",
+      "content": {
+        "en": "No official UAE Ministry of Health antenatal appointment schedule was found in this pass. WHO recommends a minimum of eight contacts.",
+        "ar": "لم نجد جدول مواعيد رسمي من وزارة الصحة الإماراتية. منظمة الصحة العالمية توصي بما لا يقل عن 8 زيارات."
+      },
+      "evidence": "reference-only",
+      "sourceIds": [
+        "WHO-ANC"
+      ],
+      "notes": "The National (2013 article) refers to an Abu Dhabi antenatal programme but the article is 10+ years old.",
+      "reviewerMustSupply": "UAE obstetrician or HAAD/MOH maternal health page.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "AE-SUP-01",
+      "section": "supplements",
+      "topic": "folic acid in pregnancy",
+      "content": {
+        "en": "No UAE Ministry of Health specific folic acid dose recommendation was found in this pass. WHO recommends 400 mcg daily.",
+        "ar": "لم نجد توصية بجرعة محددة من وزارة الصحة الإماراتية. منظمة الصحة العالمية توصي بـ 400 ميكروغرام يوميًا."
+      },
+      "evidence": "reference-only",
+      "sourceIds": [
+        "WHO-ANC"
+      ],
+      "notes": "WHO reference only.",
+      "reviewerMustSupply": "UAE pharmacist or MOH maternal health page.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "AE-MED-01",
+      "section": "medicines",
+      "topic": "drug regulator",
+      "content": {
+        "en": "The UAE Ministry of Health and Prevention (mohap.gov.ae) and the Abu Dhabi Department of Health (doh.gov.ae) regulate medicines. Their pregnancy/breastfeeding information pages were not read in this pass.",
+        "ar": "وزارة الصحة ووقاية المجتمع الإماراتية ودائرة الصحة أبوظبي تنظمان الأدوية. لم تُقرأ صفحاتهما في هذه المرحلة."
+      },
+      "evidence": "not-found",
+      "sourceIds": [],
+      "notes": "Needed for A2-7.",
+      "reviewerMustSupply": "Pharmacist to supply the regulator pages to use.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    }
+  ]
+}

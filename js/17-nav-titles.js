@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.05-r24 | js/17-nav-titles.js
+/* Women & Families 2026.11.08-r25 | js/17-nav-titles.js
    Hash to page-title map and route enhancements (own closure).
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */
@@ -10,7 +10,7 @@
   const SEARCH_INDEX = [
     {hash:'home',       en:'Home',                         ar:'الرئيسية'},
     {hash:'pregnancy',  en:'My Pregnancy',                 ar:'رحلة حملي'},
-    {hash:'checker',    en:'Medicine checker',             ar:'فاحص الأدوية'},
+    {hash:'checker',    en:'Medicine information demo', ar:'نموذج معلومات الدواء'},
     {hash:'plan',       en:'My health plan',               ar:'خطتي الصحية'},
     {hash:'contraception',en:'Contraception',              ar:'منع الحمل'},
     {hash:'prep',       en:'Preparing for pregnancy',      ar:'الاستعداد للحمل'},

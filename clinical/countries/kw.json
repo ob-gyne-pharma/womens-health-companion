@@ -1,0 +1,286 @@
+{
+  "schemaVersion": "0.1",
+  "country": {
+    "code": "KW",
+    "name": {
+      "en": "Kuwait",
+      "ar": "الكويت"
+    }
+  },
+  "lastChecked": "2026-11-06",
+  "status": "pilot draft: unreviewed",
+  "arabicNote": "All Arabic text in this file is an Agent 2 draft. No native clinical reviewer has seen it.",
+  "sources": [
+    {
+      "id": "FCDO-KW",
+      "publisher": "UK Foreign, Commonwealth & Development Office",
+      "title": "Foreign travel advice: Kuwait, Getting help",
+      "url": "https://www.gov.uk/foreign-travel-advice/kuwait/getting-help",
+      "date": "n/d",
+      "accessed": "2026-11-04",
+      "kind": "government travel advice",
+      "caveat": "A foreign government, not a Kuwaiti source."
+    },
+    {
+      "id": "GC-KW",
+      "publisher": "Government of Canada",
+      "title": "Travel advice and advisories for Kuwait",
+      "url": "https://travel.gc.ca/destinations/kuwait",
+      "date": "n/d",
+      "accessed": "2026-11-04",
+      "kind": "government travel advice",
+      "caveat": "A foreign government."
+    },
+    {
+      "id": "SMART-KW",
+      "publisher": "Australian Government (Smartraveller)",
+      "title": "Kuwait travel advice",
+      "url": "https://www.smartraveller.gov.au/destinations/middle-east/kuwait",
+      "date": "n/d",
+      "accessed": "2026-11-04",
+      "kind": "government travel advice",
+      "caveat": "A foreign government."
+    },
+    {
+      "id": "AT-VAX-2024",
+      "publisher": "Arab Times (reporting a decision by the Kuwait Minister of Health)",
+      "title": "Health ministry issues new guidance on child vaccinations",
+      "url": "https://arabtimesonline.com/news/health-ministry-issues-new-guidance-on-child-vaccinations",
+      "date": "2024-04-02",
+      "accessed": "2026-11-06",
+      "kind": "news report of a ministerial decision",
+      "caveat": "Reports changes to the schedule, with the full schedule slated from January 2025. Not the ministry document."
+    },
+    {
+      "id": "AT-VAX-2025",
+      "publisher": "Arab Times, citing the Ministry of Health",
+      "title": "Immunization programs remain a cornerstone of public health in Kuwait",
+      "url": "https://www.arabtimesonline.com/news/immunization-programs-remain-a-cornerstone-of-public-health-in-kuwait-moh",
+      "date": "2025-04-23",
+      "accessed": "2026-11-06",
+      "kind": "news report",
+      "caveat": "Says schedules are regularly updated; lists no schedule."
+    },
+    {
+      "id": "EMRO-KW-MH",
+      "publisher": "WHO Eastern Mediterranean Regional Office",
+      "title": "Kuwait launches novel initiatives to improve access to mental health care during the COVID-19 pandemic",
+      "url": "https://www.emro.who.int/mnh/news/kuwait-launches-novel-initiatives-to-improve-access-to-mental-health-care-during-the-covid-19-pandemic.html",
+      "date": "n/d (pandemic era)",
+      "accessed": "2026-11-06",
+      "kind": "regional WHO page",
+      "caveat": "No date shown; hours stated daily 9:00 to 17:00."
+    },
+    {
+      "id": "KT-MH-2020",
+      "publisher": "Kuwait Times",
+      "title": "COVID-19 and mental health hotlines",
+      "url": "https://kuwaittimes.com/covid-19-and-mental-health-hotlines/",
+      "date": "2020-08-29",
+      "accessed": "2026-11-06",
+      "kind": "news report",
+      "caveat": "Pandemic-era list; hours stated 8:00 to 17:00."
+    },
+    {
+      "id": "WHO-ANC",
+      "publisher": "WHO (copy of the executive summary hosted by AIDS Data Hub)",
+      "title": "WHO recommendations on antenatal care for a positive pregnancy experience: executive summary (2016)",
+      "url": "https://new.aidsdatahub.org/sites/default/files/resource/who-recommendations-antenatal-care-positive-pregnancy-experience-executive-summary.pdf",
+      "date": "2016",
+      "accessed": "2026-11-06",
+      "kind": "international guideline",
+      "caveat": "Read through a third-party copy of the WHO document."
+    },
+    {
+      "id": "NHS-VITD",
+      "publisher": "NHS (UK)",
+      "title": "Vitamins and supplements in pregnancy",
+      "url": "https://www.nhs.uk/best-start-in-life/pregnancy/vitamins-and-supplements-in-pregnancy/",
+      "date": "n/d",
+      "accessed": "2026-11-04",
+      "kind": "UK national health service page",
+      "caveat": "UK guidance; says \"consider\" 10 micrograms vitamin D between October and March; folic acid 400 micrograms, ideally from 3 months before conception until week 12."
+    }
+  ],
+  "items": [
+    {
+      "id": "KW-EMG-01",
+      "section": "emergency",
+      "topic": "all services",
+      "content": {
+        "en": "Emergency (ambulance, fire and police): 112",
+        "ar": "الطوارئ (الإسعاف والإطفاء والشرطة): 112"
+      },
+      "evidence": "confirmed",
+      "sourceIds": [
+        "FCDO-KW",
+        "GC-KW",
+        "SMART-KW"
+      ],
+      "notes": "Verified 4 Nov 2026 (see the emergency-numbers report). Kuwait's own government page would not load, so no Kuwaiti source was read.",
+      "reviewerMustSupply": "A Kuwaiti government source.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "KW-ANC-01",
+      "section": "antenatal",
+      "topic": "national visit schedule",
+      "content": {
+        "en": "No Kuwaiti national antenatal schedule was found. WHO recommends a minimum of eight contacts.",
+        "ar": "لم أجد جدولًا وطنيًا كويتيًا لمتابعة الحمل. توصي منظمة الصحة العالمية بثماني زيارات على الأقل."
+      },
+      "evidence": "reference-only",
+      "sourceIds": [
+        "WHO-ANC"
+      ],
+      "notes": "A Kuwait Times piece (7 Apr 2025) says maternal and child health programmes are being developed, but gives no schedule.",
+      "reviewerMustSupply": "The Ministry of Health antenatal-care guideline or primary-care protocol.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "KW-ANC-02",
+      "section": "antenatal",
+      "topic": "who to contact",
+      "content": {
+        "en": "Not found: how antenatal care is organised (primary health centre, hospital clinic, private).",
+        "ar": "لم أجد: كيف تُنظَّم متابعة الحمل (مركز رعاية أولية أو عيادة مستشفى أو قطاع خاص)."
+      },
+      "evidence": "not-found",
+      "sourceIds": [],
+      "notes": "Matters because the checker says \"midwife or maternity unit\" (fix list F-13).",
+      "reviewerMustSupply": "A local clinician reviewer to describe the usual pathway.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "KW-VAX-01",
+      "section": "vaccination",
+      "topic": "in pregnancy",
+      "content": {
+        "en": "A report of a 2024 ministerial decision says Tdap replaces tetanus toxoid for pregnant women, with the full updated schedule from January 2025. The week of pregnancy was not stated.",
+        "ar": "يذكر تقرير عن قرار وزاري صدر عام 2024 أن لقاح Tdap يحل محل لقاح التيتانوس للحوامل، مع الجدول المحدث كاملًا اعتبارًا من يناير 2025. لم يُذكر أسبوع الحمل."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "AT-VAX-2024"
+      ],
+      "notes": "News report of a decision, not the ministry text. The UK offers pertussis vaccine at a set gestation; do not copy the UK timing for Kuwait.",
+      "reviewerMustSupply": "The Ministry of Health schedule for pregnant women, including timing.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "KW-VAX-02",
+      "section": "vaccination",
+      "topic": "child schedule (changes reported)",
+      "content": {
+        "en": "The same report says: hexavalent vaccine at 2, 4, 6 and 18 months (replacing pentavalent); MMRV at age 2; DTaP at 3.5 years; Tdap at 10 to 12 and 16 to 18 years. Birth doses and the rest of the schedule were not found.",
+        "ar": "يذكر التقرير نفسه: اللقاح السداسي عند 2 و4 و6 و18 شهرًا (بدلًا من الخماسي)، واللقاح الرباعي الفيروسي MMRV عند سنتين، وDTaP عند 3.5 سنة، وTdap عند 10 إلى 12 سنة وعند 16 إلى 18 سنة. لم أجد جرعات الولادة ولا بقية الجدول."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "AT-VAX-2024",
+        "AT-VAX-2025"
+      ],
+      "notes": "Only the changes were reported, not a full schedule. A 2025 article confirms schedules are \"regularly updated\".",
+      "reviewerMustSupply": "The current Ministry of Health national immunization schedule (official document).",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "KW-SUP-01",
+      "section": "supplements",
+      "topic": "iron, folic acid, vitamin D",
+      "content": {
+        "en": "No Kuwaiti national recommendation was found. WHO: iron 30 to 60 mg with folic acid 400 micrograms daily; vitamin D not recommended routinely (2016). The NHS says to consider vitamin D 10 micrograms from October to March.",
+        "ar": "لم أجد توصية وطنية كويتية. منظمة الصحة العالمية: حديد 30 إلى 60 ملغ مع حمض الفوليك 400 ميكروغرام يوميًا؛ ولا تُوصى بفيتامين د روتينيًا (2016). وتقول هيئة الخدمات الصحية الوطنية البريطانية (NHS) إنه يمكن التفكير في 10 ميكروغرامات من أكتوبر إلى مارس."
+      },
+      "evidence": "conflict",
+      "sourceIds": [
+        "WHO-ANC",
+        "NHS-VITD"
+      ],
+      "notes": "See fix list F-07.",
+      "reviewerMustSupply": "A local obstetric or pharmacy reviewer decision, with a national source.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "KW-HLP-01",
+      "section": "helplines",
+      "topic": "mental health",
+      "content": {
+        "en": "Candidate only: Kuwait Center for Mental Health hotline +965 2462 1770, daily 9:00 (or 8:00) to 17:00. This is not a 24-hour emergency line and its current status is not confirmed. Do not show to users yet.",
+        "ar": "مرشح فقط: الخط الساخن لمركز الكويت للصحة النفسية +965 2462 1770، يوميًا من 9:00 (أو 8:00) إلى 17:00. ليس خط طوارئ على مدار الساعة ولم يُتأكد أنه ما زال يعمل. لا يُعرض للمستخدمات بعد."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "EMRO-KW-MH",
+        "KT-MH-2020"
+      ],
+      "notes": "The two sources agree on the number but both are pandemic-era and give limited hours. Treated as one source until a current page is found.",
+      "reviewerMustSupply": "A current ministry page, or a reviewer who has called it and noted the hours.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "KW-HLP-02",
+      "section": "helplines",
+      "topic": "violence against women",
+      "content": {
+        "en": "Not found: no official hotline source was read.",
+        "ar": "لم أجد: لم أقرأ أي مصدر رسمي لخط ساخن."
+      },
+      "evidence": "not-found",
+      "sourceIds": [],
+      "notes": "Search results were news reports on domestic violence figures and an aggregator site; none was a primary source.",
+      "reviewerMustSupply": "A Kuwaiti reviewer to name the official service and number, with a source.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "KW-REG-01",
+      "section": "medicines",
+      "topic": "regulator and medicine information",
+      "content": {
+        "en": "Not researched in this pass (Ministry of Health drug control).",
+        "ar": "لم يُبحث في هذه المرحلة (الرقابة الدوائية في وزارة الصحة)."
+      },
+      "evidence": "not-found",
+      "sourceIds": [],
+      "notes": "Needed for A2-7.",
+      "reviewerMustSupply": "Pharmacist reviewer to name the regulator pages to use.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    }
+  ]
+}

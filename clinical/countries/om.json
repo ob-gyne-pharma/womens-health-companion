@@ -1,0 +1,156 @@
+{
+  "schemaVersion": "0.1",
+  "country": {
+    "code": "OM",
+    "name": {
+      "en": "Oman",
+      "ar": "عُمان"
+    }
+  },
+  "lastChecked": "2026-11-07",
+  "status": "draft: unreviewed",
+  "arabicNote": "All Arabic text is an Agent 2 draft. No native clinical reviewer has seen it.",
+  "sources": [
+    {
+      "id": "ROP-OM",
+      "publisher": "Royal Oman Police",
+      "title": "Emergency: 9999",
+      "url": "https://rop.gov.om",
+      "date": "n/d",
+      "accessed": "2026-11-07",
+      "kind": "national police authority",
+      "caveat": "Read in A2-4 (4 Nov 2026)."
+    },
+    {
+      "id": "FCDO-OM",
+      "publisher": "UK FCDO",
+      "title": "Foreign travel advice: Oman, Getting help",
+      "url": "https://www.gov.uk/foreign-travel-advice/oman/getting-help",
+      "date": "n/d",
+      "accessed": "2026-11-07",
+      "kind": "government travel advice",
+      "caveat": "Read in A2-4. 9999 for ambulance, fire, police."
+    },
+    {
+      "id": "GOV-OM",
+      "publisher": "Government of Oman portal (gov.om)",
+      "title": "Emergency numbers",
+      "url": "https://gov.om/en/emergency-numbers1",
+      "date": "n/d",
+      "accessed": "2026-11-07",
+      "kind": "government portal",
+      "caveat": "Read 7 Nov 2026. 9999 as footer emergency; hospital numbers listed separately. Police not shown."
+    },
+    {
+      "id": "WHO-ANC",
+      "publisher": "WHO",
+      "title": "WHO recommendations on antenatal care for a positive pregnancy experience: executive summary (2016)",
+      "url": "https://new.aidsdatahub.org/sites/default/files/resource/who-recommendations-antenatal-care-positive-pregnancy-experience-executive-summary.pdf",
+      "date": "2016",
+      "accessed": "2026-11-07",
+      "kind": "international guideline",
+      "caveat": "Read through a third-party copy."
+    }
+  ],
+  "items": [
+    {
+      "id": "OM-EMG-01",
+      "section": "emergency",
+      "topic": "ambulance, fire and police",
+      "content": {
+        "en": "Emergency: 9999 (ambulance, fire and police).",
+        "ar": "الطوارئ: 9999 (الإسعاف والإطفاء والشرطة)."
+      },
+      "evidence": "confirmed",
+      "sourceIds": [
+        "ROP-OM",
+        "FCDO-OM"
+      ],
+      "notes": "Confirmed by ROP and FCDO in A2-4. GOV.OM portal also shows 9999 as general emergency. App already shows 9999 — consistent.",
+      "reviewerMustSupply": "",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "OM-VAC-01",
+      "section": "vaccination",
+      "topic": "vaccination in pregnancy",
+      "content": {
+        "en": "No Oman Ministry of Health specific pregnancy vaccination schedule was found in this pass. Oman gave COVID vaccines to pregnant women (2021). International recommendation: Tdap in every pregnancy (27-36 weeks); flu annually.",
+        "ar": "لم نجد جدول تطعيم الحوامل الرسمي من وزارة الصحة العُمانية. تُوصي المعايير الدولية بـ Tdap في كل حمل (27-36 أسبوعًا) والإنفلونزا سنويًا."
+      },
+      "evidence": "reference-only",
+      "sourceIds": [
+        "WHO-ANC"
+      ],
+      "notes": "Only COVID vaccine in pregnancy sources found (2021); no routine Tdap or RSV maternal guidance page found.",
+      "reviewerMustSupply": "Omani obstetrician or MOH maternal vaccine page.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "OM-ANC-01",
+      "section": "antenatal",
+      "topic": "antenatal schedule",
+      "content": {
+        "en": "No Oman Ministry of Health antenatal appointment schedule was found in this pass. WHO recommends a minimum of eight contacts.",
+        "ar": "لم نجد جدول مواعيد رسمي من وزارة الصحة العُمانية. منظمة الصحة العالمية توصي بما لا يقل عن 8 زيارات."
+      },
+      "evidence": "reference-only",
+      "sourceIds": [
+        "WHO-ANC"
+      ],
+      "notes": "",
+      "reviewerMustSupply": "Omani obstetrician or MOH maternal health page.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "OM-SUP-01",
+      "section": "supplements",
+      "topic": "folic acid and iron in pregnancy",
+      "content": {
+        "en": "No Oman Ministry of Health specific supplement recommendation was found in this pass. WHO recommends folic acid 400 mcg and iron 30-60 mg daily.",
+        "ar": "لم نجد توصية عُمانية بجرعة محددة. منظمة الصحة العالمية توصي بحمض الفوليك 400 ميكروغرام والحديد 30-60 ملغ يوميًا."
+      },
+      "evidence": "reference-only",
+      "sourceIds": [
+        "WHO-ANC"
+      ],
+      "notes": "WHO reference only.",
+      "reviewerMustSupply": "Omani pharmacist or MOH page.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "OM-MED-01",
+      "section": "medicines",
+      "topic": "drug regulator",
+      "content": {
+        "en": "The Oman Pharmacy and Drug Directorate (Ministry of Health) regulates medicines. Its pregnancy/breastfeeding information pages were not read in this pass.",
+        "ar": "مديرية الصيدلة والدواء (وزارة الصحة العُمانية) تنظم الأدوية. لم تُقرأ صفحاتها في هذه المرحلة."
+      },
+      "evidence": "not-found",
+      "sourceIds": [],
+      "notes": "Needed for A2-7.",
+      "reviewerMustSupply": "Pharmacist to supply MOH pages.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    }
+  ]
+}

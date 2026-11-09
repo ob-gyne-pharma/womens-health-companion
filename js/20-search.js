@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.05-r24 | js/20-search.js
+/* Women & Families 2026.11.08-r25 | js/20-search.js
    Whole-app search on the home page: guides, tools and sections, English and Arabic.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */
@@ -54,7 +54,7 @@
   /* Tools and sections: [route, kind, [English, Arabic], extra English words, extra Arabic words]. Names are the ones the app already uses. */
   const PAGES=[
     ['urgent','help',['Urgent help \u2014 when to seek help','متى تطلبين المساعدة'],'emergency urgent severe heavy bleeding faint fever chest pain danger warning signs reduced movements 999 911 ambulance','طوارئ عاجل نزيف شديد الم شديد حمى اغماء خطر'],
-    ['checker','tool',['Medicine checker','فاحص الأدوية'],'medicine medication drug tablets pills safe pregnancy breastfeeding paracetamol ibuprofen antibiotic','دواء ادوية حبوب حمل رضاعه'],
+    ['checker','tool',['Medicine information demo','نموذج معلومات الدواء'],'medicine medication drug tablets pills safe pregnancy breastfeeding paracetamol ibuprofen antibiotic','دواء ادوية حبوب حمل رضاعه'],
     ['plan','tool',['My health plan','خطتي الصحية'],'plan summary questions appointment notes print share','خطه ملخص اسئله موعد'],
     ['diary','tool',['My diary','يومياتي'],'diary log symptoms track record notes journal','مذكرات سجل اعراض'],
     ['bag','tool',['My medicines bag','حقيبة أدويتي'],'medicines list medication bag pills','ادويه'],

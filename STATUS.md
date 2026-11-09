@@ -15,6 +15,70 @@ a session updates it. Whoever starts one reads it before doing anything else.
 
 ## What changed since the last packet
 
+**8 Nov 2026 — Agent 1: country-data infrastructure (CR-8), guide review schema (CR-11), F-17 fix, 5 more country files**
+
+Agent 2 delivered a formal Clinical Governance Framework v0.1, 5 more country pilot files
+(AE, BH, OM, QA, SA — all 9 Gulf-area countries plus Egypt and the UK now have a file), a
+guides sources audit raising CR-11, and reviewer workbooks (symptom-checker matrix, Arabic
+glossary, French/Spanish glossary seed, two-level explanations) for future weeks-5-to-8 work.
+
+- **Independently re-validated** all 8 country files against Agent 2's own integrity rules
+  before touching anything (own script, not trusting the claim) — all 8 pass. The Clinical
+  Governance Framework's §6 display rule (`evidence==='confirmed' && review.status==='reviewed'`)
+  and §11 record-keeping rule (a `reviewed` item must always carry a named reviewer and a
+  date) are now exactly what `js/28-countries.js` and `tools/check.mjs` enforce.
+- **CR-8 implemented:** `tools/build-countries.mjs` compiles `clinical/countries/*.json`
+  into `js/28-countries.js` at build time — no runtime `fetch`, so the privacy guard needs
+  no exception. `confirmedCountryItems(code, section?)` is the only way app code may read
+  this data; it enforces the display gate itself, so a future call site cannot accidentally
+  bypass it. **Today it returns an empty array for all 8 countries, on all 72 items** — the
+  correct behaviour, verified with both the real data (confirms nothing shows) and a
+  synthetic fixture (confirms the gate's AND logic actually works, not just that it happens
+  to be empty). `tools/check.mjs` now fails if `js/28-countries.js` is stale against the
+  JSON, or if any item breaks an integrity rule — tested against 6 separate deliberately-
+  broken fixtures, one per rule, all caught correctly.
+- **CGF-04 (Saudi Arabia 911 vs 997):** left untouched, as the framework requires — still an
+  open founder decision, still correctly shown as `conflict` evidence internally.
+- **CR-11 implemented, display-only:** `js/27-guide-reviews.js` adds a per-guide
+  `GUIDE_REVIEWS` sidecar (lastReviewed / reviewer / nextReviewDue) and a "Last reviewed: …"
+  line on the guide page, wired in but **empty for all 42 guides today**, so nothing is
+  visible yet — verified both that it stays hidden now and that it renders correctly once a
+  reviewer is actually entered (tested with a synthetic entry, removed after). This
+  supersedes the `reviewedBy`/`reviewedOn` naming I proposed as part of CR-3 in the previous
+  packet — Agent 2's `lastReviewed`/`reviewer`/`nextReviewDue` naming is now the one in use;
+  CR-3's guide-sources part (`sources: [[label, url], …]`) is unaffected and still open.
+- **F-17 (medicine demo naming) fixed everywhere:** "Medicine checker" appeared in 6 places,
+  "Medicine information demo" in 5 others. Unified to the latter (extracted the existing
+  canonical Arabic text programmatically rather than retyping it, so no wording drifted) —
+  confirmed zero remaining "Medicine checker" strings anywhere in `js/`. The only visible
+  change in this release, confirmed with a full r24-vs-r25 diff across every route and 4
+  saved-data states.
+- **F-23, F-24 (two flagged source URLs — Salisbury NHS trust page, a 2017 ACOG page):
+  correctly NOT changed.** Agent 2's own audit says each proposed replacement needs a named
+  reviewer to verify the URL is live and appropriate first; left exactly as flagged, in the
+  fix list, for that review.
+- **The 24 guides with no sources at all, and their 39+ proposed replacement URLs: correctly
+  NOT added.** Same reviewer-first rule, from the same audit.
+- **Reference-only materials added to `clinical/` with no code change**, since no change
+  request asked for one yet: `two-level-explanations-v0.1.md` (8 drafted explanations, all
+  explicitly unreviewed), `symptom-checker-matrix-v0.1.xlsx`, `arabic-glossary-v0.1.xlsx`,
+  `fr-es-glossary-v0.1.xlsx`, `guides-sources-audit-v0.1.{md,xlsx}`.
+- **A versioning note:** two different copies of `change-requests-for-agent-1.md` arrived
+  across sessions — one with CR-1 to CR-10, a later one adding CR-11. Used the later
+  (complete) one as canonical; same for two copies of `fix-list-v1.md` (the later one adds
+  F-23/F-24) and three copies of `countries-pilot-review.xlsx` (the latest has all 8
+  countries; the earlier two were partial snapshots and have been removed, not kept
+  alongside).
+- **Still missing:** `arabic-review-pack-since-r16.xlsx` (A2-2), listed in CR-6 as delivered
+  across three separate uploads now, never actually received. Flagging again for Agent 2 to
+  resend.
+- **Tested:** 6 negative fixtures for the country-data checker (each integrity rule, caught
+  correctly); the display-gate logic against both real and synthetic data; CR-11's line
+  hidden today and correctly rendering when populated; full existing regression suite (118
+  pages, navigation, symptom checker, reminders/insights, passport — 34 checks, install
+  banner, offline, 4 screen sizes, 29 search queries) — all pass. Full r24-vs-r25 diff across
+  every route and 4 saved-data states: only the expected F-17 wording change.
+
 **5 Nov 2026 — Agent 1: processed Agent 2's week-0 handoff (CR-1, CR-2 stage 1, CR-5, CR-6, CR-7)**
 
 Agent 2 delivered A2-1 to A2-4 as files (`content-register-v1.xlsx`, `fix-list-v1.md`,

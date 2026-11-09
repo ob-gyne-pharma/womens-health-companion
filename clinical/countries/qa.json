@@ -1,0 +1,206 @@
+{
+  "schemaVersion": "0.1",
+  "country": {
+    "code": "QA",
+    "name": {
+      "en": "Qatar",
+      "ar": "قطر"
+    }
+  },
+  "lastChecked": "2026-11-07",
+  "status": "draft: unreviewed",
+  "arabicNote": "All Arabic text is an Agent 2 draft. No native clinical reviewer has seen it.",
+  "sources": [
+    {
+      "id": "HMC-QA",
+      "publisher": "Hamad Medical Corporation",
+      "title": "In a life-threatening emergency, call 999 immediately",
+      "url": "https://hamad.qa/EN/Hospitals-and-services/Obstetrics-and-Gynaecology-Services",
+      "date": "n/d",
+      "accessed": "2026-11-07",
+      "kind": "national hospital authority",
+      "caveat": "Read in A2-4 (4 Nov 2026)."
+    },
+    {
+      "id": "FCDO-QA",
+      "publisher": "UK FCDO",
+      "title": "Foreign travel advice: Qatar, Getting help",
+      "url": "https://www.gov.uk/foreign-travel-advice/qatar/getting-help",
+      "date": "n/d",
+      "accessed": "2026-11-07",
+      "kind": "government travel advice",
+      "caveat": "Read in A2-4 (4 Nov 2026). 999 for ambulance, fire, police."
+    },
+    {
+      "id": "PHCC-QA",
+      "publisher": "Qatar Primary Health Care Corporation (via qatarliving.com)",
+      "title": "PHCC urges pregnant women to take RSV and Tdap vaccines",
+      "url": "https://www.qatarliving.com/en/article/phcc-urges-pregnant-women-to-take-rsv-and-tdap-vaccines-to-protect-newborns",
+      "date": "n/d",
+      "accessed": "2026-11-07",
+      "kind": "national health authority (reported by qatarliving.com)",
+      "caveat": "Read 7 Nov 2026. RSV: 28-36 weeks. Tdap: 27-36 weeks. Not the original PHCC press release; a third-party summary."
+    },
+    {
+      "id": "MOPH-VAC",
+      "publisher": "Qatar Ministry of Public Health / PHCC (via dohaguides.com)",
+      "title": "Vaccination schedule for children in Qatar",
+      "url": "https://www.dohaguides.com/vaccination-schedule-for-children-in-qatar",
+      "date": "n/d",
+      "accessed": "2026-11-07",
+      "kind": "national health authority (reported by dohaguides.com)",
+      "caveat": "Read 7 Nov 2026. Not the original MOPH document; a third-party summary citing MOPH and PHCC."
+    },
+    {
+      "id": "WHO-ANC",
+      "publisher": "WHO",
+      "title": "WHO recommendations on antenatal care for a positive pregnancy experience: executive summary (2016)",
+      "url": "https://new.aidsdatahub.org/sites/default/files/resource/who-recommendations-antenatal-care-positive-pregnancy-experience-executive-summary.pdf",
+      "date": "2016",
+      "accessed": "2026-11-07",
+      "kind": "international guideline",
+      "caveat": "Read through a third-party copy."
+    }
+  ],
+  "items": [
+    {
+      "id": "QA-EMG-01",
+      "section": "emergency",
+      "topic": "ambulance, fire and police",
+      "content": {
+        "en": "Emergency: 999 (ambulance, fire and police).",
+        "ar": "الطوارئ: 999 (الإسعاف والإطفاء والشرطة)."
+      },
+      "evidence": "confirmed",
+      "sourceIds": [
+        "HMC-QA",
+        "FCDO-QA"
+      ],
+      "notes": "Confirmed by HMC and FCDO. 112 note removed per founder decision (A2-4 CR-1). App already shows 999 — consistent.",
+      "reviewerMustSupply": "",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "QA-VAC-01",
+      "section": "vaccination",
+      "topic": "Tdap in pregnancy",
+      "content": {
+        "en": "Qatar recommends Tdap (tetanus, diphtheria, whooping cough) vaccine in every pregnancy. Preferred window: 27 to 36 weeks.",
+        "ar": "تُوصي قطر بلقاح Tdap (الكزاز والدفتيريا والسعال الديكي) في كل حمل. النافذة المفضلة: 27 إلى 36 أسبوعًا."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "PHCC-QA"
+      ],
+      "notes": "Source is a qatarliving.com summary of a PHCC statement, not the original PHCC circular.",
+      "reviewerMustSupply": "Original PHCC or MOPH circular as a second source.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "QA-VAC-02",
+      "section": "vaccination",
+      "topic": "RSV vaccine in pregnancy",
+      "content": {
+        "en": "Qatar recommends the RSV vaccine for pregnant women between 28 and 36 weeks of pregnancy.",
+        "ar": "تُوصي قطر بلقاح RSV للحوامل بين الأسبوع 28 والأسبوع 36."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "PHCC-QA"
+      ],
+      "notes": "Same qatarliving.com source as Tdap item. Original PHCC circular not read.",
+      "reviewerMustSupply": "Original PHCC or MOPH document.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "QA-VAC-03",
+      "section": "vaccination",
+      "topic": "routine childhood schedule",
+      "content": {
+        "en": "Qatar routine schedule (citing MOPH/PHCC): BCG and hepatitis B at birth; hexavalent, PCV, rotavirus at 2 and 4 months; OPV, penta, PCV at 6 months; MMR, varicella at 12 months; boosters at 18 months and 4-6 years.",
+        "ar": "الجدول الروتيني في قطر: BCG وهيباتيتس B عند الولادة؛ السداسي و PCV والروتا في الشهرين 2 و4؛ OPV والخماسي و PCV في الشهر 6؛ MMR والجدري في الشهر 12؛ جرعات منشطة في الشهر 18 وبين 4-6 سنوات."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "MOPH-VAC"
+      ],
+      "notes": "Third-party summary; not the official MOPH schedule document.",
+      "reviewerMustSupply": "Original MOPH vaccination schedule document.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "QA-ANC-01",
+      "section": "antenatal",
+      "topic": "antenatal care",
+      "content": {
+        "en": "Antenatal care in Qatar is provided through PHCC (primary care) and Hamad Medical Corporation (hospital). No official appointment schedule was found in this pass. WHO recommends a minimum of eight contacts.",
+        "ar": "الرعاية السابقة للولادة في قطر تقدمها مؤسسة الرعاية الصحية الأولية ومؤسسة حمد الطبية. لم نجد جدول مواعيد رسمي. توصي منظمة الصحة العالمية بما لا يقل عن 8 زيارات."
+      },
+      "evidence": "reference-only",
+      "sourceIds": [
+        "WHO-ANC"
+      ],
+      "notes": "Hamad.qa maternity pages exist but specific schedule not found in open pages read.",
+      "reviewerMustSupply": "Qatar obstetrician or PHCC/HMC antenatal care guide.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "QA-SUP-01",
+      "section": "supplements",
+      "topic": "folic acid in pregnancy",
+      "content": {
+        "en": "No Qatar-specific folic acid dose recommendation was found in this pass. WHO recommends 400 mcg daily.",
+        "ar": "لم نجد توصية قطرية بجرعة محددة. منظمة الصحة العالمية توصي بـ 400 ميكروغرام يوميًا."
+      },
+      "evidence": "reference-only",
+      "sourceIds": [
+        "WHO-ANC"
+      ],
+      "notes": "WHO reference only.",
+      "reviewerMustSupply": "Qatar pharmacist or MOPH maternal health page.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "QA-MED-01",
+      "section": "medicines",
+      "topic": "drug regulator",
+      "content": {
+        "en": "The Qatar Ministry of Public Health (moph.gov.qa) regulates medicines. Its pregnancy/breastfeeding information pages were not read in this pass.",
+        "ar": "وزارة الصحة العامة القطرية (moph.gov.qa) تنظم الأدوية. لم تُقرأ صفحاتها في هذه المرحلة."
+      },
+      "evidence": "not-found",
+      "sourceIds": [],
+      "notes": "Needed for A2-7.",
+      "reviewerMustSupply": "Pharmacist to supply MOPH pages.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    }
+  ]
+}

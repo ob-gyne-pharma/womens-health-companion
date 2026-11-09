@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.05-r24 | js/05-life-topics.js
+/* Women & Families 2026.11.08-r25 | js/05-life-topics.js
    Life-stage topics data, chapters, topic/urgent pages.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */

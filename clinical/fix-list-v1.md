@@ -156,3 +156,26 @@
 
 ## Not covered yet (scope for v2)
 Calculators, the symptom heatmap, the privacy page, the in-app search, and the 26 older guides' full depth text (only summaries are in the register).
+
+---
+
+## Added 6 Nov 2026 from the UK country file (`countries/gb.json`)
+
+All three are checked against NHS pages read on 6 Nov 2026 (single source each) and are unreviewed. A UK midwife should confirm before the app changes.
+
+| ID | Priority | Finding | Evidence | Suggested change |
+|---|---|---|---|---|
+| F-20 | P2 | Newborn blood spot test: app R-P02 says **Day 3**; NHS says it is normally done at **5 days old** (sometimes earlier or later). | NHS "Newborn blood spot test FAQs", reviewed 5 Sep 2024 | Change to day 5 (or "around day 5"). Needs a second source (UK National Screening Committee). |
+| F-21 | P2 | **RSV vaccine in pregnancy is missing.** NHS says it is offered around the 28-week appointment and can be given later, up until labour. | NHS "Vaccinations in pregnancy"; its stated review date (Jan 2026) has passed, so confirm current policy | Add a reminder at week 28, labelled UK. |
+| F-22 | P3 | Appointments are shown the same for everyone. NHS lists weeks 25, 31, 40 and 41 for **first babies** and says at least 10 appointments (first baby) or 7 (had a baby before). The app shows week 24 where NHS says 25. | NHS "Your antenatal appointments", reviewed 17 Apr 2026 | Ask whether it is a first baby, or label the schedule "first pregnancy". Change week 24 to 25. |
+
+Also from the same check: R-A04 "iron check" (not found on the NHS page), R-A10 "still possible until labour" for whooping cough (the page says "later"; "up until labour" is stated for RSV), and R-A13/R-A14 ("sweep" at week 40 and "consultant" at week 41) are unverified. Details are in `gb.json` notes.
+
+---
+
+## Added 7 Nov 2026 from the guides sources audit (`guides-sources-audit-v0.1.md`)
+
+| ID | Priority | Finding | Evidence | Suggested change |
+|---|---|---|---|---|
+| F-23 | P2 | `pregnancy-conditions` guide cites **Salisbury NHS Foundation Trust** as a source (`salisbury.nhs.uk/…/existing-health-conditions/`). This is a local trust page, not a national standard. All MENA users are directed to guidance from one English district hospital. | Salisbury NHS Trust page (still live Aug 2026, but trust-specific) | Replace with NICE NG3 (Diabetes in pregnancy) or appropriate RCOG Green-top Guideline for the condition being described. The existing `nhs.uk/pregnancy/keeping-well/medicines/` in the same guide is acceptable. |
+| F-24 | P3 | `pregnancy-care` guide cites **ACOG (American College of Obstetricians and Gynecologists)** for due-date calculation (2017 article). ACOG is a US body; its dating method is consistent with NICE/FIGO but the citation is not appropriate for a global women's health app citing to UK/MENA users. The 2017 date may also be stale. | ACOG Committee Opinion 2017 | Replace with NICE NG201 (Antenatal care, 2021), dating scan section: `https://www.nice.org.uk/guidance/ng201` |

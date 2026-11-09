@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.05-r24 | js/27-boot.js
+/* Women & Families 2026.11.08-r25 | js/29-boot.js
    hashchange router start, first navigate(), modelContext tools.
    Runs LAST on purpose: it draws the first page, so every function the pages use must already exist.
    Classic script (not a module): shares one global scope with every other js/ file,

@@ -1,0 +1,206 @@
+{
+  "schemaVersion": "0.1",
+  "country": {
+    "code": "BH",
+    "name": {
+      "en": "Bahrain",
+      "ar": "البحرين"
+    }
+  },
+  "lastChecked": "2026-11-07",
+  "status": "draft: unreviewed",
+  "arabicNote": "All Arabic text is an Agent 2 draft. No native clinical reviewer has seen it.",
+  "sources": [
+    {
+      "id": "MOH-BH-EMG",
+      "publisher": "Bahrain national portal (bahrain.bh)",
+      "title": "National portal – Medical Emergencies",
+      "url": "https://www.bahrain.bh",
+      "date": "n/d",
+      "accessed": "2026-11-07",
+      "kind": "government portal",
+      "caveat": "Read in A2-4 (4 Nov 2026). 999 toll-free from any phone."
+    },
+    {
+      "id": "FCDO-BH",
+      "publisher": "UK FCDO",
+      "title": "Foreign travel advice: Bahrain, Getting help",
+      "url": "https://www.gov.uk/foreign-travel-advice/bahrain/getting-help",
+      "date": "n/d",
+      "accessed": "2026-11-07",
+      "kind": "government travel advice",
+      "caveat": "Read in A2-4. 999 ambulance, fire, police."
+    },
+    {
+      "id": "MOH-BH-VAC",
+      "publisher": "Bahrain Ministry of Health",
+      "title": "Recommended Immunization Schedule for the Kingdom of Bahrain",
+      "url": "https://www.moh.gov.bh/Content/Upload/File/638771217724743135-Recommended-Immunization-Schedule-for-the-Kingdom-of-Bahrain.pdf",
+      "date": "n/d",
+      "accessed": "2026-11-07",
+      "kind": "government immunization schedule",
+      "caveat": "Read 7 Nov 2026. Childhood schedule confirmed from official MOH document. Tdap listed for adolescents and as replacement for Td in reproductive-age women; seasonal flu for pregnant women listed as \"at risk\"."
+    },
+    {
+      "id": "NHRA-BH",
+      "publisher": "Bahrain National Health Regulatory Authority",
+      "title": "Circular No. 12 2022 – Tdap vaccine for pregnant women",
+      "url": "https://nhra.bh/AR/MediaHandler/ImageHandler/documents/Announcements/Announcement2022_Circular No. (12) 2022_To All private Healthcare Facilities_Tdap Vaccine to Pregnant_20220321.pdf",
+      "date": "2022-03-21",
+      "accessed": "2026-11-07",
+      "kind": "government health regulator",
+      "caveat": "Read 7 Nov 2026. Directed private facilities to give Tdap to pregnant women eligible for Td \"until further notice.\" Gestational weeks not stated in the circular."
+    },
+    {
+      "id": "WHO-ANC",
+      "publisher": "WHO",
+      "title": "WHO recommendations on antenatal care for a positive pregnancy experience: executive summary (2016)",
+      "url": "https://new.aidsdatahub.org/sites/default/files/resource/who-recommendations-antenatal-care-positive-pregnancy-experience-executive-summary.pdf",
+      "date": "2016",
+      "accessed": "2026-11-07",
+      "kind": "international guideline",
+      "caveat": "Read through a third-party copy."
+    }
+  ],
+  "items": [
+    {
+      "id": "BH-EMG-01",
+      "section": "emergency",
+      "topic": "ambulance, fire and police",
+      "content": {
+        "en": "Emergency: 999 (ambulance, fire and police), toll-free from any phone in Bahrain.",
+        "ar": "الطوارئ: 999 (الإسعاف والإطفاء والشرطة)، مجانًا من أي هاتف في البحرين."
+      },
+      "evidence": "confirmed",
+      "sourceIds": [
+        "MOH-BH-EMG",
+        "FCDO-BH"
+      ],
+      "notes": "Bahrain national portal and FCDO both confirm 999. App already shows 999 — consistent.",
+      "reviewerMustSupply": "",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "BH-VAC-01",
+      "section": "vaccination",
+      "topic": "Tdap in pregnancy",
+      "content": {
+        "en": "Bahrain directed private health facilities to give pregnant women Tdap in place of Td (2022 circular, still in effect). Gestational weeks not stated in the circular.",
+        "ar": "وجّهت البحرين المرافق الصحية الخاصة لإعطاء الحوامل لقاح Tdap بدلًا من Td (تعميم 2022). لم تُحدَّد الأسابيع في التعميم."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "NHRA-BH"
+      ],
+      "notes": "Circular gives Tdap as substitute for Td without specifying weeks. International standard is 27-36 weeks but this was not stated in the Bahrain document read.",
+      "reviewerMustSupply": "Updated NHRA or MOH circular confirming weeks and whether still in effect.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "BH-VAC-02",
+      "section": "vaccination",
+      "topic": "flu vaccine in pregnancy",
+      "content": {
+        "en": "Bahrain MOH immunization schedule lists influenza vaccine as recommended each season for pregnant women (at-risk category).",
+        "ar": "يُدرج جدول التطعيمات البحريني لقاح الإنفلونزا ضمن التوصيات الموسمية للحوامل (فئة عالية الخطورة)."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "MOH-BH-VAC"
+      ],
+      "notes": "From the official MOH immunization schedule document, confirmed from gov source.",
+      "reviewerMustSupply": "",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "BH-VAC-03",
+      "section": "vaccination",
+      "topic": "routine childhood schedule",
+      "content": {
+        "en": "Bahrain routine schedule (from official MOH document): hepatitis B at birth; hexavalent, PCV, rotavirus at 2, 4, 6 months; MMR and varicella at 12 months; hepatitis A at 15 months; boosters at 18 months; varicella dose 2 at 3 years; DTaP-IPV booster at 4-5 years.",
+        "ar": "جدول التطعيمات الروتيني في البحرين (من وثيقة وزارة الصحة): هيباتيتس B عند الولادة؛ السداسي و PCV والروتا في الشهر 2 و4 و6؛ MMR والجدري في الشهر 12؛ هيباتيتس A في الشهر 15؛ جرعات منشطة في الشهر 18؛ جرعة ثانية من جدري الماء في السنة 3."
+      },
+      "evidence": "single-source",
+      "sourceIds": [
+        "MOH-BH-VAC"
+      ],
+      "notes": "From official MOH document – single source as the FCDO/WHO do not detail the childhood schedule. Needs a Bahraini clinician to verify currency.",
+      "reviewerMustSupply": "",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "BH-ANC-01",
+      "section": "antenatal",
+      "topic": "antenatal schedule",
+      "content": {
+        "en": "No official Bahrain Ministry of Health antenatal appointment schedule was found in this pass. WHO recommends a minimum of eight contacts.",
+        "ar": "لم نجد جدول مواعيد رسمي من وزارة الصحة البحرينية. منظمة الصحة العالمية توصي بما لا يقل عن 8 زيارات."
+      },
+      "evidence": "reference-only",
+      "sourceIds": [
+        "WHO-ANC"
+      ],
+      "notes": "",
+      "reviewerMustSupply": "Bahraini obstetrician or MOH maternal health page.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "BH-SUP-01",
+      "section": "supplements",
+      "topic": "folic acid and iron in pregnancy",
+      "content": {
+        "en": "No Bahrain Ministry of Health specific supplement dose was found in this pass. WHO recommends folic acid 400 mcg and iron 30-60 mg daily.",
+        "ar": "لم نجد توصية بحرينية بجرعة محددة. منظمة الصحة العالمية توصي بحمض الفوليك 400 ميكروغرام والحديد 30-60 ملغ يوميًا."
+      },
+      "evidence": "reference-only",
+      "sourceIds": [
+        "WHO-ANC"
+      ],
+      "notes": "WHO reference only.",
+      "reviewerMustSupply": "Bahraini pharmacist or MOH page.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    },
+    {
+      "id": "BH-MED-01",
+      "section": "medicines",
+      "topic": "drug regulator",
+      "content": {
+        "en": "The National Health Regulatory Authority (NHRA, nhra.bh) regulates medicines in Bahrain. Its pregnancy/breastfeeding pages were not read in this pass.",
+        "ar": "هيئة الرقابة على الرعاية الصحية (NHRA) تنظم الأدوية في البحرين. لم تُقرأ صفحاتها في هذه المرحلة."
+      },
+      "evidence": "not-found",
+      "sourceIds": [],
+      "notes": "Needed for A2-7.",
+      "reviewerMustSupply": "Pharmacist to supply NHRA pages.",
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "date": null
+      }
+    }
+  ]
+}

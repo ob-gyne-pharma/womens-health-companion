@@ -89,6 +89,23 @@ include.
   sign-off per the Master Plan). Do not describe this as "clinically validated" or
   "professionally reviewed" until that review has happened and is on record.
 
+## 3b. Country-specific clinical data (added r25, 8 Nov 2026 — zero items visible to users)
+
+The app now loads, at build time, researched data for 8 countries (Egypt, Kuwait, UK, UAE,
+Bahrain, Oman, Qatar, Saudi Arabia) covering emergency numbers, antenatal/postnatal care,
+vaccination, supplements and helplines — 72 items in total, gathered and sourced by Agent 2.
+
+**This changes nothing a user sees.** Every item requires both `evidence: confirmed` (2+
+independent sources) and `review.status: reviewed` (a named clinical reviewer, with a date)
+before the app will display it, and no clinical reviewer has been named yet. This is
+enforced in code (`confirmedCountryItems()` in `js/28-countries.js`), not just policy — the
+function itself refuses to return an item unless both conditions hold, and this has been
+tested against both the real (all-empty) data and a synthetic fixture proving the logic
+isn't just coincidentally returning nothing.
+
+**Do not describe this to anyone as "country-specific guidance" or similar** — describe it
+as data gathered and awaiting clinical review, per `clinical/clinical-governance-framework-v0.1.md`.
+
 ## 4. What it does NOT do today (do not claim these)
 
 - No accounts, no login, no cloud storage, no sync across devices.
@@ -103,8 +120,10 @@ include.
 - No pilot, published evaluation, or research results of any kind.
 - No clinical reviewer is named publicly yet (the live site's footer currently says review
   is pending — see the open item in §7).
-- No country-specific clinical guidance beyond the 9-country emergency-number list in §2 —
-  the symptom checker and reminders currently describe UK practice.
+- No country-specific clinical guidance beyond the 12-country emergency-number list in §2.
+  §3b data exists for 8 countries but shows nothing to users — see §3b for why. The symptom
+  checker, reminders, and the vitamin D / supplement lines all currently describe UK
+  practice only.
 - No languages beyond English and Arabic.
 - No institutional, government or UN endorsement, partnership or review of any kind has
   happened yet.
@@ -170,3 +189,6 @@ merged, and the person making it is told exactly why and what to update first.
   limited first form; narrowed the FHIR-export line to be accurate.
 - 5 Nov 2026 — r24: emergency-number count 9→12 (Agent 2's CR-1, approved by founder);
   added the medicine information demo entry, missing until now (Agent 2's F-17).
+- 8 Nov 2026 — r25: added §3b, per-country clinical data infrastructure (8 countries, 72
+  items, zero currently shown to any user — see §3b); added a per-guide "last reviewed"
+  mechanism, currently empty for all 42 guides; finished the F-17 rename everywhere.

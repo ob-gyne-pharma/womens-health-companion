@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.05-r24 | js/02-views-legacy.js
+/* Women & Families 2026.11.08-r25 | js/02-views-legacy.js
    Original home/pregnancy/checker/plan views, coreRender, navigate, first event handlers.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */
@@ -38,7 +38,7 @@ function home(){
       title:T('Understand your options with confidence.','افهمي خياراتكِ بثقة.'),
       sub:T('Evidence-based contraception guides, matched to your health and preferences.','أدلة منع الحمل القائمة على الأدلة، مصممة لصحتكِ وتفضيلاتكِ.'),
       act1:{label:T('Explore options','استكشفي الخيارات'),hash:'contraception'},
-      act2:{label:T('Medicine checker','فاحص الأدوية'),hash:'checker'}
+      act2:{label:T('Medicine information demo','نموذج معلومات الدواء'),hash:'checker'}
     },
     breastfeeding:{
       cls:'today-postpartum',icon:'🍼',

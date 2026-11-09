@@ -1,4 +1,4 @@
-/* Women & Families 2026.11.05-r24 | js/11-state-calc.js
+/* Women & Families 2026.11.08-r25 | js/11-state-calc.js
    State restore/save, date calculators, plan/summary.
    Classic script (not a module): shares one global scope with every other js/ file,
    so LOAD ORDER IS PART OF THE CODE. Order is defined in index.html and sw.js. */
